@@ -4,19 +4,24 @@ Snappedly's reusable engineering skills. They share a small per-repository contr
 
 ## Main workflow
 
-The default flow is:
+The default flow for multi-session work is:
 
-`grill-with-docs` → `to-spec` → `to-tickets` → `implement` → `handover`
+`grill-with-docs` → `to-spec` → `to-tickets` → `implement-spec`
+
+For a smaller change, start `implement` once the request is clear and `build-local` to test locally. Use `handoff` when another session or directory needs to continue the work.
 
 | Workflow concern | Skill |
 | --- | --- |
 | Stress-test a plan or decision | `grill-me` |
 | Build the shared domain model | `domain-modeling` |
 | Triage tracker work | `triage` |
+| Clarify an idea and record its decisions | `grill-with-docs` |
 | Publish a spec | `to-spec` |
 | Publish a dependency-aware ticket graph | `to-tickets` |
 | Drive behavior-first tests | `tdd` |
 | Implement approved work | `implement` |
+| Implement a complete spec as one pull or merge request | `implement-spec` |
+| Serve a verified local build URL | `build-local` |
 | Clean and validate changes before review or commit | `code-cleanup` |
 | Review standards, spec, and UI guidelines separately | `code-review` |
 | Diagnose hard bugs and regressions | `diagnosing-bugs` |
@@ -24,18 +29,19 @@ The default flow is:
 
 `grill-me`, `domain-modeling`, `tdd`, `code-cleanup`, `code-review`, and `diagnosing-bugs` are supporting skills. Cleanup runs within an authorized implementation task; a review-only request stays read-only. Tracker mutations require explicit invocation.
 
-## Extended catalog
+## Skill groups
 
-The source tree groups skills by role:
+Each skill lives at `skills/<group>/<name>/SKILL.md`. The catalog follows the directory tree:
 
-- Start: `setup-snappedly-skills`, `ask-snappedly`.
-- Shaping: `grill-me`, `research`, `prototype`, `wayfinder`.
-- Main workflow: `grill-with-docs`, `to-spec`, `to-tickets`, `implement`, `implement-spec`, `build-local`.
-- Review: `code-cleanup`, `code-review`.
-- Upkeep: `triage`, `diagnosing-bugs`, `improve-codebase-architecture`, `resolving-merge-conflicts`.
-- Frontend: `frontend-design`, `frontend-guidelines`.
-- Practices: `tdd`, `codebase-design`, `domain-modeling`, `remove-slop`.
-- Tools: `handoff`, `wizard`, `teach`, `wait-what`, `writing-for-agents`.
+| Directory | Purpose | Skills |
+| --- | --- | --- |
+| `begin/` | Choose and configure the workflow | `ask-snappedly`, `setup-snappedly-skills` |
+| `direction/` | Explore ideas and settle design decisions | `grill-me`, `prototype`, `research`, `wayfinder` |
+| `mainflow/` | Shape and implement planned work | `grill-with-docs`,  `to-spec`, `to-tickets`, `implement-spec` |
+| `tools/` | Standalone workflow tools | `code-review`, `handoff`, `implement`, `teach`, `wait-what`, `wizard` |
+| `upkeep/` | Maintain the codebase and triage incoming work | `diagnosing-bugs`, `improve-codebase-architecture`, `resolving-merge-conflicts`, `triage` |
+| `practices/` | Reusable engineering disciplines and references | `code-cleanup`, `codebase-design`, `domain-modeling`, `frontend-design`, `frontend-guidelines`, `remove-slop`, `tdd`, `writing-for-agents` |
+
 
 ## Install
 
