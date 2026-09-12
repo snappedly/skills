@@ -18,7 +18,7 @@ Each skill lives at `skills/<group>/<name>/SKILL.md`. The catalog follows the di
 | --- | --- | --- |
 | `begin/` | Choose and configure the workflow | `ask-snappedly`, `setup-snappedly-skills` |
 | `direction/` | Explore ideas and settle design decisions | `grill-me`, `prototype`, `research`, `wayfinder` |
-| `mainflow/` | Shape and implement planned work | `grill-with-docs`,  `to-spec`, `to-tickets`, `implement-spec` |
+| `mainflow/` | Shape and implement planned work | `grill-with-docs`, `to-spec`, `to-tickets`, `implement-spec`, `build-local` |
 | `tools/` | Standalone workflow tools | `code-review`, `handoff`, `implement`, `teach`, `wait-what`, `wizard` |
 | `upkeep/` | Maintain the codebase and triage incoming work | `diagnosing-bugs`, `improve-codebase-architecture`, `resolving-merge-conflicts`, `triage` |
 | `practices/` | Reusable engineering disciplines and references | `code-cleanup`, `codebase-design`, `domain-modeling`, `frontend-design`, `frontend-guidelines`, `remove-slop`, `tdd`, `writing-for-agents` |
@@ -27,33 +27,51 @@ Each skill lives at `skills/<group>/<name>/SKILL.md`. The catalog follows the di
 
 | Workflow concern | Skill |
 | --- | --- |
+| Choose the Snappedly skill or workflow for the current situation | `ask-snappedly` |
+| Configure a repository for Snappedly skills | `setup-snappedly-skills` |
 | Stress-test a plan or decision | `grill-me` |
-| Build the shared domain model | `domain-modeling` |
-| Triage tracker work | `triage` |
+| Build a throwaway prototype to answer a design question | `prototype` |
+| Investigate a question and capture cited findings | `research` |
+| Plan a large effort as a decision-ticket map | `wayfinder` |
 | Clarify an idea and record its decisions | `grill-with-docs` |
 | Publish a spec | `to-spec` |
 | Publish a dependency-aware ticket graph | `to-tickets` |
-| Drive behavior-first tests | `tdd` |
-| Implement approved work | `implement` |
 | Implement a complete spec as one pull or merge request | `implement-spec` |
 | Serve a verified local build URL | `build-local` |
-| Clean and validate changes before review or commit | `code-cleanup` |
 | Review standards, spec, and UI guidelines separately | `code-review` |
-| Diagnose hard bugs and regressions | `diagnosing-bugs` |
 | Continue work in another session | `handoff` |
+| Implement approved work | `implement` |
+| Teach a concept over several sessions | `teach` |
+| Recover when context did not land | `wait-what` |
+| Generate a wizard for manual setup steps | `wizard` |
+| Diagnose hard bugs and regressions | `diagnosing-bugs` |
+| Find opportunities to improve codebase architecture | `improve-codebase-architecture` |
+| Resolve an in-progress merge or rebase conflict | `resolving-merge-conflicts` |
+| Triage tracker work | `triage` |
+| Clean and validate changes before review or commit | `code-cleanup` |
+| Design deep modules and clear seams | `codebase-design` |
+| Build the shared domain model | `domain-modeling` |
+| Set the visual direction for a UI surface | `frontend-design` |
+| Audit UI code against interface guidelines | `frontend-guidelines` |
+| Remove AI-generated slop from code and writing | `remove-slop` |
+| Drive behavior-first tests | `tdd` |
+| Write documents for agents | `writing-for-agents` |
 
 ## Install
 
-You can install the repository directly with the [`skills`](https://github.com/vercel-labs/skills) CLI. Install every skill for Codex in the current project with:
+1. You can install the repository directly with the [`skills`](https://github.com/vercel-labs/skills) CLI. Install every skill for Codex in the current project with:
 
 ```bash
 npx skills add snappedly/tools/skills
 ```
 
-For a project install, the CLI records the source and installed skill paths in `skills-lock.json`. It tracks global installs in its global lock file. After pushing an update to this repository, refresh a project-scoped install with:
-
+For updates:
 ```bash
 npx skills update
 ```
 
-Install `setup-snappedly-skills` first for a target repository. It records the git tracker, team workflow, triage label mapping, domain-document layout, frontend conventions, and root agent instructions in that repository. The other skills read those files instead of carrying project-specific policy.
+2. Run `setup-snappedly-skills` for the first time in a target repository.
+
+It records the git tracker, team workflow, triage label mapping, domain-document layout, frontend conventions, and root agent instructions in that repository. The other skills read those files instead of carrying project-specific policy.
+
+3. If direction is needed, start with the direction skills and then move to the mainflow.
