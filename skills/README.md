@@ -34,7 +34,7 @@ The source tree groups skills by role:
 - Review: `code-cleanup`, `code-review`.
 - Upkeep: `triage`, `diagnosing-bugs`, `improve-codebase-architecture`, `resolving-merge-conflicts`.
 - Frontend: `frontend-design`, `frontend-guidelines`.
-- Practices: `tdd`, `codebase-design`, `domain-modeling`, `deslop`, `prevent-slop`.
+- Practices: `tdd`, `codebase-design`, `domain-modeling`, `remove-slop`.
 - Tools: `handoff`, `wizard`, `teach`, `wait-what`, `writing-for-agents`.
 
 ## Install
