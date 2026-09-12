@@ -18,4 +18,4 @@ Once done, run /code-cleanup on the task change. It owns the final required chec
 
 Commit your work to the current branch once required checks pass, every applicable review axis has completed or been handled under repository policy, and every finding has the disposition required by `docs/agents/workflow.md`. If checks are blocked or coverage is missing, report the gap before proceeding; a completed cleanup report alone does not establish readiness to commit.
 
-Implementation stops at the verified commit. Use `/deliver` to push it, merge it, obtain production approval, deploy it, and verify it.
+Implementation stops at the verified commit. Continue with the repository's own pull or merge request and release process.
