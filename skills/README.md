@@ -8,7 +8,22 @@ The default flow for multi-session work is:
 
 `grill-with-docs` → `to-spec` → `to-tickets` → `implement-spec`
 
-For a smaller change, start `implement` once the request is clear and `build-local` to test locally. Use `handoff` when another session or directory needs to continue the work.
+For a smaller change, start `implement` once the request is clear, then run `build-local` to test locally. Use `handoff` when another session or directory needs to continue the work.
+
+## Skill groups
+
+Each skill lives at `skills/<group>/<name>/SKILL.md`. The catalog follows the directory tree:
+
+| Directory | Purpose | Skills |
+| --- | --- | --- |
+| `begin/` | Choose and configure the workflow | `ask-snappedly`, `setup-snappedly-skills` |
+| `direction/` | Explore ideas and settle design decisions | `grill-me`, `prototype`, `research`, `wayfinder` |
+| `mainflow/` | Shape and implement planned work | `grill-with-docs`,  `to-spec`, `to-tickets`, `implement-spec` |
+| `tools/` | Standalone workflow tools | `code-review`, `handoff`, `implement`, `teach`, `wait-what`, `wizard` |
+| `upkeep/` | Maintain the codebase and triage incoming work | `diagnosing-bugs`, `improve-codebase-architecture`, `resolving-merge-conflicts`, `triage` |
+| `practices/` | Reusable engineering disciplines and references | `code-cleanup`, `codebase-design`, `domain-modeling`, `frontend-design`, `frontend-guidelines`, `remove-slop`, `tdd`, `writing-for-agents` |
+
+## Skills list
 
 | Workflow concern | Skill |
 | --- | --- |
@@ -26,22 +41,6 @@ For a smaller change, start `implement` once the request is clear and `build-loc
 | Review standards, spec, and UI guidelines separately | `code-review` |
 | Diagnose hard bugs and regressions | `diagnosing-bugs` |
 | Continue work in another session | `handoff` |
-
-`grill-me`, `domain-modeling`, `tdd`, `code-cleanup`, `code-review`, and `diagnosing-bugs` are supporting skills. Cleanup runs within an authorized implementation task; a review-only request stays read-only. Tracker mutations require explicit invocation.
-
-## Skill groups
-
-Each skill lives at `skills/<group>/<name>/SKILL.md`. The catalog follows the directory tree:
-
-| Directory | Purpose | Skills |
-| --- | --- | --- |
-| `begin/` | Choose and configure the workflow | `ask-snappedly`, `setup-snappedly-skills` |
-| `direction/` | Explore ideas and settle design decisions | `grill-me`, `prototype`, `research`, `wayfinder` |
-| `mainflow/` | Shape and implement planned work | `grill-with-docs`,  `to-spec`, `to-tickets`, `implement-spec` |
-| `tools/` | Standalone workflow tools | `code-review`, `handoff`, `implement`, `teach`, `wait-what`, `wizard` |
-| `upkeep/` | Maintain the codebase and triage incoming work | `diagnosing-bugs`, `improve-codebase-architecture`, `resolving-merge-conflicts`, `triage` |
-| `practices/` | Reusable engineering disciplines and references | `code-cleanup`, `codebase-design`, `domain-modeling`, `frontend-design`, `frontend-guidelines`, `remove-slop`, `tdd`, `writing-for-agents` |
-
 
 ## Install
 
