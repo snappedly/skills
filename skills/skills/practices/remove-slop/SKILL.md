@@ -3,7 +3,7 @@ name: remove-slop
 description: Remove AI-generated slop from code changes and writing. Use for behavior-preserving code cleanup and meaning-preserving prose edits.
 ---
 
-# Remove slop
+# Remove Slop
 
 Clean code and writing without changing behavior, meaning, or the writer's voice.
 
@@ -12,7 +12,7 @@ Clean code and writing without changing behavior, meaning, or the writer's voice
 1. For code, use the caller's fixed point or compute the task branch's merge-base with its configured base branch. Inspect staged, unstaged, committed, and untracked task files in that scope. For writing, identify the supplied text or document. Keep unrelated material out.
 2. Scan the relevant material. Apply the code checks and writing rules below. Use both when the task contains code and prose.
 3. Rewrite with the smallest focused edit that fixes the slop. Match the surrounding code and the intended tone.
-4. Self-audit. Ask what still makes the result look AI-generated or unlike its surroundings, then fix remaining tells.
+4. Self-audit. Ask what still makes the result look AI-generated or out of place, then fix any remaining tells.
 5. Report the cleanup briefly, including any item you left unchanged because it would alter behavior or meaning.
 
 ## Code
@@ -23,7 +23,7 @@ Clean code and writing without changing behavior, meaning, or the writer's voice
 - Flatten deeply nested code with early returns when that matches local style.
 - Remove other patterns inconsistent with the file and surrounding codebase.
 
-Keep code behavior unchanged. Return a possible bug to the implementation workflow so it receives behavior-level tests, cleanup, and review. Prefer minimal, focused edits over broad rewrites. Keep the final summary concise, from one to three sentences.
+Keep code behavior unchanged. Return a possible bug to the implementation workflow, so it receives behavior-level tests, cleanup, and review. Prefer minimal, focused edits over broad rewrites. Keep the final summary concise, from one to three sentences.
 
 ## Writing
 
