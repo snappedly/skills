@@ -1,0 +1,5 @@
+interface:
+  display_name: "Prototype"
+  short_description: "Answer design questions with runnable artifacts"
+policy:
+  allow_implicit_invocation: true

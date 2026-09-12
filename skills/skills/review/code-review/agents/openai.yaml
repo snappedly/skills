@@ -1,0 +1,5 @@
+interface:
+  display_name: "Code Review"
+  short_description: "Review standards, spec, and UI guidelines as separate axes"
+policy:
+  allow_implicit_invocation: true

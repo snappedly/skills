@@ -1,0 +1,5 @@
+interface:
+  display_name: "Ask Snappedly"
+  short_description: "Choose the right Snappedly workflow"
+policy:
+  allow_implicit_invocation: false

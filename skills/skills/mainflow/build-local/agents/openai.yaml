@@ -1,0 +1,5 @@
+interface:
+  display_name: "Build Local"
+  short_description: "Serve a verified local build URL"
+policy:
+  allow_implicit_invocation: false

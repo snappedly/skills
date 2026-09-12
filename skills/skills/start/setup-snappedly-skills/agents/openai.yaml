@@ -1,0 +1,5 @@
+interface:
+  display_name: "Setup Snappedly Skills"
+  short_description: "Configure a repo for Snappedly skills"
+policy:
+  allow_implicit_invocation: false
