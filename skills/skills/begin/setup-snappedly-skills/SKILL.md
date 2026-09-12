@@ -62,7 +62,7 @@ Record the selected provider in `docs/agents/issue-tracker.md`. Keep the `PRs as
 
 Read existing process documentation first. Preserve its rules and ask the user whether the default Snappedly flow fits:
 
-`clarify -> specify -> ticket -> implement -> code-cleanup -> code-review -> deliver -> handoff`
+`clarify -> specify -> ticket -> implement -> code-cleanup -> code-review -> handoff`
 
 Capture the agreed GitHub or GitLab issue as the source of truth for work and the point at which implementation may start. Individual `/implement` work must be marked as an executable issue or have an executable agent brief; planning specs and wayfinder decision tickets do not qualify. `/implement-spec` is the explicit whole-spec path. Record the checks that `code-cleanup` must run, the review axes, the allowed disposition for each kind of finding, and the information a handoff must contain. Include `code-cleanup` after implementation and before review or commit. After review fixes, cleanup reruns checks affected by the final integrated state before substantive changes return to review.
 
@@ -180,7 +180,7 @@ Use this block, filling each line with the confirmed configuration:
 
 ### Team workflow
 
-[one-line summary of the agreed delivery flow]. See `docs/agents/workflow.md`.
+[one-line summary of the agreed flow]. See `docs/agents/workflow.md`.
 
 ### Triage labels
 

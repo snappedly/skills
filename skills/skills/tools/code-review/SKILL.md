@@ -11,7 +11,7 @@ Separate-axis review of a branch or work-in-progress change against a fixed poin
 
 Each axis runs as a **parallel sub-agent** so they don't pollute each other's context, then this skill aggregates their findings.
 
-In an implementation workflow, run `code-cleanup` before this review and treat its final validation results as review input. Read `docs/agents/workflow.md` when present for the repository's finding-disposition policy. For a review-only request, inspect the supplied change without editing it; report missing validation evidence. After fixes, rerun cleanup for the affected scope and review substantive changes again.
+Run `code-cleanup` before this review and treat its final validation results as review input. Read `docs/agents/workflow.md` when present for the repository's finding-disposition policy. For a review-only request, inspect the supplied change without editing it; report missing validation evidence. After fixes, rerun cleanup for the affected scope and review substantive changes again.
 
 ## Process
 

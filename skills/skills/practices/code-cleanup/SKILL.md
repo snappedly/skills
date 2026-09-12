@@ -1,15 +1,15 @@
 ---
 name: code-cleanup
-description: "Clean and validate completed code changes before code review or commit. Use after implementation, after review fixes, or when asked to prepare a change for review."
+description: "Clean and validate completed code changes before commit"
 ---
 
 # Code cleanup
 
-Prepare the current task change for review with mechanical, behavior-preserving cleanup and final evidence from the repository's checks.
+Prepare the current task change with mechanical, behavior-preserving cleanup and final evidence from the repository's checks.
 
 ## Timing
 
-Run once a coherent change is ready, before `code-review` and before committing. This skill owns the final required checks for the state it produces; implementation may run targeted checks while coding, but the calling workflow should not add a duplicate final validation stage. After review fixes, rerun cleanup for the affected scope; cleanup reruns the affected checks before substantive changes return to review. Reuse passing check results only when the checked files, dependencies, configuration, command, and scope are unchanged.
+Run once a coherent change is ready, and before committing. This skill owns the final required checks for the state it produces; implementation may run targeted checks while coding, but the calling workflow should not add a duplicate final validation stage. After review fixes, rerun cleanup for the affected scope; cleanup reruns the affected checks before substantive changes return to review. Reuse passing check results only when the checked files, dependencies, configuration, command, and scope are unchanged.
 
 An existing request to implement or fix code authorizes this cleanup within that task. A review-only request stays read-only; report missing validation evidence without editing the code. Leave staging, commits, pushes, and deployments to the calling workflow.
 
@@ -25,6 +25,6 @@ An existing request to implement or fix code authorizes this cleanup within that
 
 4. **Classify failures.** Return non-autofix lint failures and failures from typechecks, tests, or builds to implementation or review-fix work; cleanup does not make semantic edits to clear them. Identify unrelated failures using evidence from the baseline where practical; otherwise report attribution as uncertain. If a check cannot run, record the missing dependency, environment issue, or other concrete blocker. Continue independent checks and report unresolved work. After the calling workflow fixes a failure, rerun the affected cleanup checks against the final code.
 
-5. **Report the final state.** Reinspect the diff, including untracked task files, for accidental changes. Summarize cleanup edits and report each check's command, working directory, scope, and result. Distinguish passing, failing, blocked, unconfigured, and not-applicable checks. Include lint warnings according to the repository's policy. Claim formatting, linting, or other validation passed only when the reported checks cover the final task change. Report partial staging or other coverage gaps, and carry unresolved checks into the review or commit handoff rather than claiming the change is ready.
+5. **Report the final state.** Reinspect the diff, including untracked task files, for accidental changes. Summarize cleanup edits and report each check's command, working directory, scope, and result. Distinguish passing, failing, blocked, unconfigured, and not-applicable checks. Include lint warnings according to the repository's policy. Claim formatting, linting, or other validation passed only when the reported checks cover the final task change. Report partial staging or other coverage gaps, and carry unresolved checks into the commit handoff rather than claiming the change is ready.
 
 Completion criterion: the final task state is accounted for by every required check, with each result reported as passing, failing, blocked, unconfigured, or not applicable, and the cleanup introduced no out-of-scope change.

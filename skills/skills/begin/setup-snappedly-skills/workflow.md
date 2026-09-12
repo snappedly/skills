@@ -12,14 +12,6 @@ How work moves from an agreed request to a production-verified change.
 
 An individual `/implement` run starts from an executable issue or an agent brief whose work item type is executable. A planning spec and a wayfinder decision ticket are not executable work items. `/implement-spec` is the explicit path for delivering a complete planning spec through its child ticket graph.
 
-## Delivery flow
-
-`clarify -> specify -> ticket -> implement -> code-cleanup -> code-review -> deliver -> handoff`
-
-- New features, bug fixes, and changed logic start with a failing test at an agreed seam.
-- Implementation may run targeted checks for feedback. `code-cleanup` owns the final required checks for the state it produces.
-- After review fixes, rerun cleanup for the affected scope. If a merge, conflict resolution, or changed base alters checked inputs, rerun affected checks on the integrated branch before substantive changes return to review.
-
 ## Required checks
 
 [List the formatter, linter, typecheck, test, and build commands that `code-cleanup` must run, including their working directories and when each one applies.]

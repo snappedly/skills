@@ -12,7 +12,7 @@ The tickets are not a list of steps. They are a **task graph** with blocking rel
 
 Communication to and from subagents should be sparse. Communicate primarily through **context pointers**: to the spec, tickets, research notes, and previous commits. Don't duplicate information already available via pointers.
 
-Read `docs/agents/workflow.md`. It is the source of truth for required checks and finding disposition. If it is missing, tell the user to run `/setup-snappedly-skills` before creating the delivery branch.
+Read `docs/agents/workflow.md`. It is the source of truth for required checks and finding disposition. If it is missing, tell the user to run `/setup-snappedly-skills` before creating the branch.
 
 **Implementer subagents** should be run in the background where possible for **maximum concurrency**.
 

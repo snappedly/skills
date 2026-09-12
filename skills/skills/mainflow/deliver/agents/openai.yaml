@@ -1,6 +1,0 @@
-interface:
-  display_name: "Deliver"
-  short_description: "Merge, request approval, deploy, and verify"
-  default_prompt: "Use $deliver to take this verified change through merge and production verification."
-policy:
-  allow_implicit_invocation: true

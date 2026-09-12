@@ -1,6 +1,5 @@
 interface:
   display_name: "Code Cleanup"
   short_description: "Clean and validate changes before review"
-  default_prompt: "Use $code-cleanup to clean and validate the current task change before review or commit."
 policy:
   allow_implicit_invocation: true
