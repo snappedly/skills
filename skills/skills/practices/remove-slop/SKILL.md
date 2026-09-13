@@ -45,7 +45,7 @@ Rule numbers are stable ids that other skills cite. A removed rule leaves a gap.
 
 ### Style
 
-13. **Em dash overuse.** Avoid em dashes entirely. Use periods or commas only. If a thought needs separation, end the sentence or use a comma.
+13. **Em dashes.** Use periods or commas to separate thoughts. Treat the em dash character as disallowed in final prose, including examples and quoted rewrites, and check for it before returning the result.
 14. **Colon overuse.** Colons are fine before a list or example. Do not use them as mid-sentence connectors. "If you're coming from traditional automation: instead of registering event handlers, you describe conditions" adds nothing with the colon. Rewrite to let the point stand on its own. "Describing when the scheduler should fire works best as plain English." Same meaning, no crutch punctuation.
 15. **Boldface overuse.** Do not bold every proper noun or acronym.
 16. **Inline-header lists.** A bold label and colon that restates the line, such as "**Performance:** Performance improved...", is a tell. Convert it to prose. A bold lead-in that ends in a period, names the item, and is followed by genuinely new detail, such as "**Schema in TypeScript.** Tables live in one file.", is fine.
