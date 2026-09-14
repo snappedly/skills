@@ -5,28 +5,41 @@ description: "Clean and validate completed changes before commit, including beha
 
 # Code cleanup
 
-Prepare the current task change with mechanical, behavior-preserving cleanup and final evidence from the repository's checks.
+Prepare a coherent task change with mechanical, behavior-preserving cleanup and final evidence from the repository's checks. This skill owns checks and evidence for one state. The calling workflow owns phase transitions, commits, pushes, and deployments.
 
-## Timing
+## Timing and ownership
 
-Run once a coherent change is ready, and before committing. This skill owns the final required checks for the state it produces; implementation may run targeted checks while coding, but the calling workflow should not add a duplicate final validation stage. After review fixes, rerun cleanup for the affected scope; cleanup reruns the affected checks before substantive changes return to review. Reuse passing check results only when the checked files, dependencies, configuration, command, and scope are unchanged.
+Run once when an integrated change is ready, before review or commit. Ticket implementers may run targeted tests and typechecking, but they do not run the integrated full suite or production builds independently. `implement-spec` schedules the single integrated cleanup pass and any bounded post-fix rerun. This skill returns evidence; it must not recursively start review, fixes, or another cleanup pass.
 
-An existing request to implement or fix code authorizes this cleanup within that task. A review-only request stays read-only; report missing validation evidence without editing the code. Leave staging, commits, pushes, and deployments to the calling workflow.
+After a review fix, rerun only checks affected by the final fix. Reuse prior evidence only when every checked file, dependency, configuration input, command, working directory, and scope is unchanged, and the evidence is keyed to the same target SHA. A changed SHA is not a reason to pretend that evidence still applies.
+
+## Immutable evidence contract
+
+At the start of every pass, capture:
+
+- `inputSha`, the exact commit being cleaned;
+- `scope`, including staged, unstaged, and untracked task paths;
+- the baseline or merge-base used for the comparison; and
+- the applicable workflow and check configuration.
+
+Cleanup may make behavior-preserving formatting or slop edits. If it does, finish those edits before validation and report `outputSha`, the exact commit or working-tree revision validated. Every result must name the SHA it actually inspected, the path scope, command, working directory, configuration/dependency inputs, and status. A result without this identity is incomplete.
+
+The target state must not be reviewed while cleanup is mutating it. If another process changes the branch during a pass, stop, mark the affected result stale with both SHAs, and return control to the coordinator. Do not merge or launch reviewers from inside this skill.
 
 ## Process
 
-1. **Establish scope.** Read applicable agent instructions and `docs/agents/workflow.md` when present. Inspect `git status --short`, `git diff`, and `git diff --cached`; include untracked task files. Include the branch/base comparison when the task spans existing commits, using the caller's base rather than assuming `main`. Identify the task's files and preserve unrelated edits. If no task change is present, report that and stop. Keep the index unchanged. For partially staged files, distinguish validation of the working copy from validation of the staged version.
+1. **Establish scope.** Read applicable agent instructions and `docs/agents/workflow.md` when present. Inspect `git status --short`, `git diff`, and `git diff --cached`; include untracked task files and the caller's base/merge-base when the task spans commits. Preserve unrelated edits and keep the index unchanged. If no task change is present, report that and stop. Distinguish working-copy validation from staged validation for partially staged files.
 
-2. **Discover the checks.** Read repository scripts, tool configuration, CI, and contribution guidance. Identify the configured formatter and linter for each changed file type or package, their check and fix modes, and required typechecks, tests, or builds. Use the declared package manager and installed tool versions. A missing script does not mean there is no linter; check for configured tools and CI commands. When no formatter or linter covers applicable files, report the gap explicitly. Set up new tooling only when requested.
+2. **Discover the checks.** Read repository scripts, tool configuration, CI, and contribution guidance. Identify formatter and linter check/fix modes, typechecks, tests, and builds, including their working directories and scopes. A missing script does not prove that a file type has no configured tool. Report formatter/linter coverage gaps explicitly and do not install new tooling unless requested.
 
-3. **Remove slop.** For an authorized implementation or fix cleanup, call the Skill tool with `remove-slop` after establishing scope. Pass the same fixed point and task files, including staged, unstaged, and untracked files. Run it when the scope contains code or prose, and report it as not applicable when it does not. Keep review-only cleanup read-only, so inspect for slop and report it without invoking the editing skill. Include its behavior-preserving code edits and meaning-preserving prose edits in the cleanup diff.
+3. **Remove slop.** For an authorized implementation or fix, call the `remove-slop` skill after scope is fixed, passing the same SHA, paths, staged/unstaged state, and untracked task files. Keep its behavior-preserving code edits and meaning-preserving prose edits in this cleanup scope. For review-only work, do not edit; inspect and report instead.
 
-4. **Clean and validate.** Apply the configured formatter and safe lint fixes within the task scope, then run formatter and lint checks in non-mutating mode. Keep discretionary refactors and other semantic edits in implementation or review-fix work. Inspect script definitions before running them; a command named `lint` or `check` may write files. Use check-only commands when fixes cannot be scoped safely. Preserve lint rules and suppression policy; fix the code instead of weakening checks to obtain a pass.
+4. **Clean and validate.** Apply only scoped formatter and safe lint fixes, then run formatter and lint checks in non-mutating mode. Run the required typechecks, tests, and builds that cover this target. Run independent read-only checks in parallel where useful, but do not duplicate a check already covered by an aggregate command. Include `git diff --check` and `git diff --cached --check` as whitespace checks.
 
-   Run the required typechecks, tests, and builds that cover the change. Prefer supported file or package scopes; use broader checks when configuration, shared code, or repository policy requires them. Run independent read-only checks in parallel when useful. Keep fixes sequential, and avoid repeating a check already covered by an aggregate command. Check for patch whitespace errors with `git diff --check` and `git diff --cached --check`; these supplement the formatter and linter.
+   The integrated pass owns repository-required full-suite tests and production builds when policy requires them. A review-fix pass owns only affected checks unless shared code, dependencies, configuration, the workflow, or repository policy makes a broader check necessary. Explain that reason when broad validation is repeated.
 
-5. **Classify failures.** Return non-autofix lint failures and failures from typechecks, tests, or builds to implementation or review-fix work; cleanup does not make semantic edits to clear them. Identify unrelated failures using evidence from the baseline where practical; otherwise report attribution as uncertain. If a check cannot run, record the missing dependency, environment issue, or other concrete blocker. Continue independent checks and report unresolved work. After the calling workflow fixes a failure, rerun the affected cleanup checks against the final code.
+5. **Classify failures and stale evidence.** Return non-autofix lint failures and typecheck, test, or build failures to implementation or fix work; cleanup does not make semantic edits to clear them. Identify unrelated failures using baseline evidence where practical, otherwise mark attribution uncertain. If a check cannot run, record the concrete blocker. Continue independent checks. If the target SHA, files, dependencies, configuration, command, or scope changes, invalidate only the affected evidence and identify the exact rerun needed.
 
-6. **Report the final state.** Reinspect the diff, including untracked task files, for accidental changes. Summarize cleanup edits and report each check's command, working directory, scope, and result. Distinguish passing, failing, blocked, unconfigured, and not-applicable checks. Include lint warnings according to the repository's policy. Claim formatting, linting, or other validation passed only when the reported checks cover the final task change. Report partial staging or other coverage gaps, and carry unresolved checks into the commit handoff rather than claiming the change is ready.
+6. **Report the final state.** Reinspect the complete scoped diff, including untracked task files. Report `inputSha`, `outputSha`, path scope, each command and result, and whether each check is passing, failing, blocked, unconfigured, or not applicable. Include warnings, partial staging, coverage gaps, cleanup edits, and stale-result dispositions. Claim readiness only when the reported evidence covers the final target state.
 
-Completion criterion: the final task state is accounted for by every required check, with each result reported as passing, failing, blocked, unconfigured, or not applicable, and the cleanup introduced no out-of-scope change.
+Completion criterion: one coherent target state is fully accounted for by required checks, with each result traceable to an immutable SHA and no out-of-scope change introduced.
