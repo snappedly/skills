@@ -1,6 +1,7 @@
 ---
 name: frontend-design
-description: "Set the visual direction for a UI surface: palette, typography, layout, motion, and copy chosen for this subject rather than templated defaults. Use when designing a new page or product surface, reshaping an existing one's look, drafting prototype variants, or when another skill needs the design-direction vocabulary."
+description: "Set a distinctive visual direction for a UI surface, including palette, type, layout, motion, and copy."
+disable-model-invocation: true
 ---
 
 # Frontend Design
@@ -56,6 +57,12 @@ Work in two passes. First, brainstorm a short design plan based on the client's 
 Then review that plan against the brief before building: if any part of it reads like the generic default you would produce for any similar page (work through a similar prompt to see if you arrive somewhere similar) rather than a choice made for this specific brief — revise that part, say what you changed and why. Only after you've confirmed the relative uniqueness of your design plan should you start to write the code, following the revised plan.
 
 When writing the code, be careful of structuring your CSS selector specificities. It's easy to generate CSS classes that cancel each other out (especially with a type-based selector like .section and an element-based selector like .cta). This can happen often with padding/margin between sections.
+
+## Interface check
+
+Before finalizing the direction, run the `frontend-guidelines` audit against the UI files or prototype output. Read its pinned `GUIDELINES.md`, apply every rule, and return the audit's required `file:line` findings or clean-file passes.
+
+`frontend-design` is the only skill that runs this integrated audit. Other workflows that need the rules read the pinned `GUIDELINES.md` directly; they do not invoke `frontend-guidelines`.
 
 ## Restraint and self-critique
 

@@ -69,7 +69,7 @@ Launch one agent per applicable axis in parallel. Keep briefs scoped; pass the f
 
 - Standards reads the full baseline and structural guidance above, plus repository standards. Report documented violations separately from heuristic concerns.
 - Spec checks every supplied requirement for missing, partial, incorrect, or unrequested behavior. Cite the requirement for each finding.
-- Interface reads frontend-guidelines, audits the UI scope against applicable rules, and returns its `file:line` report, clean-file passes, and guidelines pin date.
+- Interface reads the `frontend-guidelines` pinned rules, audits the UI scope against applicable rules, and returns its `file:line` report, clean-file passes, and guidelines pin date.
 
 Review surrounding context as needed; report issues introduced or worsened by the change. Each result names its exact target, scope, findings, and coverage gaps. Use completion notifications and close completed agents. If an axis fails, report it as missing and let the coordinator decide on a budgeted retry or policy-authorized waiver.
 

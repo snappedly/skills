@@ -2,4 +2,4 @@ interface:
   display_name: "Frontend Guidelines"
   short_description: "Audit UI code against the web interface guidelines"
 policy:
-  allow_implicit_invocation: true
+  allow_implicit_invocation: false
