@@ -144,11 +144,6 @@ def main() -> int:
                 elif not resolved.exists():
                     errors.append(f"{markdown_relative}: unresolved link {target}")
 
-    if (SKILLS / "misc").exists():
-        errors.append(
-            "skills/misc still exists; shared disciplines belong in skills/practices"
-        )
-
     if errors:
         print("\n".join(errors))
         return 1

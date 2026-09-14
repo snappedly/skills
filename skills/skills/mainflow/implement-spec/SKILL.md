@@ -18,6 +18,8 @@ Keep briefs bounded to the assignment; avoid copying the full conversation. Reus
 
 Compare actual launches and full validation passes with the budget before adding work. On an overrun, stop automatic scheduling and report the cause and a concrete reduced plan. Resume only with an explicit coordinator decision within existing authority, or a user decision when scope, requirements, or finding policy would change. Never silently raise the budget.
 
+Keep the ticket graph, agreed seams, source pointers, and check commands in the existing run record. Refresh them when requirements or configuration change. Bound parallel work by available workers and independent file ownership; group small related tickets when their dependency order permits, or implement sequentially if delegation is unavailable. Workers return commit SHAs, completed tickets, changed paths, check results, and blockers, with file pointers for detailed logs.
+
 ## Phases
 
 | Phase | Work and completion condition |
@@ -48,3 +50,5 @@ Maintain one compact record in the existing task notes or PR evidence. Reuse com
 At handoff total implementation assignments, integrations (including coordinator merges), cleanup passes, initial/follow-up review rounds and axes, fix batches, agent launches, full validation passes, and duplicate commands. Missing telemetry stays unknown.
 
 Detailed before/after replay belongs to an investigation, not every spec run. For an orchestration investigation, use the scenario in [orchestration-check.md](orchestration-check.md); distinguish measured events from modeled costs.
+
+After delivery, remove only this run's recorded implementer worktrees once workers have stopped, their commits are integrated, and the worktrees are clean. Use non-force Git worktree removal; preserve failed or dirty worktrees and report them. This step does not invoke global `cleanup-local` maintenance or update installed skills.

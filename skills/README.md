@@ -19,7 +19,8 @@ Each skill lives at `skills/<group>/<name>/SKILL.md`. The catalog follows the di
 | `begin/` | Choose and configure the workflow | `ask-snappedly`, `setup-snappedly-skills` |
 | `direction/` | Explore ideas and settle design decisions | `grill-me`, `prototype`, `research`, `wayfinder` |
 | `mainflow/` | Shape and implement planned work | `grill-with-docs`, `to-spec`, `to-tickets`, `implement-spec`, `build-local` |
-| `tools/` | Standalone workflow tools | `code-review`, `handoff`, `implement`, `teach`, `wait-what`, `wizard` |
+| `tools/` | Standalone workflow tools | `code-review`, `handoff`, `implement`, `wait-what`, `wizard` |
+| `misc/` | Local maintenance and learning | `cleanup-local`, `teach` |
 | `upkeep/` | Maintain the codebase and triage incoming work | `diagnosing-bugs`, `improve-codebase-architecture`, `resolving-merge-conflicts`, `triage` |
 | `practices/` | Reusable engineering disciplines and references | `code-cleanup`, `codebase-design`, `domain-modeling`, `frontend-design`, `frontend-guidelines`, `remove-slop`, `tdd`, `writing-for-agents` |
 
@@ -44,6 +45,7 @@ Each skill lives at `skills/<group>/<name>/SKILL.md`. The catalog follows the di
 | Teach a concept over several sessions | `teach` |
 | Recover when context did not land | `wait-what` |
 | Generate a wizard for manual setup steps | `wizard` |
+| Clean up verified T3Code worktrees and branches and update global skills | `cleanup-local` |
 | Diagnose hard bugs and regressions | `diagnosing-bugs` |
 | Find opportunities to improve codebase architecture | `improve-codebase-architecture` |
 | Resolve an in-progress merge or rebase conflict | `resolving-merge-conflicts` |

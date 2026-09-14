@@ -1,0 +1,5 @@
+interface:
+  display_name: "Cleanup Local"
+  short_description: "Purge verified T3 worktrees and update global skills"
+policy:
+  allow_implicit_invocation: false

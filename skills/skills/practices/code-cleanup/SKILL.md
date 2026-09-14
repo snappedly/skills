@@ -15,7 +15,7 @@ Under implement-spec, ticket agents run targeted tests, typechecking, formatting
 
 ## Clean, then validate
 
-1. Discover configured checks and their actual scripts, fix/check modes, directories, and file/package scopes. Use installed tools and the declared package manager. Report uncovered file types; add tooling only when requested.
+1. Reuse the caller's check map when its source configuration is unchanged and covers the task. For missing or changed coverage, discover configured checks and their actual scripts, fix/check modes, directories, and file/package scopes. Use installed tools and the declared package manager. Report uncovered file types; add tooling only when requested.
 2. Apply remove-slop in the current agent when the authorized scope contains code or prose. Otherwise record it as not applicable. Keep edits behavior- or meaning-preserving.
 3. Finish scoped formatting and safe lint fixes before read-only checks. Keep semantic fixes with the implementation workflow. Preserve lint rules and suppression policy.
 4. Run required checks that lack valid evidence. Independent read-only checks may run in parallel; file mutations must finish first. An aggregate command covers its components. Include whitespace checks for the applicable committed, unstaged, and staged diffs.
