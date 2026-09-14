@@ -45,7 +45,7 @@ This works whether the user is here to push back or not.
 
 ### 2. Generate radically different variants
 
-Before drafting, call the Skill tool with "frontend-design" for the design direction: the palette, type, layout, and principles this surface is built on, and the templated defaults to steer the variants away from. It produces one direction; the variants disagree about how to express it, not about the direction itself. Where the project already has a design system, that system is the direction.
+Before drafting, use a `frontend-design` direction supplied by the user. If none is present, ask the user to invoke `/frontend-design` first. It produces one direction and runs the pinned `frontend-guidelines` audit; the variants disagree about how to express the direction, not about the direction itself. Where the project already has a design system, that system is the direction.
 
 Draft each variant. Hold each one to:
 

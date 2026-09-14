@@ -19,10 +19,10 @@ Each skill lives at `skills/<group>/<name>/SKILL.md`. The catalog follows the di
 | `begin/` | Choose and configure the workflow | `ask-snappedly`, `setup-snappedly-skills` |
 | `direction/` | Explore ideas and settle design decisions | `grill-me`, `prototype`, `research`, `wayfinder` |
 | `mainflow/` | Shape and implement planned work | `grill-with-docs`, `to-spec`, `to-tickets`, `implement-spec`, `build-local` |
-| `tools/` | Standalone workflow tools | `code-review`, `handoff`, `implement`, `wait-what`, `wizard` |
+| `tools/` | Standalone workflow tools | `code-review`, `frontend-design`, `handoff`, `implement`, `wait-what`, `wizard` |
 | `misc/` | Local maintenance and learning | `cleanup-local`, `teach` |
 | `upkeep/` | Maintain the codebase and triage incoming work | `diagnosing-bugs`, `improve-codebase-architecture`, `resolving-merge-conflicts`, `triage` |
-| `practices/` | Reusable engineering disciplines and references | `code-cleanup`, `codebase-design`, `domain-modeling`, `frontend-design`, `frontend-guidelines`, `remove-slop`, `tdd`, `writing-for-agents` |
+| `practices/` | Reusable engineering disciplines and references | `code-cleanup`, `codebase-design`, `domain-modeling`, `frontend-guidelines`, `remove-slop`, `tdd`, `writing-for-agents` |
 
 ## Skills list
 

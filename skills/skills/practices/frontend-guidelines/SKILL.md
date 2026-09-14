@@ -1,6 +1,7 @@
 ---
 name: frontend-guidelines
-description: Audit UI code against the Web Interface Guidelines, reported at `file:line`. Use when asked to "review my UI", "check accessibility", "audit design", "review UX", or when another skill needs these rules.
+description: Audit UI code against the Web Interface Guidelines and report findings at `file:line`.
+disable-model-invocation: true
 ---
 
 # Frontend Guidelines
@@ -9,7 +10,7 @@ Audit user-facing interface code against the Web Interface Guidelines: accessibi
 
 ## The rules
 
-[`GUIDELINES.md`](GUIDELINES.md) is a **pinned copy** of the guidelines and the source of truth for every audit. Reading the pin rather than the network keeps the audit deterministic, offline-capable, and usable inside a sub-agent with no web access, which is how `code-review` runs this skill as its Interface axis.
+[`GUIDELINES.md`](GUIDELINES.md) is a **pinned copy** of the guidelines and the source of truth for every audit. Reading the pin rather than the network keeps the audit deterministic, offline-capable, and usable inside a sub-agent with no web access. `frontend-design` uses this audit process for its integrated check; other workflows read the pin directly.
 
 ## Process
 
@@ -19,6 +20,10 @@ Audit user-facing interface code against the Web Interface Guidelines: accessibi
 4. Report findings in the format `GUIDELINES.md` specifies: grouped by file, one terse `file:line` line per finding, `✓ pass` for a clean file. State the issue and its location; explain only when the fix is non-obvious.
 
 Completion criterion: every rule applied to every file under audit, each finding carrying a `file:line`, and every audited file either listed with findings or marked `✓ pass`.
+
+## Invocation boundary
+
+`frontend-design` owns the integrated design-and-guidelines pass and is the only skill that runs this audit as part of another skill's workflow. Other workflows that need the rules read `GUIDELINES.md` directly. Direct user invocation remains available for a standalone UI audit.
 
 ## Refreshing the pin
 

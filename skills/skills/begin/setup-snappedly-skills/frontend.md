@@ -1,6 +1,6 @@
 # Frontend conventions
 
-How Snappedly skills read this repo's design language and audit its user interface. `frontend-design` reads the direction, and the `code-review` Interface axis reads the audit scope.
+How Snappedly skills read this repo's design language and audit its user interface. `frontend-design` reads the direction and owns the integrated guidelines audit, while the `code-review` Interface axis reads the audit scope directly.
 
 ## Design system
 

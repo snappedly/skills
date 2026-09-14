@@ -2,4 +2,4 @@ interface:
   display_name: "Frontend Design"
   short_description: "Set a distinctive UI design direction"
 policy:
-  allow_implicit_invocation: true
+  allow_implicit_invocation: false

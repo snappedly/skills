@@ -53,10 +53,10 @@ Not feature work, just upkeep.
 
 ## Frontend
 
-Two skills for work with a user interface in it. They fire at opposite ends of the flow, so reach for them separately.
+Two explicit-only skills cover work with a user interface. They fire at opposite ends of the flow, so reach for them separately.
 
-- **`/frontend-design`** sets the **visual direction** for a surface whose look is still open: a new page, a new product, a redesign, or the variants `/prototype` is about to draft. It works the way a design studio does: a plan (palette, type, layout, principles), a review of that plan against the brief to strip out anything that reads as a templated default, then the build. `/prototype`'s UI branch calls it before drafting variants. Where the repo already has a design system, **that system is the brief**, and the skill spends itself on what the system leaves open.
-- **`/frontend-guidelines`** is the **audit**: accessibility, focus states, forms, motion, typography, i18n, hydration, and the anti-pattern list, applied to UI code and reported at `file:line` against a pinned copy of the rules. `/code-review` runs it as its **Interface** axis whenever a change touches UI, so anything built through `/implement` already gets it. Reach for it directly to audit a surface you didn't just change.
+- **`/frontend-design`** sets the **visual direction** for a surface whose look is still open: a new page, a new product, a redesign, or UI prototype variants. It works the way a design studio does: a plan (palette, type, layout, principles), a review of that plan against the brief to strip out anything that reads as a templated default, then the build. Invoke it explicitly before drafting UI variants. It runs the pinned `frontend-guidelines` audit as its final check. Where the repo already has a design system, **that system is the brief**, and the skill spends itself on what the system leaves open.
+- **`/frontend-guidelines`** is the **audit**: accessibility, focus states, forms, motion, typography, i18n, hydration, and the anti-pattern list, applied to UI code and reported at `file:line` against a pinned copy of the rules. Invoke it directly for a standalone audit. `/code-review`'s **Interface** axis reads the pinned rules directly instead of invoking this skill.
 
 `/setup-snappedly-skills` records which design system is in play in `docs/agents/frontend.md`, and both skills read it.
 
