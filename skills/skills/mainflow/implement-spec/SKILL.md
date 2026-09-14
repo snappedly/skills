@@ -4,38 +4,33 @@ description: "Implement a whole specification through parallel ticket work, deli
 disable-model-invocation: true
 ---
 
-You have been provided a spec. This spec should have tickets associated with it, describing how to implement the spec.
-
-The goal is one GitHub pull request or GitLab merge request that implements the entire spec on a single integration branch.
-
-The tickets are not a list of steps. They are a **task graph** with blocking relationships between them. This means there is always a **frontier** of tickets which are ready to be grabbed.
-
-Communication to and from subagents should be sparse. Communicate primarily through **context pointers**: to the spec, tickets, research notes, and previous commits. Don't duplicate information already available via pointers.
+Deliver the supplied spec and its ticket dependency graph on one integration branch, in one GitHub pull request or GitLab merge request. The **frontier** contains tickets whose blockers are integrated.
 
 Read `docs/agents/workflow.md`. It is the source of truth for required checks and finding disposition. If it is missing, tell the user to run `/setup-snappedly-skills` before creating the branch.
 
-**Implementer subagents** should be run in the background where possible for **maximum concurrency**.
+Keep the coordinator focused on scheduling, integration, and final delivery. Workers own implementation and targeted investigation.
 
 ## Steps
 
-1. Read the spec and tickets. Read enough to understand the task graph.
+1. Read the spec, tickets, and repository workflow once. Record the graph and existing test-seam agreements in a shared run brief outside the tracked tree. Include pointers to required instructions and the repository's check commands with their scopes. Update this brief when requirements, policy, or check configuration changes; workers read the relevant sources instead of rediscovering the whole workflow.
 
-2. (optional) Use an **exploration subagent** to conduct any exploration required by the tickets - relevant codebase files or external documentation. Ensure the exploration subagent can save files - it should save its markdown notes in a directory outside the repo, accessible by all future subagents. This lets **implementer subagents** focus on implementation rather than exploration.
+2. Use a shared exploration agent only when multiple tickets need the same unresolved investigation. Save its findings with source paths in the run brief's directory. Otherwise let the assigned implementer investigate its ticket.
 
 3. Create an integration branch and a draft pull or merge request. Mark it as closing the spec issue and tickets according to the provider's issue-closing convention.
 
-4. Use **implementer subagents** to implement tickets whose blockers have been merged into the integration branch. Each implementer subagent should work in its own worktree, on its own branch starting from that integrated state. Include these requirements in every implementer brief, including review-fix assignments:
+4. Assign frontier tickets to background implementers in separate worktrees starting from the current integration commit. Bound concurrency by available workers and independent file ownership. Group small related tickets in one assignment when their dependency order can be preserved; serialize tickets that would compete over the same files. If delegation is unavailable, perform these assignments sequentially. Give each assignment its ticket and spec pointers, integration SHA, owned scope, run-brief path, and these requirements:
 
    - Use /tdd where possible, at pre-agreed seams. Pass along any existing seam agreement; route missing seam decisions through the coordinator before writing those tests.
-   - Run typechecking and relevant single test files regularly during implementation.
-   - Run /code-cleanup on the task change, including uncommitted and untracked task files, before committing. Commit to the assigned branch only once required checks pass and lint coverage is accounted for. Return validation results and report blocked checks or coverage gaps before proceeding.
+   - Run affected tests during implementation and typechecks when the changed scope needs them. Reuse passing evidence while its inputs remain unchanged.
+   - Run /code-cleanup on the assigned change, including uncommitted and untracked task files, before committing. Supply the shared check guidance and existing results. Commit only once required checks pass and lint coverage is accounted for. Repository policy determines when broad checks are required.
+   - Return the commit SHA, completed ticket IDs, changed paths, check commands/scopes/results, and blockers. Keep detailed logs in files and return their paths. Report completion or a concrete blocker; use completion notifications or a blocking wait instead of repeated status polling.
 
-5. Once an **implementer subagent** completes, merge its work to the integration branch with a **merger subagent**.
+5. The coordinator serially merges completed work into the integration branch. Perform routine merges directly. Delegate conflict investigation only when it needs substantial context, preferably to the implementer that owns the change. Check merge results before marking tickets integrated.
 
-6. If this changes the **frontier** of available tickets, kick off more **implementer subagents** to work on the new tickets. This allows for maximum concurrency.
+6. Update the recorded frontier after each integration and dispatch newly ready work. Reuse an implementer's context for related fixes when supported. Refresh ticket contents only when requirements change or a blocker needs clarification.
 
-7. Once all tickets are merged, run /code-cleanup on the integrated PR branch. It owns the final required checks, including the full suite when the repository workflow requires it. Then run /code-review on the integrated PR branch, including uncommitted and untracked task files, and supply the spec, tickets, branch base, and cleanup results. Fix review issues in a single **implementer subagent** and rerun cleanup before committing. Merge the fixes back to the PR branch. If the merge, its conflict resolution, or a changed base alters any checked input, run affected cleanup checks on the integrated branch. Reuse the fix branch's passing evidence only when the integrated files, dependencies, configuration, commands, and scope are unchanged. Review substantive changes again and pass the integrated validation evidence to that review.
+7. Once all tickets are integrated, run /code-cleanup on the integrated PR branch with the accumulated validation evidence. It owns final required checks, including the full suite where required. Then run /code-review with the spec and ticket pointers, fixed comparison SHAs, task scope including untracked files, and those cleanup results. Fix findings in one implementer assignment, rerun affected cleanup, and integrate the fixes. Reuse passing evidence only when files, dependencies, configuration, command, and scope are unchanged; otherwise rerun affected checks. Review substantive fixes and their affected callers against the prior reviewed state, retaining earlier findings and coverage. Broaden review when a fix changes a shared assumption or requirement.
 
 8. Mark the pull or merge request as ready for review once required checks pass, every applicable review axis has completed or been handled under repository policy, and every finding has the disposition required by `docs/agents/workflow.md`. Report unresolved checks or coverage gaps before proceeding.
 
-9. Clean up all **implementer subagent** worktrees.
+9. Remove this run's implementer worktrees after their work is integrated, workers have stopped, and the worktrees are clean. Preserve failed or dirty worktrees and report them. Use ordinary non-force Git worktree removal scoped to the recorded paths. This delivery step does not invoke the global `cleanup-local` maintenance skill or update installed skills.
