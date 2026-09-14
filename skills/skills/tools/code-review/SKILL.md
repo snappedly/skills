@@ -1,77 +1,33 @@
 ---
 name: code-review
-description: "Review the changes since a fixed point (commit, branch, tag, or merge-base) along separate axes: Standards (documented coding standards and structural maintainability), Spec (does the code match what the originating issue/spec asked for?), and Interface (does the UI code follow the web interface guidelines?) when the change touches a user interface. Runs the reviews in parallel sub-agents and reports them side by side. Use when the user wants to review a branch, a PR, work-in-progress changes, or asks to \"review since X\"."
+description: "Review a branch, PR, or work-in-progress change through independent Standards, Spec, and applicable Interface axes."
 ---
 
-Separate-axis review of a committed branch change against one immutable target SHA. A working-tree revision is not a SHA and cannot be reviewed or handed off as one.
+Review the caller's change through independent read-only axes. The calling workflow owns cleanup, fixes, and convergence. This skill returns findings once and never recursively launches cleanup or implementation.
 
-- **Standards**: does the code conform to this repo's documented coding standards, and does its structure remain maintainable?
-- **Spec**: does the code faithfully implement the originating issue or spec?
-- **Interface**, when the change touches a user-facing interface: does the UI code follow the web interface guidelines?
+Read `docs/agents/workflow.md` when present for finding disposition. Consume supplied cleanup evidence; for a review-only request, report missing evidence without editing or committing the user's files.
 
-Each applicable axis runs as an independent read-only sub-agent. Axes may run in parallel with one another, never with mutation of the target branch. The coordinator aggregates their results before any fix work starts.
+## Pin and freeze
 
-Run `code-cleanup` before this review and treat its committed, SHA-keyed validation evidence as input. `code-review` owns the review comparison and findings, not cleanup or fixes. A caller such as `implement-spec` owns phase transitions and schedules cleanup. Standalone review reports missing cleanup evidence instead of recursively invoking it.
+Resolve base and target once. For a committed branch, use the fixed merge-base and target SHAs in diff commands and reviewer briefs. Include all supplied requirements and task paths.
 
-## Review barrier and convergence bound
+For standalone work-in-progress review, preserve the index and capture an immutable snapshot of the requested staged/unstaged/untracked content (patch plus new-file contents or an isolated Git snapshot). Record HEAD and the snapshot identity. Do not commit the user's branch merely to review it. Integrated implement-spec reviews use a committed target.
 
-The review target is a record, not a moving branch:
+All reviewers inspect the same target. The coordinator must keep its target branch and reviewed content unchanged until all active axes return or cancellation is confirmed. Unexpected changes invalidate affected results: record old/new targets and why, cancel obsolete agents, then reassess only affected axes. Unchanged axis results may be carried forward with an explicit comparison of their files, context, requirements, and standards.
 
-```text
-baseSha + targetSha + scopedPaths + requirements + cleanupEvidence
-        |
-        v
- freeze target -> run all applicable axes in parallel -> wait for every axis
-        |                                                   |
-        +------------ no mutation, merge, staging, or fix --+
-                                                            v
-                                                     aggregate findings
-                                                            |
-                                         one coordinated fix batch, if needed
-                                                            v
-                                              affected cleanup checks only
-                                                            v
-                                  freeze new SHA and follow up once on affected axes
-```
+Validation evidence follows code-cleanup's reuse rules. Committing identical checked content requires no new validation. Reviews assess correctness and requirements; they do not rerun the supplied checks.
 
-Before dispatch, resolve and capture the exact committed `baseSha` and `targetSha`, comparison command, changed paths, untracked paths discovered before the final commit, requirements sources, applicable axes, and cleanup evidence. Every in-scope path discovered as staged, unstaged, or untracked must be committed or explicitly excluded before dispatch. Pass `targetSha` and the same path scope to every reviewer. Each result must repeat `targetSha`, the reviewed paths, status, findings, `inputFingerprint`, and evidence timestamp.
+## Requirements and applicability
 
-Once the first axis starts, the target branch is immutable. Do not edit, stage, merge, rebase, or run cleanup against it until every active axis has returned or has been explicitly cancelled. If the target SHA changes, reject only results for the old SHA, record the expected and observed SHAs and the reason, cancel obsolete axes promptly, and do not silently launch a complete new review cycle. After the branch is intentionally advanced, freeze the new SHA and reuse unaffected evidence whose fingerprints match, or rerun only the affected axis or file scope.
+Use every spec and ticket supplied by the caller. Fetch missing sources once and pass local pointers to reviewers. Otherwise inspect issue references and matching spec files, then ask only if the requirements cannot be established. Skip Spec only with an explicit no-requirements disposition.
 
-Aggregate all applicable axes before assigning fixes. Allow one normal fix batch and one follow-up review. The follow-up must list the changed files and explain why each included axis is affected. Do not relaunch unaffected axes. Any new finding after the follow-up, whether hard or heuristic and regardless of axis, a missing required axis, or an exhausted orchestration budget stops automatic convergence and requires coordinator or user triage under repository policy.
+Interface applies to changed user-facing components, routes, templates, styles, design configuration, or UI paths documented by the repository. Record the UI scope. A change confined to tooling or prose skips Interface. Standards remains independent from Spec.
 
-### Immutable evidence and reuse
+## Standards reference
 
-The review target is a committed SHA resolved with `git rev-parse --verify <ref>^{commit}`. Do not label a working-tree revision as `targetSha`. Cleanup may produce preliminary working-tree results, but `code-review` accepts only final evidence whose `outputSha` is a committed target, with all in-scope content committed or explicitly excluded.
+Find repository documents that describe coding standards, then apply the fixed Fowler smell baseline and structural maintainability checks below. A documented repository standard overrides a heuristic. Smell and maintainability findings are judgement calls, never hard violations. Passing cleanup evidence for the exact checked inputs is evidence and should not be restated as a manual tool finding. A review fix is not allowed to mutate the frozen target while any axis is running.
 
-For each check, `inputFingerprint` is a SHA-256 of a canonical manifest containing the checked path list and content hashes, dependency manifests and resolved tool versions, configuration files and content hashes, exact command, working directory, and scope selector. Cleanup evidence may be reused on a later committed target when the current target's fingerprint exactly matches the earlier result. The evidence must name both `validatedSha`, the original committed SHA inspected, and `currentTargetSha`, the committed target receiving the reused result, plus `reusedFromSha` and the matching fingerprint. A changed target SHA alone does not require a new check. Run a new target check when any checked content, dependency, configuration input, command, working directory, scope, or evidence identity changes, or when earlier evidence came from a mutable working tree.
-
-## Process
-
-### 1. Pin the comparison
-
-Inspect `git status --short` and use the caller's supplied scope. For an uncommitted task with no supplied base, use `HEAD` only as the baseline for scope discovery. Commit the task before dispatch and resolve the resulting commit as `targetSha`. For a branch or pull/merge request, resolve the supplied base and head, compute their merge-base, and capture the resulting `baseSha` and `targetSha` once. Use the recorded SHA in every command and prompt. Read untracked task files separately because ordinary `git diff` omits them. Confirm that the scoped change is non-empty before dispatching reviewers.
-
-Preserve the index and keep reviewed files unchanged while axes run. If they change, stop the affected review, refresh the comparison only after the old set is complete or cancelled, and follow the stale-result rule above.
-
-### 2. Identify requirements sources
-
-Look for complete requirements in this order:
-
-1. The spec, tickets, or other requirements supplied by the caller. Preserve every source.
-2. Issue references in commit messages (`#123`, `Closes #45`, GitLab `!67`, and similar), fetched through the workflow in `docs/agents/issue-tracker.md` when configured.
-3. A matching spec file under `docs/`, `specs/`, or `.scratch/`.
-4. If none exists, ask where the requirements are. If the caller confirms there are none, record that the Spec axis is skipped for lack of requirements.
-
-If tracker configuration is missing, recommend `/setup-snappedly-skills`. Do not pretend that an unverified tracker or workflow policy supplied the missing requirements.
-
-### 3. Identify standards sources
-
-Find repository documents that describe coding standards, then apply the fixed Fowler smell baseline and structural maintainability checks below. A documented repository standard overrides a heuristic. Smell and maintainability findings are judgement calls, never hard violations. Passing cleanup evidence for the exact checked input fingerprint is evidence and should not be restated as a manual tool finding. A review fix is not allowed to mutate the frozen target while any axis is running.
-
-On top of repository standards, the Standards axis applies this fixed Fowler smell baseline from _Refactoring_: Mysterious Name, Duplicated Code, Feature Envy, Data Clumps, Primitive Obsession, Repeated Switches, Shotgun Surgery, Divergent Change, Speculative Generality, Message Chains, Middle Man, and Refused Bequest. Each smell is a heuristic, never a hard violation. A documented repository standard overrides a heuristic. Passing cleanup evidence for the exact checked input is evidence, not a second manual finding.
-
-Use these definitions and remedies:
+Use these Fowler smell definitions and remedies from _Refactoring_:
 
 - **Mysterious Name**: a function, variable, or type name does not reveal what it does or holds. Rename it, or simplify the design if no honest name exists.
 - **Duplicated Code**: the same logic shape appears in more than one hunk or file. Extract the shared behavior and call it from both sites.
@@ -86,7 +42,7 @@ Use these definitions and remedies:
 - **Middle Man**: a class or function mostly delegates to another object. Remove it and call the real owner directly.
 - **Refused Bequest**: a subclass or implementer ignores most of what it inherits. Drop the inheritance or use composition.
 
-#### Structural maintainability checks
+### Structural maintainability checks
 
 Apply these structural checks to each meaningful change in the Standards axis:
 
@@ -99,39 +55,28 @@ Apply these structural checks to each meaningful change in the Standards axis:
 - **Test evidence**: check that changed behavior has a test at an agreed seam. Report untested behavior, tests that cannot fail against unfixed code, and side-channel assertions. Existing untested code is context, not a new finding.
 - **Orchestration and atomicity**: trace dependencies and failure paths for serialized work and related state updates. For partial updates, name the inconsistent-state window and suggest a transaction, rollback, or recovery boundary.
 
-#### Evidence and reporting
+### Evidence and reporting
 
 For each finding, cite the changed file and line or hunk, quote enough of the change, explain the maintenance cost, and give an actionable remedy. For structural remedies, explain how the proposal preserves required behavior and name any caller or contract assumptions that need verification. Lead with structural regressions and substantiated simplifications, then report branching, boundary, file-growth, and legibility concerns by impact. Consolidate overlapping smells into one finding per root cause. Keep documented violations distinct from heuristic concerns. Report only problems introduced or materially worsened by the scoped change.
 
+Carry failed, blocked, or missing tool checks into Validation. Preserve the repository's finding-disposition rules; no axis may treat an unverified check as passed.
+
 The Standards axis is complete only when it has enumerated applicable standards sources and prepared the full smell baseline, maintainability checks, evidence guidance, and tooling guidance for the reviewer.
 
-### 4. Decide whether Interface applies
+## Dispatch once
 
-Run Interface only when the scoped change includes user-facing component, page, route, template, view, stylesheet, style configuration, or paths marked as interface by `docs/agents/frontend.md`. Record the complete UI file list. A tooling, infrastructure, backend, or documentation change skips Interface with that concrete reason. When it applies, the Interface axis reviews those files only, not the whole product.
+Launch one agent per applicable axis in parallel. Keep briefs scoped; pass the fixed target, comparison, paths, cleanup results, requirements pointers, and the relevant instructions below. Reviewers read these instructions from their provided path rather than receiving the whole conversation.
 
-### 5. Run the applicable axes
+- Standards reads the full baseline and structural guidance above, plus repository standards. Report documented violations separately from heuristic concerns.
+- Spec checks every supplied requirement for missing, partial, incorrect, or unrequested behavior. Cite the requirement for each finding.
+- Interface reads frontend-guidelines, audits the UI scope against applicable rules, and returns its `file:line` report, clean-file passes, and guidelines pin date.
 
-Dispatch Standards, Spec, and Interface prompts in parallel only after the barrier is recorded. Prompts include the fixed comparison, target SHA, scoped paths, requirements, cleanup evidence, and the relevant axis rules. Every reviewer must return a report or an explicit skip reason.
+Review surrounding context as needed; report issues introduced or worsened by the change. Each result names its exact target, scope, findings, and coverage gaps. Use completion notifications and close completed agents. If an axis fails, report it as missing and let the coordinator decide on a budgeted retry or policy-authorized waiver.
 
-**Standards sub-agent prompt** includes:
+## Aggregate and follow up
 
-- the recorded comparison, including untracked paths discovered before the final commit, and cleanup results;
-- every requirements source, or the explicit statement that none is available;
-- the repository standards sources, complete Fowler baseline, structural checks, and evidence guidance above; and
-- the brief to report documented violations separately from heuristic smells, cite each finding by file and line or hunk, quote the relevant change, explain the maintenance cost, and give an actionable remedy.
+Wait for every applicable axis before fixes. Return Validation, Standards, Spec, and applicable Interface results separately, with counts, skip reasons, and finding dispositions. Preserve each axis's conclusions; do not hide one behind another.
 
-**Spec sub-agent prompt** includes every supplied requirements source and the brief to report each missing or partial requirement, unrequested behavior, or incorrect implementation, with a quotation from the source for each finding.
+For an authorized follow-up, review only the fix delta and affected context through affected axes. Reuse existing reviewers where possible and explain each inclusion or skip. A CSS-only correction need not relaunch Spec unless it affects a requirement; a test-only correction need not launch Interface.
 
-**Interface sub-agent prompt** includes the recorded comparison, complete UI file list, requirements, and the brief to call the Skill tool with `frontend-guidelines`, audit every applicable rule, and report in the skill's terse `file:line` format grouped by file. It must use `✓ pass` for a clean file, identify what the change introduced or worsened, leave untouched pre-existing issues out, and name the guidelines pin date.
-
-If no requirements source exists, skip the Spec sub-agent and record that reason. If no UI file is in scope, skip the Interface sub-agent and record that reason. If an agent fails, record the missing axis and stop before handoff unless repository policy contains an explicit waiver. Never describe a partial review as complete. Cancel an obsolete agent as soon as its target SHA is stale.
-
-### 6. Aggregate and hand off
-
-Start with `## Validation`, naming the cleanup evidence, committed target SHA, scope, input fingerprint, and any stale or blocked checks. Present each applicable axis under its own heading, preserving separate conclusions. On a follow-up, record each earlier finding as fixed, resolved by an explicit source change, accepted/deferred, waived under policy, or still open. Record every new finding, even a heuristic one, as new.
-
-End with one line containing finding counts and the worst issue within each axis, and state whether every applicable axis ran. Include the review budget status and the reason for any follow-up scope. The caller may begin one coordinated fix batch only after this aggregate is complete. After the fix, review only affected axes/files once. Stop for any new finding after that follow-up and escalate under the convergence bound.
-
-## Why separate axes
-
-A change can pass one axis and fail another. Separate reports keep a standards concern, a spec gap, and an interface defect from masking one another. The shared immutable target and aggregate barrier preserve that independence without permitting stale findings or unbounded review loops.
+Record earlier findings as fixed, still open, or explicitly resolved/accepted/deferred/waived under repository policy. Any new or remaining finding after the bounded follow-up returns to coordinator triage. This skill launches no further fix or review cycle on its own.
