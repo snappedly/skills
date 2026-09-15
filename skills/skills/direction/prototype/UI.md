@@ -1,6 +1,6 @@
 # UI Prototype
 
-Generate **several radically different UI variations** on a single route, switchable from a floating bottom bar. The user flips between variants in the browser, picks one (or steals bits from each), then throws the rest away.
+Build the smallest visual experiment that answers the question. For a comparison, generate distinct variations on one route with a floating switcher; for a single treatment, render it directly. The user inspects the result and decides what to carry forward.
 
 If the question is about logic/state rather than what something looks like, this is the wrong branch. Use [LOGIC.md](LOGIC.md).
 
@@ -35,7 +35,7 @@ In both sub-shapes the floating bottom bar is identical.
 
 ### 1. State the question and pick N
 
-Default to **3 variants**. More than 5 stops being radically different and starts being noise, so cap there.
+For a requested comparison, default to **3 variants**, at most 5. For one concrete design question or a user-specified treatment, build one useful example and skip the variant switcher below; add alternatives only if comparison would answer the question.
 
 Write down the plan in one line, in the prototype's location or a top-of-file comment:
 
@@ -45,7 +45,7 @@ This works whether the user is here to push back or not.
 
 ### 2. Generate radically different variants
 
-Before drafting, use a `frontend-design` direction supplied by the user. If none is present, ask the user to invoke `/frontend-design` first. It produces one direction and runs the pinned `frontend-guidelines` audit; the variants disagree about how to express the direction, not about the direction itself. Where the project already has a design system, that system is the direction.
+Use the user's brief and the established design system as the direction. A prototype can proceed without a separate `/frontend-design` invocation. Clarify only a missing decision that prevents a useful experiment. When alternatives were requested, vary their layout or hierarchy within the brief.
 
 Draft each variant. Hold each one to:
 

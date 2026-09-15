@@ -8,7 +8,7 @@ The default flow for multi-session work is:
 
 `grill-with-docs` → `to-spec` → `to-tickets` → `implement-spec`
 
-For a smaller change, start `implement` once the request is clear, then run `build-local` to test locally. Use `handoff` when another session or directory needs to continue the work.
+For a smaller change, implement directly or use `implement` once the request is clear. Presentation edits use visual checks; changed logic uses focused tests. Cleanup and review stay in the current agent for low-risk work. Use `build-local` when a browser preview is useful. Use `handoff` when another session or directory needs to continue the work.
 
 ## Skill groups
 
@@ -39,7 +39,7 @@ Each skill lives at `skills/<group>/<name>/SKILL.md`. The catalog follows the di
 | Publish a dependency-aware ticket graph | `to-tickets` |
 | Implement a complete spec as one pull or merge request | `implement-spec` |
 | Serve a verified local build URL | `build-local` |
-| Review standards, spec, and UI guidelines separately | `code-review` |
+| Review a change with depth proportional to risk | `code-review` |
 | Continue work in another session | `handoff` |
 | Implement approved work | `implement` |
 | Teach a concept over several sessions | `teach` |
@@ -77,3 +77,7 @@ npx skills update
 It records the git tracker, team workflow, triage label mapping, domain-document layout, frontend conventions, and root agent instructions in that repository. The other skills read those files instead of carrying project-specific policy.
 
 3. If direction is needed, start with the direction skills and then move to the mainflow.
+
+## Updating older workflow configuration
+
+Installed skills and existing repository instructions are separate copies. After updating skills, review `AGENTS.md` and `docs/agents/workflow.md` for blanket test-first, full-suite/build, and independent-review requirements. Update those clauses to the agreed verification scope; preserved repository requirements still take precedence over skill defaults. The setup workflow template supplies the new defaults.

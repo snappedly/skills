@@ -6,15 +6,13 @@ disable-model-invocation: true
 
 This skill takes the current conversation context and codebase understanding and produces a spec. Do NOT interview the user; just synthesize what you already know.
 
-The GitHub or GitLab issue tracker should have been provided to you. If not, tell the user to run `/setup-snappedly-skills`.
+Read the existing tracker configuration or reuse it from context. If the publishing destination cannot be established, prepare the local draft and ask for that missing destination; use `/setup-snappedly-skills` when repository-wide configuration is needed.
 
 ## Process
 
 1. Explore the repo to understand the current state of the codebase, if you haven't already. Use the project's domain glossary vocabulary throughout the spec, and respect any ADRs in the area you're touching.
 
-2. Sketch out the seams at which you're going to test the feature. Existing seams should be preferred to new ones. Use the highest seam possible. If new seams are needed, propose them at the highest point you can. The fewer seams across the codebase, the better - the ideal number is one.
-
-Check with the user that these seams match their expectations.
+2. Describe verification proportional to the work, using tdd's scope guidance. Reuse established test boundaries and prior decisions. Ask only when a new interface or unresolved behavioral contract materially changes the plan; existing seams need no confirmation round.
 
 3. Write the spec using the template below, then publish it to the configured GitHub or GitLab issue tracker. A spec is a planning artifact, not an executable work item. Do not apply `ready-for-agent` to it. `to-tickets` applies that state to the implementation tickets it creates. For a change small enough to implement as one issue, skip `to-spec` and put the agreed requirements in that executable issue instead.
 
@@ -32,7 +30,7 @@ The solution to the problem, from the user's perspective.
 
 ## User Stories
 
-A LONG, numbered list of user stories. Each user story should be in the format of:
+A concise numbered list of distinct user outcomes. Each user story may use the format:
 
 1. As an <actor>, I want a <feature>, so that <benefit>
 
@@ -40,7 +38,7 @@ A LONG, numbered list of user stories. Each user story should be in the format o
 1. As a mobile bank customer, I want to see balance on my accounts, so that I can make better informed decisions about my spending
 </user-story-example>
 
-This list of user stories should be extremely extensive and cover all aspects of the feature.
+Cover the agreed scope once, without padding stories or inventing adjacent features.
 
 ## Implementation Decisions
 
@@ -62,7 +60,7 @@ Exception: if a prototype produced a snippet that encodes a decision more precis
 
 A list of testing decisions that were made. Include:
 
-- A description of what makes a good test (only test external behavior, not implementation details)
+- The observable outcomes that verification must establish
 - Which modules will be tested
 - Prior art for the tests (i.e. similar types of tests in the codebase)
 

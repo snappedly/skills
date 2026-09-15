@@ -62,9 +62,11 @@ Record the selected provider in `docs/agents/issue-tracker.md`. Keep the `PRs as
 
 Read existing process documentation first. Preserve its rules and ask the user whether the default Snappedly flow fits:
 
-`clarify -> specify -> ticket -> implement -> code-cleanup -> code-review -> handoff`
+For small, clear requests: `edit -> focused verification -> local review`.
 
-Capture the agreed GitHub or GitLab issue as the source of truth for work and the point at which implementation may start. Individual `/implement` work must be marked as an executable issue or have an executable agent brief; planning specs and wayfinder decision tickets do not qualify. `/implement-spec` is the explicit whole-spec path. Record the checks that `code-cleanup` must run, the review axes, the allowed disposition for each kind of finding, and the information a handoff must contain. Include `code-cleanup` after implementation and before review or commit. After review fixes, cleanup reruns checks affected by the final integrated state before substantive changes return to review.
+For planned multi-session work: `clarify -> specify -> ticket -> implement -> code-cleanup -> code-review -> handoff`.
+
+Capture the source of truth and the point at which implementation may start. A clear user request can be the brief for a small change unless the team requires a tracker issue. Ticketed `/implement` work uses an executable issue or brief; planning specs and wayfinder decision tickets do not qualify. `/implement-spec` is the explicit whole-spec path. Record checks with explicit applicability for presentation edits, local logic changes, and cross-cutting or release work. Full tests and production/deployment builds are not universal defaults. Record when local review is sufficient and when independent axes are required, the allowed disposition for each kind of finding, and the information a handoff must contain. Require cleanup and applicable verification before commit. Small changes can perform these steps and local review inline; separate skill invocations and reports are optional. After review fixes, rerun only affected checks and review the changed scope.
 
 Use the release policy in [workflow.md](workflow.md) as the default and ask only about differences. Record:
 
@@ -76,7 +78,7 @@ Use the release policy in [workflow.md](workflow.md) as the default and ask only
 
 Record the result in `docs/agents/workflow.md`.
 
-Capture the test-first clause in the same file: a new feature, a bug fix, or changed logic starts with a failing test at a seam agreed before the test is written. Record it as repository policy that holds whichever skill is driving the change, including work that invokes no skill at all. Summarize the workflow and production approval boundary in the `### Team workflow` line of the `## Agent skills` block so both load in every session.
+Use tdd's verification scope as the default: presentation and copy changes use visual/direct checks; changed logic uses focused failing tests at existing public boundaries. Agents select established seams without another approval round; ask when the contract is unresolved. Capture any team overrides in the same file. When updating older configuration, identify blanket test-first, full-build, and independent-review clauses in workflow and root instructions and replace them consistently with the agreed scope. Summarize the workflow and production approval boundary in the `### Team workflow` line of the `## Agent skills` block so both load in every session.
 
 If the repo already has a clear workflow, summarize it and confirm that Snappedly skills should follow it. Treat the repo's existing rules as the source of truth when they conflict with the default flow.
 

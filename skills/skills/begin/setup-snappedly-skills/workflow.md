@@ -8,17 +8,25 @@ How work moves from an agreed request to a production-verified change.
 
 ## Ready to implement
 
-[State what must be agreed before implementation starts. Include the test seams that require user confirmation.]
+[State what must be agreed before implementation starts and any exceptions to the verification defaults below.]
 
-An individual `/implement` run starts from an executable issue or an agent brief whose work item type is executable. A planning spec and a wayfinder decision ticket are not executable work items. `/implement-spec` is the explicit path for delivering a complete planning spec through its child ticket graph.
+A small, clear user request can serve as the implementation brief. Ticketed `/implement` work starts from an executable issue or an agent brief whose work item type is executable. A planning spec and a wayfinder decision ticket are not executable work items. `/implement-spec` is the explicit path for delivering a complete planning spec through its child ticket graph.
+
+## Verification scope
+
+Use tdd's scope guidance even when no skill is invoked: visually inspect styling, layout, and copy changes at relevant viewport sizes and exercise static link corrections. Test changed logic, state, validation, and behavioral regressions at existing public boundaries. For mixed changes, verify each part appropriately. Select established seams autonomously; clarify unresolved contracts.
 
 ## Required checks
 
-[List the formatter, linter, typecheck, test, and build commands that `code-cleanup` must run, including their working directories and when each one applies.]
+[List configured commands, directories, and applicability for presentation edits, local logic changes, and cross-cutting or release work. Prefer affected-file/package checks and focused tests. Require full suites and production/deployment builds only where risk or delivery needs justify them. Record browser-test server ownership and any supported external-preview setting.]
+
+Reuse passing checks on unchanged inputs. Run broader checks when dependencies or required policy make them relevant.
 
 ## Review findings
 
-[State which review axes apply and record any repository-specific override to the defaults below.]
+Small, low-risk changes receive a local review of the diff against the request, applicable standards, and UI concerns. Independent Standards, Spec, and applicable Interface review is reserved for substantial cross-module changes, security or data-integrity risks, or explicit requirements. Whole-spec delivery follows the same risk criteria.
+
+[Record any repository-specific overrides, required independent reviews, and finding-disposition rules below.]
 
 - Every applicable review axis must complete unless the user explicitly waives a missing axis under repository policy.
 - A heuristic Standards concern may be fixed and re-reviewed, or explicitly accepted or deferred by the user.

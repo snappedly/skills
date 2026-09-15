@@ -8,18 +8,24 @@ disable-model-invocation: true
 
 Use this when the user wants to inspect current changes, including uncommitted changes, in a browser or at a local URL.
 
+A preview request ends at a usable preview. It does not start TDD, cleanup, code review, commits, or production/deployment builds unless the user requested that work or the selected preview mode requires it. On follow-up visual edits, reuse the verified server and inspect the changed result; repeat setup only when its inputs changed. Keep process ownership in the existing tool session or task notes, without creating a separate tracking system.
+
 ## Select and prepare
 
-1. Identify the working tree containing the user's changes and the project root within it. Read its manifest, package-manager lockfile, development scripts, build scripts, preview scripts, and port settings. Run commands from that working tree so the preview includes its current files.
+1. Identify the working tree containing the user's changes and the project root within it. Identify the package manager from its manifest and lockfile, then read the scripts and port settings needed for the selected preview mode. Run commands from that working tree so the preview includes its current files.
 2. Honor the target and mode named by the user. Otherwise, prefer the project's development server for inspecting edits and iterating. Use a production build and its compatible serve command when the user wants to check built output or the project requires it.
 3. Inspect any existing task-owned lease or process record. Reuse a server only when the working tree, project root, mode, command, PID relationship, port, and URL all match. Verify freshness in the next section before presenting a reused URL. If ownership is unclear, leave the process alone and choose another port.
 4. For production previews, build the current files before serving them. Reuse existing output only when there is evidence its source files, dependencies, and build configuration are unchanged. For development previews, run the preparation required by the project's development command. Keep a last-known-good instance available when the project supports isolated output. Pass the port through the project's supported option or environment variable.
 
 Completion criterion: the working tree, selected target and mode, required preparation or build, serve command, port, and process ownership are recorded before a server starts.
 
+## Coordinate with tests
+
+Before starting a preview that will coexist with browser tests, inspect the test runner's server command, port, reuse/external-URL setting, and framework lock/output directory. Choose one server owner: let tests start their server, or point them at a verified task-owned preview using the supported configuration. Another port alone may still collide on the framework lock. If tests require exclusive ownership, stop the owned preview first and restore it afterward when the user still needs it.
+
 ## Serve and verify
 
-Bind to loopback unless the preview runtime requires another setting. Retain the process handle or record the exact PID and command. Wait for readiness and verify the URL with the lightest reliable check.
+Bind to loopback unless the preview runtime requires another setting. Start the long-running server in a managed background session and retain its handle, or record the exact PID and command. Wait only for bounded readiness (use the configured startup timeout, otherwise 60 seconds), then verify the URL with the lightest reliable check. A healthy server remaining alive is expected; never wait for it to exit as task completion. On startup failure or timeout, inspect the error and ownership before retrying.
 
 Verify that the preview reflects the current changes. For a development server, confirm compilation or reload has completed; restart the owned server when configuration or environment changes require it. Use browser or collaborative preview tools when available to inspect the changed route and representative states. A successful HTTP response alone does not establish that the changed behavior is visible. Report any behavior you could not inspect.
 
