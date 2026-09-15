@@ -1,11 +1,11 @@
 ---
 name: research
-description: Investigate a question against high-trust primary sources and capture the findings as a Markdown file in the repo. Use when the user wants a topic researched, docs or API facts gathered, or reading legwork delegated to a background agent.
+description: Investigate a substantive question against primary sources and capture cited findings. Use for requested research reports or delegated reading; routine factual lookups need no research workflow.
 ---
 
-Spin up a **background agent** to do the research, so you keep working while it reads.
+Work in the current agent by default. Delegate one bounded research question when the user asks for background work or there is useful independent work to continue. An agent assigned research performs it directly, without delegating the same task again. Stop once the requested question is answered with adequate sources; report remaining uncertainty rather than expanding into adjacent topics.
 
-Its job:
+The research task:
 
 1. Investigate the question against **primary sources** (official docs, source code, specs, first-party APIs), not a secondary write-up of them. Follow every claim back to the source that owns it.
 2. Write the findings to a single Markdown file, citing each claim's source.

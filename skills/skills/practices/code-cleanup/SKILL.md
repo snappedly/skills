@@ -11,25 +11,27 @@ Perform mechanical cleanup and required validation for one coherent change. Retu
 
 Read applicable agent instructions, `docs/agents/workflow.md`, CI, and check configuration. Use the caller's base and task scope, including staged, unstaged, and untracked task files. Preserve unrelated work and the index. A review-only request stays read-only and reports missing evidence.
 
-Under implement-spec, ticket agents run targeted tests, typechecking, formatting/lint, and local cleanup. One integrated cleanup owns repository-required full tests and builds. Standalone cleanup runs the required checks for the caller's change. Repository policy overrides default scoping; record broader requirements in the budget.
+Under implement-spec, ticket agents run targeted tests, typechecking, formatting/lint, and local cleanup. One integrated cleanup owns repository-required full tests and builds. Standalone cleanup runs the required checks for the caller's change. Repository policy overrides default scoping; record broader requirements in the caller's existing notes.
+
+## Match checks to the change
+
+When repository policy leaves scope open, use configured checks for affected files or packages and relevant focused tests. Presentation edits use preview evidence and applicable static checks; full suites and production or deployment builds need a concrete dependency risk, a delivery requirement, or explicit policy. Broaden for shared runtime, dependency, build, security, or data changes.
+
+For a small change handled in one agent, use the steps below and return a compact command/result record after inspecting the final diff; stop there. The detailed content-binding rules below apply when evidence crosses agents, commits, or handoffs. Reuse a passing check while its inputs remain unchanged.
+
+Before browser tests, inspect their server configuration. Let the test runner own its server, or use its supported external-server setting with a verified preview of the same working tree. Check both port and framework lock/output ownership. Resolve a collision before retrying; changing only the port may leave a shared lock conflict. Stop only task-owned servers, and restore a requested preview after testing if needed.
 
 ## Clean, then validate
 
 1. Reuse the caller's check map when its source configuration is unchanged and covers the task. For missing or changed coverage, discover configured checks and their actual scripts, fix/check modes, directories, and file/package scopes. Use installed tools and the declared package manager. Report uncovered file types; add tooling only when requested.
-2. Apply remove-slop in the current agent when the authorized scope contains code or prose. Otherwise record it as not applicable. Keep edits behavior- or meaning-preserving.
+2. Remove obvious accidental clutter in the task diff while preserving behavior and meaning. Consult remove-slop for requested cleanup or when its detailed guidance is useful; ordinary formatting needs no separate invocation or prose audit.
 3. Finish scoped formatting and safe lint fixes before read-only checks. Keep semantic fixes with the implementation workflow. Preserve lint rules and suppression policy.
 4. Run required checks that lack valid evidence. Independent read-only checks may run in parallel; file mutations must finish first. An aggregate command covers its components. Include whitespace checks for the applicable committed, unstaged, and staged diffs.
 5. Return failures or blockers with attribution supported by baseline evidence where practical. Report uncertain attribution honestly. Continue independent checks; do not recursively launch fixes, review, or another cleanup pass.
 
-## Evidence and reuse
+## Evidence across agents or revisions
 
-Record each command, working directory, scope, result, and the content checked. For committed content, use its full SHA. For pre-commit checks, record HEAD plus an immutable patch or content digest covering staged, unstaged, and untracked task content. Preserve the relevant configuration, dependency/tool versions, and environment assumptions in the check record. Use existing Git diffs, blob/tree IDs, or check outputs; do not build a custom manifest or cache framework.
-
-After validation, the caller may commit. Verify that the commit contains the checked content, including new files, and bind the evidence to that SHA. A content-preserving commit, cherry-pick, or merge does not require running checks again. Hooks or conflict resolution that change checked inputs invalidate affected results.
-
-Across later commits, reuse a passing result only when its checked files and relevant dependencies, configuration, command, directory, scope, tool versions, and environment assumptions remain unchanged. Record the original validated SHA, current target SHA, and concrete comparison supporting reuse. Consider transitive inputs, not just files named in the command. If coverage or equivalence cannot be established, rerun the affected check. A changed SHA, report timestamp, or evidence label alone does not invalidate a result.
-
-A fix may require a full test/build rerun when it affects inputs to that check. Explain that dependency; never reuse evidence merely to meet the budget. Repository-required CI still runs, but the coordinator need not duplicate equivalent passing CI locally.
+When evidence crosses agents, commits, or handoffs, use [EVIDENCE.md](EVIDENCE.md) for content binding and reuse. A small change within one agent uses the compact record described above.
 
 ## Result
 

@@ -1,5 +1,5 @@
 interface:
   display_name: "Code Review"
-  short_description: "Review standards, spec, and UI guidelines as separate axes"
+  short_description: "Review changes with depth proportional to risk"
 policy:
   allow_implicit_invocation: true

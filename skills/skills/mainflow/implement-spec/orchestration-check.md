@@ -33,6 +33,20 @@ Both paths still implement two tickets and integrate twice. The bounded path has
 - A branch changing from R during review cancels obsolete work before any fix. Reports for R are not silently relabeled.
 - A test-only fix considers Standards and Spec; Interface remains skipped absent UI impact.
 - Any new or remaining follow-up finding reaches coordinator triage before another agent launch.
-- A standalone work-in-progress review snapshots new files and preserves the user's index and branch.
+- An independent work-in-progress review snapshots new files and preserves the user's index and branch. A small local review inspects the diff and new files directly.
 
 For a measured investigation, retain each agent's purpose, start/completion SHA and status, command invocation/result, duplicate or rerun reason, and branch change relative to the review target. Total implementation, integration, cleanup, review, and fix cycles. Compare those records with this model. Per-agent tokens and time remain unknown unless the runtime provides them.
+
+## Small-work routing checks
+
+These are expected instruction paths for review, not measured agent runs.
+
+| Request and policy | Expected path |
+| --- | --- |
+| Standalone implement: adjust a heading's spacing, no broader repo requirements | Visual check, applicable static checks, local diff review; no mandatory TDD or review agents. |
+| Standalone implement: fix form validation logic | Focused failing test at an existing public boundary, fix, affected checks, local review unless risk warrants independence. |
+| Implement-spec: two small copy/layout tickets, no broader repo requirements | Coordinator implements both, verifies the affected views, reviews the integrated diff locally, delivers one PR/MR; no fixed worker or reviewer count. |
+| Implement-spec: substantial interacting changes, independent review required | Workers return focused verification and commits; coordinator owns required integrated checks and one independent review round. |
+| A worker loads implement for a ticket or review fix | Worker completion returns to the coordinator before standalone review or delivery; no nested review chain. |
+| Repository explicitly requires full tests/builds | Coordinator runs required integrated checks even for small work; ticket-level requirements apply only where policy specifies them. |
+| Review fix changes one input to a previously passing check | Rerun affected checks and review the fix delta; committing unchanged content alone causes no rerun. |
