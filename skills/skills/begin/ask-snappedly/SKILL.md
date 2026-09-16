@@ -43,7 +43,6 @@ Delegate only a bounded independent task when parallel work or an independent ju
 - `/research`: investigate a substantive question and capture cited findings. A quick factual lookup needs no research artifact or agent.
 - `/improve-codebase-architecture`: explicitly survey architectural friction. An incidental maintainability concern does not start a survey.
 - `/resolving-merge-conflicts`: finish an in-progress merge or rebase, preserving intent.
-- `/cleanup-local`: explicitly requested worktree maintenance and global skill updates; separate from task cleanup.
 - `/wizard`: produce a procedure for steps only a human can perform.
 - `/teach`: sustained learning and practice.
 - `/wait-what`: explain the last message more clearly.

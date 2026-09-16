@@ -59,4 +59,4 @@ At handoff total implementation assignments, integrations (including coordinator
 
 Detailed before/after replay belongs to an investigation, not every spec run. For an orchestration investigation, use the scenario in [orchestration-check.md](orchestration-check.md); distinguish measured events from modeled costs.
 
-After delivery, remove only this run's recorded implementer worktrees once workers have stopped, their commits are integrated, and the worktrees are clean. Use non-force Git worktree removal; preserve failed or dirty worktrees and report them. This step does not invoke global `cleanup-local` maintenance or update installed skills.
+After delivery, remove only this run's recorded implementer worktrees once workers have stopped, their commits are integrated, and the worktrees are clean. Use non-force Git worktree removal; preserve failed or dirty worktrees and report them.
