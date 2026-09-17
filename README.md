@@ -1,6 +1,34 @@
-# snappedly-skills
+# Snappedly Skills
 
-Snappedly's reusable engineering skills. They share a small per-repository contract written by `setup-snappedly-skills`.
+> Private collection of reusable engineering skills for AI coding agents.
+
+[![Validate skills](https://github.com/snappedly/skills/actions/workflows/validate-skills.yml/badge.svg)](https://github.com/snappedly/skills/actions/workflows/validate-skills.yml)
+
+**Status: private preview.** This repository is shared with invited collaborators only. Please do not redistribute its contents outside the authorized group.
+
+Snappedly Skills packages the workflows and engineering practices we use to move from an unclear request to a verified change. Each skill is self-contained, composable, and backed by the repository conventions it needs.
+
+## Install
+
+Authorized collaborators with GitHub access can install the collection with the Skills CLI:
+
+```bash
+npx skills add snappedly/skills
+```
+
+For updates:
+
+```bash
+npx skills update
+```
+
+The CLI may require an authenticated GitHub setup for this private repository.
+
+## Getting started
+
+Run `setup-snappedly-skills` for the first time in a target repository. It records the git tracker, team workflow and feedback-loop contract, triage label mapping, domain-document layout, frontend conventions, and root agent instructions in that repository. The other skills read those files instead of carrying project-specific policy.
+
+If direction is needed, start with the direction skills and then move to the mainflow.
 
 ## Main workflow
 
@@ -58,24 +86,22 @@ Each skill lives at `skills/<group>/<name>/SKILL.md`. The catalog follows the di
 | Drive behavior-first tests | `tdd` |
 | Write documents for agents | `writing-for-agents` |
 
-## Install
+## Validation
 
-1. You can install the repository directly with the [`skills`](https://github.com/vercel-labs/skills) CLI. Install every skill for Codex in the current project with:
+Install the validation dependency and run the repository check:
 
 ```bash
-npx skills add snappedly/skills
+python -m pip install -r requirements-validation.txt
+python scripts/validate-skills.py
 ```
 
-For updates:
-```bash
-npx skills update
-```
+The same check runs in GitHub Actions for pull requests and pushes to `main`.
 
-2. Run `setup-snappedly-skills` for the first time in a target repository.
+## Versioning and releases
 
-It records the git tracker, team workflow and feedback-loop contract, triage label mapping, domain-document layout, frontend conventions, and root agent instructions in that repository. The other skills read those files instead of carrying project-specific policy.
+Releases use semantic version tags with a leading `v`, for example `v0.1.0`. During the private-preview phase, breaking changes may still require a minor-version increment. Each release should update [CHANGELOG.md](CHANGELOG.md), pass validation, and include a concise GitHub release summary.
 
-3. If direction is needed, start with the direction skills and then move to the mainflow.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the contribution loop and [LICENSE](LICENSE) for the repository's access terms.
 
 ## Updating older workflow configuration
 
