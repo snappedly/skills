@@ -17,5 +17,5 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: python -m pip install -r skills/requirements-validation.txt
-      - run: python skills/scripts/validate-skills.py
+      - run: python -m pip install -r requirements-validation.txt
+      - run: python scripts/validate-skills.py
