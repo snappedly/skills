@@ -15,7 +15,7 @@ Use the canonical root filenames `AGENTS.md` and `CLAUDE.md`. Treat references t
 The setup records six concerns:
 
 - Work tracker: where work items and specs live, and how the tracker is operated.
-- Team workflow: how work moves from clarification through implementation, review, merge, production approval, deployment, verification, and handoff.
+- Team workflow: how work moves from clarification through implementation, review, merge, production approval, deployment, verification, and handoff, including the repository's feedback-loop contract.
 - Triage labels: the tracker strings that represent the canonical triage roles, when a triage skill is installed.
 - Domain docs: where shared vocabulary and architectural decisions live.
 - Frontend conventions: the design system, tokens, and UI directories the design and audit skills read, when the repo has a user interface.
@@ -36,8 +36,9 @@ Read the repo before proposing configuration. Do not infer conventions from the 
 - An installed `triage` skill: this decides whether the triage-label section applies.
 - Frontend signals: a component library or design system dependency, a Tailwind, theme, or design-token configuration, a global stylesheet, a `components/`, `app/`, or `pages/` tree, a Storybook setup. These decide whether the frontend section applies.
 - Monorepo signals: `pnpm-workspace.yaml`, a `workspaces` field in `package.json`, or a populated `packages/*` tree with its own `src/`.
+- Feedback-loop signals: the package manager and lockfile, package scripts, TypeScript configuration, test runner, formatter/linter configuration, Git hooks, CI workflows, and any configured development or preview server.
 
-Completion criterion: you have a file-by-file inventory, know what each root instruction file contains, know whether the triage, frontend, and multi-context choices apply, and have confirmed a usable GitHub or GitLab connection.
+Completion criterion: you have a file-by-file inventory, know what each root instruction file contains, know whether the triage, frontend, and multi-context choices apply, have mapped the existing feedback-loop surfaces, and have confirmed a usable GitHub or GitLab connection.
 
 ### 2. Align
 
@@ -60,13 +61,15 @@ Record the selected provider in `docs/agents/issue-tracker.md`. Keep the `PRs as
 
 #### Section B: Team workflow
 
-Read existing process documentation first. Preserve its rules and ask the user whether the default Snappedly flow fits:
+Read existing process documentation and feedback-loop surfaces first. Preserve its rules and ask the user whether the default Snappedly flow fits:
 
 For small, clear requests: `edit -> focused verification -> local review`.
 
 For planned multi-session work: `clarify -> specify -> ticket -> implement -> code-cleanup -> code-review -> handoff`.
 
 Capture the source of truth and the point at which implementation may start. A clear user request can be the brief for a small change unless the team requires a tracker issue. Ticketed `/implement` work uses an executable issue or brief; planning specs and wayfinder decision tickets do not qualify. `/implement-spec` is the explicit whole-spec path. Record checks with explicit applicability for presentation edits, local logic changes, and cross-cutting or release work. Full tests and production/deployment builds are not universal defaults. Record when local review is sufficient and when independent axes are required, the allowed disposition for each kind of finding, and the information a handoff must contain. Require cleanup and applicable verification before commit. Small changes can perform these steps and local review inline; separate skill invocations and reports are optional. After review fixes, rerun only affected checks and review the changed scope.
+
+Record a feedback-loop contract in `docs/agents/workflow.md`: the formatter/autofix command, the fastest reliable static check, the focused test command and scope, broader suite/build/release checks, and the local, agent, CI, and preview adapters that enforce them. Use the repository's existing package manager and scripts. If a surface is absent, record `not configured` or `not applicable` and explain the trigger for adding it. Do not install a test runner, formatter, linter, hook, or CI workflow merely because the repository uses TypeScript; adding tooling requires an explicit opt-in.
 
 Use the release policy in [workflow.md](workflow.md) as the default and ask only about differences. Record:
 
@@ -78,7 +81,7 @@ Use the release policy in [workflow.md](workflow.md) as the default and ask only
 
 Record the result in `docs/agents/workflow.md`.
 
-Use tdd's verification scope as the default: presentation and copy changes use visual/direct checks; changed logic uses focused failing tests at existing public boundaries. Agents select established seams without another approval round; ask when the contract is unresolved. Capture any team overrides in the same file. When updating older configuration, identify blanket test-first, full-build, and independent-review clauses in workflow and root instructions and replace them consistently with the agreed scope. Summarize the workflow and production approval boundary in the `### Team workflow` line of the `## Agent skills` block so both load in every session.
+Use tdd's verification scope as the default: presentation and copy changes use visual/direct checks; changed logic uses focused failing tests at existing public boundaries. Agents select established seams without another approval round; ask when the contract is unresolved. Capture any team overrides in the same file. When updating older configuration, identify blanket test-first, full-build, and independent-review clauses in workflow and root instructions and replace them consistently with the agreed scope. Summarize the workflow, feedback-loop contract, and production approval boundary in the `### Team workflow` line of the `## Agent skills` block so both load in every session.
 
 If the repo already has a clear workflow, summarize it and confirm that Snappedly skills should follow it. Treat the repo's existing rules as the source of truth when they conflict with the default flow.
 

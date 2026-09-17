@@ -73,7 +73,7 @@ npx skills update
 
 2. Run `setup-snappedly-skills` for the first time in a target repository.
 
-It records the git tracker, team workflow, triage label mapping, domain-document layout, frontend conventions, and root agent instructions in that repository. The other skills read those files instead of carrying project-specific policy.
+It records the git tracker, team workflow and feedback-loop contract, triage label mapping, domain-document layout, frontend conventions, and root agent instructions in that repository. The other skills read those files instead of carrying project-specific policy.
 
 3. If direction is needed, start with the direction skills and then move to the mainflow.
 

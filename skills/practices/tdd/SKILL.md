@@ -7,13 +7,15 @@ description: Test-driven development for changed logic, state transitions, valid
 
 TDD is the red → green loop. This skill is the reference that makes that loop produce tests worth keeping: what a good test is, where tests go, the anti-patterns, and the rules of the loop. Choose coverage proportional to the changed contract; consult detailed examples when needed.
 
-When exploring the codebase, read `CONTEXT.md` (if it exists) so test names and interface vocabulary match the project's domain language, and respect ADRs in the area you're touching.
+When exploring the codebase, read `CONTEXT.md` (if it exists) so test names and interface vocabulary match the project's domain language, read `docs/agents/workflow.md` when present for the repository's feedback-loop contract, and respect ADRs in the area you're touching.
 
 ## Choose verification first
 
 - Visual styling, layout, typography, copy, and static link corrections: edit and inspect the affected route at relevant viewport sizes; exercise a changed link. Use existing focused checks where useful. These changes need no artificial failing test or new test harness.
 - State, validation, calculations, permissions, API contracts, and interaction logic: use a focused failing test at an existing public boundary. Frontend logic belongs here too.
 - Mixed work: test the changed logic and visually inspect presentation. The presence of UI files alone does not select TDD.
+
+After each vertical slice, use the smallest applicable loop from the repository contract: format changed files, run the fastest reliable static check, then run focused behavior tests. Broaden to the full suite, build, preview, or release checks only when the contract or the change's risk requires it.
 
 Honor explicit test-first requests and repository-required checks. When meaningful automated coverage requires disproportionate new infrastructure, use the smallest reliable direct check and report the gap; escalate only for a concrete risk or required coverage.
 
