@@ -19,7 +19,7 @@ The setup records six concerns:
 - Triage labels: the tracker strings that represent the canonical triage roles, when a triage skill is installed.
 - Domain docs: where shared vocabulary and architectural decisions live.
 - Frontend conventions: the design system, tokens, and UI directories the design and audit skills read, when the repo has a user interface.
-- Agent instructions: concise reporting in `AGENTS.md`, plus the tool context guide in `CLAUDE.md`.
+- Agent instructions: concise reporting and project configuration in `AGENTS.md`, plus a minimal pointer in `CLAUDE.md`.
 
 ## Process
 
@@ -28,7 +28,7 @@ The setup records six concerns:
 Read the repo before proposing configuration. Do not infer conventions from the remote alone.
 
 - `git remote -v` and `.git/config`: identify the host and repository.
-- `AGENTS.md` and `CLAUDE.md` at the repo root: inspect existing reporting rules, the Tool Context Guide, any `## Agent skills` section, and whether either path is a symlink.
+- `AGENTS.md` and `CLAUDE.md` at the repo root: inspect existing reporting rules, any `## Agent skills` section, and whether either path is a symlink.
 - `CONTRIBUTING.md`, `README.md`, and other process docs: find existing team rules that the Snappedly workflow must preserve.
 - `docs/agents/`: check for configuration written by an earlier run, including `issue-tracker.md`, `workflow.md`, `triage-labels.md`, `domain.md`, and `frontend.md`.
 - `CONTEXT.md` and `CONTEXT-MAP.md` at the repo root, plus `docs/adr/` and any context-scoped ADR directories.
@@ -117,7 +117,7 @@ Ask only what exploration could not answer, and lead with what you found. Record
 
 #### Section F: Root agent instructions
 
-Always maintain both canonical root instruction files. Preserve surrounding project instructions and update an existing matching section in place.
+Always maintain both canonical root instruction files. Preserve surrounding project instructions in `AGENTS.md` and update existing matching sections in place. `CLAUDE.md` is intentionally minimal and must contain only the pointer specified below.
 
 Add or update this section in `AGENTS.md`:
 
@@ -127,24 +127,15 @@ Add or update this section in `AGENTS.md`:
 When reporting information to me, be extremely concise, sacrificing grammar for concision.
 ```
 
-Add or update this exact block in `CLAUDE.md`:
+Write exactly this text to `CLAUDE.md`, with no heading or additional content:
 
-```markdown
-# Tool Context Guide
-
-## IMPORTANT: System Rules Injection
-Always read and strictly adhere to the rules, tech stack details, and coding standards defined in the root folder file:
-[AGENTS.md](./AGENTS.md)
-
-Before executing any development tasks, internalize the constraints inside `./AGENTS.md`. It serves as the primary source of truth for this codebase. The instructions below only supplement it.
-
-## Tool-Specific Overrides
-* Run tests using the tool's native execution environment when available.
+```
+Look at AGENTS.md.
 ```
 
-If either file is missing, create it. If `AGENTS.md` and `CLAUDE.md` resolve to the same symlink target, update the target once and verify both paths contain the required rules. Keep the `## Agent skills` block in `AGENTS.md` as the canonical project configuration.
+If either file is missing, create it. If `CLAUDE.md` is a symlink, replace it with a regular file as needed so its contents are exactly the pointer above. If `AGENTS.md` and `CLAUDE.md` resolve to the same symlink target, separate them before writing; never overwrite `AGENTS.md` to satisfy the `CLAUDE.md` pointer. Keep the `## Agent skills` block in `AGENTS.md` as the canonical project configuration.
 
-Completion criterion: every applicable section has an explicit answer, both root instruction paths expose the required rules, and no repo file has been written from an unconfirmed choice or without a usable GitHub or GitLab connection.
+Completion criterion: every applicable section has an explicit answer, `AGENTS.md` exposes the required project rules, `CLAUDE.md` contains exactly `Look at AGENTS.md.`, and no repo file has been written from an unconfirmed choice or without a usable GitHub or GitLab connection.
 
 ### 3. Confirm
 
@@ -157,7 +148,7 @@ Show the user the exact draft before writing:
 - `docs/agents/triage-labels.md` when the triage section ran.
 - `docs/agents/frontend.md` when the frontend section ran.
 - The `AGENTS.md` reporting section and canonical `## Agent skills` block.
-- The exact `CLAUDE.md` Tool Context Guide block.
+- The exact `CLAUDE.md` contents: `Look at AGENTS.md.`
 
 Use the GitHub or GitLab tracker template and the other seed templates in this skill directory as starting points. Replace their bracketed guidance with the repo's confirmed facts. Let the user edit the draft before proceeding.
 
@@ -170,9 +161,13 @@ Ensure both canonical root instruction files exist:
 1. Update or create `AGENTS.md`.
 2. Update or create `CLAUDE.md`.
 
-If one path is a symlink to the other, edit the target once and preserve the symlink. Preserve surrounding content in either file. Update existing matching sections in place rather than appending duplicates.
+If `CLAUDE.md` is a symlink, replace it with a regular file as needed so it can contain only the required pointer. Preserve surrounding content in `AGENTS.md` and update existing matching sections in place rather than appending duplicates.
 
-Keep the concise `## Reporting` rule and the `## Agent skills` block in `AGENTS.md`. Keep the exact `# Tool Context Guide` block in `CLAUDE.md`.
+Keep the concise `## Reporting` rule and the `## Agent skills` block in `AGENTS.md`. Make `CLAUDE.md` contain exactly:
+
+```
+Look at AGENTS.md.
+```
 
 Use this block, filling each line with the confirmed configuration:
 
@@ -200,11 +195,11 @@ Use this block, filling each line with the confirmed configuration:
 [one-line summary of the design system in use and the directories holding user-facing interface]. See `docs/agents/frontend.md`.
 ```
 
-Add the `## Reporting` section shown in step 2 above to `AGENTS.md`. Add the exact `# Tool Context Guide` block shown in step 2 above to `CLAUDE.md`.
+Add the `## Reporting` section shown in step 2 above to `AGENTS.md`. Write only `Look at AGENTS.md.` to `CLAUDE.md`.
 
 Include the `### Triage labels` subsection and its file only when the triage section ran, and the `### Frontend` subsection and its file only when the frontend section ran. Write `docs/agents/issue-tracker.md` from the matching GitHub or GitLab tracker template. Write `docs/agents/workflow.md`, `docs/agents/domain.md`, and `docs/agents/frontend.md` from their seed templates.
 
-Completion criterion: `AGENTS.md`, `CLAUDE.md`, and every applicable `docs/agents/` file contain the confirmed GitHub or GitLab configuration, with no duplicate managed sections or unfinished template placeholders.
+Completion criterion: `AGENTS.md` and every applicable `docs/agents/` file contain the confirmed GitHub or GitLab configuration, `CLAUDE.md` contains only `Look at AGENTS.md.`, and there are no duplicate managed sections or unfinished template placeholders.
 
 ### 5. Finish
 
