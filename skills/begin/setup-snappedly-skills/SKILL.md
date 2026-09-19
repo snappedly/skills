@@ -10,7 +10,7 @@ Create the per-repo configuration that Snappedly skills read. This is a prompt-d
 
 This process requires a usable connection to a GitHub or GitLab repository. A local checkout without either provider connection cannot be configured by this skill.
 
-Use the canonical root filenames `AGENTS.md` and `CLAUDE.md`. Treat references to `agent.md` or `claude.md` as those files.
+Use `AGENTS.md` as the canonical root instruction file. Treat references to `agent.md` as that file.
 
 The setup records six concerns:
 
@@ -19,7 +19,7 @@ The setup records six concerns:
 - Triage labels: the tracker strings that represent the canonical triage roles, when a triage skill is installed.
 - Domain docs: where shared vocabulary and architectural decisions live.
 - Frontend conventions: the design system, tokens, and UI directories the design and audit skills read, when the repo has a user interface.
-- Agent instructions: concise reporting and project configuration in `AGENTS.md`, plus a minimal pointer in `CLAUDE.md`.
+- Agent instructions: concise reporting and project configuration in `AGENTS.md`.
 
 ## Process
 
@@ -28,7 +28,7 @@ The setup records six concerns:
 Read the repo before proposing configuration. Do not infer conventions from the remote alone.
 
 - `git remote -v` and `.git/config`: identify the host and repository.
-- `AGENTS.md` and `CLAUDE.md` at the repo root: inspect existing reporting rules, any `## Agent skills` section, and whether either path is a symlink.
+- `AGENTS.md` at the repo root: inspect existing reporting rules, any `## Agent skills` section, and whether the path is a symlink.
 - `CONTRIBUTING.md`, `README.md`, and other process docs: find existing team rules that the Snappedly workflow must preserve.
 - `docs/agents/`: check for configuration written by an earlier run, including `issue-tracker.md`, `workflow.md`, `triage-labels.md`, `domain.md`, and `frontend.md`.
 - `CONTEXT.md` and `CONTEXT-MAP.md` at the repo root, plus `docs/adr/` and any context-scoped ADR directories.
@@ -38,7 +38,7 @@ Read the repo before proposing configuration. Do not infer conventions from the 
 - Monorepo signals: `pnpm-workspace.yaml`, a `workspaces` field in `package.json`, or a populated `packages/*` tree with its own `src/`.
 - Feedback-loop signals: the package manager and lockfile, package scripts, TypeScript configuration, test runner, formatter/linter configuration, Git hooks, CI workflows, and any configured development or preview server.
 
-Completion criterion: you have a file-by-file inventory, know what each root instruction file contains, know whether the triage, frontend, and multi-context choices apply, have mapped the existing feedback-loop surfaces, and have confirmed a usable GitHub or GitLab connection.
+Completion criterion: you have a file-by-file inventory, know what the root instruction file contains, know whether the triage, frontend, and multi-context choices apply, have mapped the existing feedback-loop surfaces, and have confirmed a usable GitHub or GitLab connection.
 
 ### 2. Align
 
@@ -117,7 +117,7 @@ Ask only what exploration could not answer, and lead with what you found. Record
 
 #### Section F: Root agent instructions
 
-Always maintain both canonical root instruction files. Preserve surrounding project instructions in `AGENTS.md` and update existing matching sections in place. `CLAUDE.md` is intentionally minimal and must contain only the pointer specified below.
+Maintain the canonical root instruction file. Preserve surrounding project instructions in `AGENTS.md` and update existing matching sections in place.
 
 Add or update this section in `AGENTS.md`:
 
@@ -127,15 +127,9 @@ Add or update this section in `AGENTS.md`:
 When reporting information to me, be extremely concise, sacrificing grammar for concision.
 ```
 
-Write exactly this text to `CLAUDE.md`, with no heading or additional content:
+If `AGENTS.md` is missing, create it. Keep the `## Agent skills` block there as the canonical project configuration.
 
-```
-Look at AGENTS.md.
-```
-
-If either file is missing, create it. If `CLAUDE.md` is a symlink, replace it with a regular file as needed so its contents are exactly the pointer above. If `AGENTS.md` and `CLAUDE.md` resolve to the same symlink target, separate them before writing; never overwrite `AGENTS.md` to satisfy the `CLAUDE.md` pointer. Keep the `## Agent skills` block in `AGENTS.md` as the canonical project configuration.
-
-Completion criterion: every applicable section has an explicit answer, `AGENTS.md` exposes the required project rules, `CLAUDE.md` contains exactly `Look at AGENTS.md.`, and no repo file has been written from an unconfirmed choice or without a usable GitHub or GitLab connection.
+Completion criterion: every applicable section has an explicit answer, `AGENTS.md` exposes the required project rules, and no repo file has been written from an unconfirmed choice or without a usable GitHub or GitLab connection.
 
 ### 3. Confirm
 
@@ -148,26 +142,14 @@ Show the user the exact draft before writing:
 - `docs/agents/triage-labels.md` when the triage section ran.
 - `docs/agents/frontend.md` when the frontend section ran.
 - The `AGENTS.md` reporting section and canonical `## Agent skills` block.
-- The exact `CLAUDE.md` contents: `Look at AGENTS.md.`
 
 Use the GitHub or GitLab tracker template and the other seed templates in this skill directory as starting points. Replace their bracketed guidance with the repo's confirmed facts. Let the user edit the draft before proceeding.
 
-Completion criterion: the user has confirmed both root instruction files and every applicable configuration file, after a usable GitHub or GitLab connection was confirmed.
+Completion criterion: the user has confirmed the root instruction file and every applicable configuration file, after a usable GitHub or GitLab connection was confirmed.
 
 ### 4. Write
 
-Ensure both canonical root instruction files exist:
-
-1. Update or create `AGENTS.md`.
-2. Update or create `CLAUDE.md`.
-
-If `CLAUDE.md` is a symlink, replace it with a regular file as needed so it can contain only the required pointer. Preserve surrounding content in `AGENTS.md` and update existing matching sections in place rather than appending duplicates.
-
-Keep the concise `## Reporting` rule and the `## Agent skills` block in `AGENTS.md`. Make `CLAUDE.md` contain exactly:
-
-```
-Look at AGENTS.md.
-```
+Update or create `AGENTS.md`. Preserve surrounding content and update existing matching sections in place rather than appending duplicates. Keep the concise `## Reporting` rule and the `## Agent skills` block there.
 
 Use this block, filling each line with the confirmed configuration:
 
@@ -195,14 +177,14 @@ Use this block, filling each line with the confirmed configuration:
 [one-line summary of the design system in use and the directories holding user-facing interface]. See `docs/agents/frontend.md`.
 ```
 
-Add the `## Reporting` section shown in step 2 above to `AGENTS.md`. Write only `Look at AGENTS.md.` to `CLAUDE.md`.
+Add the `## Reporting` section shown in step 2 above to `AGENTS.md`.
 
 Include the `### Triage labels` subsection and its file only when the triage section ran, and the `### Frontend` subsection and its file only when the frontend section ran. Write `docs/agents/issue-tracker.md` from the matching GitHub or GitLab tracker template. Write `docs/agents/workflow.md`, `docs/agents/domain.md`, and `docs/agents/frontend.md` from their seed templates.
 
-Completion criterion: `AGENTS.md` and every applicable `docs/agents/` file contain the confirmed GitHub or GitLab configuration, `CLAUDE.md` contains only `Look at AGENTS.md.`, and there are no duplicate managed sections or unfinished template placeholders.
+Completion criterion: `AGENTS.md` and every applicable `docs/agents/` file contain the confirmed GitHub or GitLab configuration, with no duplicate managed sections or unfinished template placeholders.
 
 ### 5. Finish
 
-Tell the user which files were written and which Snappedly skills will read them. Explain that `AGENTS.md` is the canonical project-instruction file, `CLAUDE.md` points tools to it, and `docs/agents/*.md` files are the direct editing points for small convention changes. Re-run this setup only when the tracker, team workflow, labels, domain layout, frontend conventions, or root agent instructions change.
+Tell the user which files were written and which Snappedly skills will read them. Explain that `AGENTS.md` is the canonical project-instruction file and `docs/agents/*.md` files are the direct editing points for small convention changes. Re-run this setup only when the tracker, team workflow, labels, domain layout, frontend conventions, or root agent instructions change.
 
 Completion criterion: the user can locate each configuration file and knows which file to edit for each kind of change.
