@@ -104,3 +104,5 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for the contribution loop and [LICENSE](L
 ## Updating older workflow configuration
 
 Installed skills and existing repository instructions are separate copies. After updating skills, review `AGENTS.md` and `docs/agents/workflow.md` for blanket test-first, full-suite/build, and independent-review requirements. Update those clauses to the agreed verification scope; preserved repository requirements still take precedence over skill defaults. The setup workflow template supplies the new defaults.
+
+License: PolyForm Strict 1.0.0. You may use these skills for noncommercial purposes. The license does not permit distribution, modification, or creating new works based on them. Contact Snappedly to request a commercial license.
