@@ -1,16 +1,16 @@
 # Snappedly Skills
 
-> Private collection of reusable engineering skills for AI coding agents.
+> Source-available collection of reusable engineering skills for AI coding agents.
 
 [![Validate skills](https://github.com/snappedly/skills/actions/workflows/validate-skills.yml/badge.svg)](https://github.com/snappedly/skills/actions/workflows/validate-skills.yml)
 
-**Status: private preview.** This repository is shared with invited collaborators only. Please do not redistribute its contents outside the authorized group.
+**License: PolyForm Strict 1.0.0.** You may use these skills for noncommercial purposes. The license does not permit distributing them, modifying them, or creating new works based on them. Contact Snappedly to request a commercial license.
 
 Snappedly Skills packages the workflows and engineering practices we use to move from an unclear request to a verified change. Each skill is self-contained, composable, and backed by the repository conventions it needs.
 
 ## Install
 
-Authorized collaborators with GitHub access can install the collection with the Skills CLI:
+For permitted noncommercial use, install the collection with the Skills CLI:
 
 ```bash
 npx skills add snappedly/skills
@@ -21,8 +21,6 @@ For updates:
 ```bash
 npx skills update
 ```
-
-The CLI may require an authenticated GitHub setup for this private repository.
 
 ## Getting started
 
@@ -99,7 +97,7 @@ The same check runs in GitHub Actions for pull requests and pushes to `main`.
 
 ## Versioning and releases
 
-Releases use semantic version tags with a leading `v`, for example `v0.1.0`. During the private-preview phase, breaking changes may still require a minor-version increment. Each release should update [CHANGELOG.md](CHANGELOG.md), pass validation, and include a concise GitHub release summary.
+Releases use semantic version tags with a leading `v`, for example `v0.1.0`. Before `v1.0.0`, breaking changes may require a minor-version increment. Each release should update [CHANGELOG.md](CHANGELOG.md), pass validation, and include a concise GitHub release summary.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for the contribution loop and [LICENSE](LICENSE) for the repository's access terms.
 

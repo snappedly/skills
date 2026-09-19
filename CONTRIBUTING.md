@@ -1,6 +1,8 @@
 # Contributing to Snappedly Skills
 
-This is a private repository shared with invited collaborators. Contributions should stay within the authorized group and should not be redistributed outside it.
+This is a source-available repository licensed under the [PolyForm Strict License 1.0.0](LICENSE). Contributions are welcome, but the license does not permit redistributing the repository or creating derivative works outside this contribution process.
+
+To preserve Snappedly's ability to offer commercial licenses, we can accept only contributions for which Snappedly has separate relicensing rights through an employment agreement, contractor agreement, or written contributor agreement. Open an issue before preparing a contribution if no such agreement is already in place.
 
 ## Before opening a pull request
 
@@ -21,4 +23,4 @@ Describe the user-facing change, the skills affected, and the validation you ran
 
 ## Releases
 
-Release preparation should update [CHANGELOG.md](CHANGELOG.md), pass validation, and use a semantic version tag with a leading `v`. The current private-preview line begins at `v0.1.0`.
+Release preparation should update [CHANGELOG.md](CHANGELOG.md), pass validation, and use a semantic version tag with a leading `v`. Before `v1.0.0`, breaking changes may require a minor-version increment.
