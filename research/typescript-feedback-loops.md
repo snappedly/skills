@@ -39,8 +39,6 @@ These sources support the mechanics, but they do not imply that every TypeScript
 
 ## Local Shipyard evidence
 
-Inspected a clean local checkout of the Shipyard repository before this change on 17 September 2026.
-
 | Surface | Current state | Evidence |
 | --- | --- | --- |
 | Typecheck | Present and passing in about 0.5s | `package.json` has `typecheck: tsgo --noEmit`; `tsconfig.json` has `strict: true` |

@@ -12,7 +12,7 @@ All notable changes to Snappedly Skills are recorded here.
 
 - Replaced the private all-rights-reserved notice with the PolyForm Strict License 1.0.0 and opened the repository for noncommercial use.
 - Clarified the contribution and license summaries in the README.
-- Removed a machine-specific path from the public research notes.
+- Removed an unnecessary local-checkout note from the public research notes.
 - `setup-snappedly-skills` now maintains only `AGENTS.md` as the root agent-instruction file.
 - Removed `CLAUDE.md` from the agent-document guidance.
 
