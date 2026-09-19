@@ -39,7 +39,7 @@ These sources support the mechanics, but they do not imply that every TypeScript
 
 ## Local Shipyard evidence
 
-Inspected the clean checkout at `/Users/jonathankemsley/Projects/snappedly/tools/shipyard` before this change on 17 September 2026.
+Inspected a clean local checkout of the Shipyard repository before this change on 17 September 2026.
 
 | Surface | Current state | Evidence |
 | --- | --- | --- |

@@ -99,8 +99,8 @@ Installed skills and existing repository instructions are separate copies. After
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md). The standard repository check is:
+Contributions are welcome from people who can grant Snappedly the relicensing rights described in [CONTRIBUTING.md](CONTRIBUTING.md). Please open an issue before starting work if no contributor agreement is already in place.
 
 ## License
-**PolyForm Strict 1.0.0.** 
-You may use these skills for noncommercial purposes. The license does not permit distributing them, modifying them, or creating new works based on them. Contact Snappedly to request a commercial license.
+
+This repository is licensed under the [PolyForm Strict License 1.0.0](LICENSE). You may use these skills for noncommercial purposes. The license does not permit distributing them, modifying them, or creating new works based on them. Contact Snappedly to request a commercial license.
