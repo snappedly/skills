@@ -4,8 +4,6 @@
 
 [![Validate skills](https://github.com/snappedly/skills/actions/workflows/validate-skills.yml/badge.svg)](https://github.com/snappedly/skills/actions/workflows/validate-skills.yml)
 
-**License: PolyForm Strict 1.0.0.** You may use these skills for noncommercial purposes. The license does not permit distributing them, modifying them, or creating new works based on them. Contact Snappedly to request a commercial license.
-
 Snappedly Skills packages the workflows and engineering practices we use to move from an unclear request to a verified change. Each skill is self-contained, composable, and backed by the repository conventions it needs.
 
 ## Install
@@ -105,4 +103,5 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for the contribution loop and [LICENSE](L
 
 Installed skills and existing repository instructions are separate copies. After updating skills, review `AGENTS.md` and `docs/agents/workflow.md` for blanket test-first, full-suite/build, and independent-review requirements. Update those clauses to the agreed verification scope; preserved repository requirements still take precedence over skill defaults. The setup workflow template supplies the new defaults.
 
-License: PolyForm Strict 1.0.0. You may use these skills for noncommercial purposes. The license does not permit distribution, modification, or creating new works based on them. Contact Snappedly to request a commercial license.
+**License: PolyForm Strict 1.0.0.** 
+You may use these skills for noncommercial purposes. The license does not permit distributing them, modifying them, or creating new works based on them. Contact Snappedly to request a commercial license.
