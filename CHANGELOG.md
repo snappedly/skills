@@ -2,6 +2,13 @@
 
 All notable changes to Snappedly Skills are recorded here.
 
+## Unreleased
+
+### Changed
+
+- `setup-snappedly-skills` now maintains only `AGENTS.md` as the root agent-instruction file.
+- Removed `CLAUDE.md` from the agent-document guidance.
+
 ## [0.1.0] - 2026-09-17
 
 ### Added
