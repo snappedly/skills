@@ -93,12 +93,6 @@ python scripts/validate-skills.py
 
 The same check runs in GitHub Actions for pull requests and pushes to `main`.
 
-## Versioning and releases
-
-Releases use semantic version tags with a leading `v`, for example `v0.1.0`. Before `v1.0.0`, breaking changes may require a minor-version increment. Each release should update [CHANGELOG.md](CHANGELOG.md), pass validation, and include a concise GitHub release summary.
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for the contribution loop and [LICENSE](LICENSE) for the repository's access terms.
-
 ## Updating older workflow configuration
 
 Installed skills and existing repository instructions are separate copies. After updating skills, review `AGENTS.md` and `docs/agents/workflow.md` for blanket test-first, full-suite/build, and independent-review requirements. Update those clauses to the agreed verification scope; preserved repository requirements still take precedence over skill defaults. The setup workflow template supplies the new defaults.
