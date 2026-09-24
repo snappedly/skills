@@ -2,6 +2,8 @@
 
 Work items and specs for this repo live as GitLab issues. Use the `glab` CLI for tracker operations.
 
+Before completion-based closure or adding automatic closing references, read the delivery and closure policy in `docs/agents/workflow.md`. It defines when each ticket or spec closes and who acts; the commands below do not establish completion or authority to close it.
+
 ## Conventions
 
 - Create an issue with `glab issue create --title "..." --description "..."`.

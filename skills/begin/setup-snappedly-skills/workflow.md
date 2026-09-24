@@ -56,11 +56,22 @@ Small, low-risk changes receive a local review of the diff against the request, 
 - A Spec gap or documented-standard violation requires a fix or an explicit user change to the source requirement or standard.
 - An Interface violation requires a fix or an explicit user waiver under repository policy.
 
-## Pull or merge request
+## Delivery and closure
 
-The agent may push the task branch, create or update its GitHub pull request or GitLab merge request, fix task-related failures, and merge after every required check and repository review passes.
+This policy governs implementation delivery and completion-based closure. Apply it within the requested task and configured delegation; a review-only task stays read-only. Provider commands and relationships come from `docs/agents/issue-tracker.md`.
 
-[State the base branch, pull or merge request requirements, merge strategy, and whether preview deployments may run before production approval. Specify when executable tickets close and, separately, when their parent spec closes: merge, sign-off, or another event. Integration into a task branch establishes dependency readiness, not tracker closure.]
+| Transition | Trigger and prerequisites | Actor | Required evidence |
+| --- | --- | --- | --- |
+| Push branch and create/update PR/MR | [When to publish; draft or ready; applicable checks] | [Agent or human] | [Commit, checks, or other evidence] |
+| Merge PR/MR | [Checks and approvals required before merge] | [Agent, provider automation, or human] | [Passing checks and recorded approval, if required] |
+| Close executable ticket | [Verified implementation, merge, sign-off, deployment verification, or named event] | [Agent, provider automation, or human] | [Evidence proving this ticket meets the condition] |
+| Close parent spec | [Independent acceptance condition for the whole spec] | [Agent, provider automation, or human] | [Whole-spec acceptance evidence] |
+
+[Record the base branch, merge strategy, and whether preview deployments may run before production approval. For required sign-off, name the approver, where approval is recorded, and the revision or scope it covers. Define custom events with observable completion conditions. Use `not applicable` for unused transitions.]
+
+Follow each transition's configured actor and prerequisites. Reuse applicable recorded approval; ask only for missing decisions or sign-off. If an event is pending, leave that transition pending and report the next actor and evidence needed. Verify the resulting PR/MR or tracker state after an authorized action, including provider automation; issuing a command or adding a closing reference is not proof of closure.
+
+Use automatic closing references only for items configured to close on that merge and whose other closure prerequisites are satisfied. Use ordinary links for items awaiting another event or human closure. Apply ticket and parent-spec rules separately: completing child tickets does not itself establish spec acceptance. Integration into a task branch establishes dependency readiness independently of tracker closure.
 
 ## Production release
 
@@ -74,4 +85,4 @@ A human must approve the exact production candidate before deployment starts. Th
 
 ## Handoff
 
-[State what a handoff must report. Include required check results, skipped review axes and reasons, finding dispositions, pull or merge request and merged revision, production candidate and approval state, deployment result, verification evidence, and open recovery or follow-up work.]
+[State what a handoff must report. Include required check results, skipped review axes and reasons, finding dispositions, pull or merge request and merged revision, ticket and spec states, pending delivery/closure events and their next actor, production candidate and approval state, deployment result, verification evidence, and open recovery or follow-up work.]

@@ -7,6 +7,8 @@ description: "PR reviewability. Use whenever creating or reviewing a pull reques
 
 Prepare a PR so a reviewer can quickly understand the intent, important files, and risk. The default goal is reviewability without behavior changes.
 
+Read `docs/agents/workflow.md` and, for linked work items or provider operations, `docs/agents/issue-tracker.md`, or reuse their unchanged contents. Follow the configured delivery and closure policy when creating or updating the request, including its actor, readiness, and closing-reference rules. Check existing closing references as well as new ones against ticket and parent-spec policy. Resolve missing policy before adding automatic closure or performing an otherwise undecided delivery action; continue drafting and review meanwhile. A PR-body task does not itself authorize merge or ticket closure. When those actions are in scope, follow the same policy and verify the resulting state.
+
 ## Workflow
 
 1. Resolve the target PR from the user-provided URL or current branch. When creating a PR, use the intended head and base branches.
