@@ -18,7 +18,7 @@ The coordinator also owns the configured delivery and closure transitions. At ea
 
 TDD applies to changed logic according to its scope guidance. Presentation-only tickets use visual verification even inside a large spec. Required integrated checks still cover interactions across tickets.
 
-For multi-slice work, prioritize the tracer bullet when later tickets rely on the same unverified path or contract. Integrate and verify it before releasing those dependents, then use the evidence to guide the remaining accepted work. Continue when the result supports the plan; pause only when it reveals a material change to the agreed outcome, contract, or scope.
+For multi-slice work, check that tickets relying on the tracer bullet's unverified path or contract have a blocking edge to it. Add any missing edge to the run graph and tracker before dispatch, then recompute readiness. Integrate and verify the tracer bullet against its acceptance criteria before releasing dependents. Continue when the result supports the plan; pause only when it reveals a material change to the agreed outcome, contract, or scope.
 
 ## Budget and delegation
 

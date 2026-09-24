@@ -30,11 +30,11 @@ If direction is needed, start with the direction skills and then move to the mai
 
 ## Main workflow
 
-Use the full flow for multiple accepted outcomes, meaningful dependencies, material risk, or work that needs coordination across sessions:
+Use the full flow when accepted work needs distinct delivery slices with dependencies or unresolved design decisions that require a durable spec:
 
 `grill-with-docs` → `to-spec` → `to-tickets` → `implement-spec`
 
-For one observable outcome, implement directly or use `implement` once the request is clear, even if the change touches several files. In broader work, start with a verified end-to-end tracer bullet. See [scope-and-slicing.md](skills/mainflow/scope-and-slicing.md). Presentation edits use visual checks; changed logic uses focused tests. Cleanup and review stay in the current agent for low-risk work. Use `build-local` when a browser preview is useful. Use `handoff` when another session or directory needs to continue the work.
+For one observable outcome, implement directly or use `implement` once the request is clear, even if the change touches several files. In broader work, start with a verified end-to-end tracer bullet. See [scope-and-slicing.md](skills/mainflow/scope-and-slicing.md). Presentation edits use visual checks; changed logic uses focused tests, with check and review depth set by risk. Cleanup and review stay in the current agent for low-risk work. Use `build-local` when a browser preview is useful. Use `handoff` when another session or directory needs to continue the work.
 
 ## Skill groups
 

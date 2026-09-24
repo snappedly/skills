@@ -1,22 +1,24 @@
 ---
 name: to-spec
-description: "Turn the current conversation into a spec and publish it to the project issue tracker: no interview, just synthesis of what you've already discussed."
+description: "Synthesize the conversation into a scoped spec, or one executable issue or brief for a small change."
 disable-model-invocation: true
 ---
 
-This skill takes the current conversation context and codebase understanding and produces a spec. Do NOT interview the user; just synthesize what you already know.
+Synthesize the current conversation and codebase understanding. Do not interview the user.
 
-Read [scope-and-slicing.md](../scope-and-slicing.md). A spec is for multiple accepted outcomes, meaningful dependencies, material risk, or cross-session coordination. For one observable outcome, do not publish a planning spec: put the agreed requirements in one executable issue when tracker work is needed, or return a concise implementation brief. Apply `technical-writing` to the issue or brief. This holds regardless of how many files the fix may touch.
+Read [scope-and-slicing.md](../scope-and-slicing.md) to choose the artifact by accepted outcomes and delivery dependencies, regardless of how many files the work may touch.
 
-Read the existing tracker configuration or reuse it from context. If the publishing destination cannot be established, prepare the local draft and ask for that missing destination; use `/setup-snappedly-skills` when repository-wide configuration is needed.
+When publishing, read the existing tracker and label configuration or reuse it from context. If the publishing destination cannot be established, prepare the local draft and ask for that missing destination; use `/setup-snappedly-skills` when repository-wide configuration is needed.
 
 ## Process
 
-1. Explore the repo to understand the current state of the codebase, if you haven't already. Use the project's domain glossary vocabulary throughout the spec, and respect any ADRs in the area you're touching.
+1. Explore the repo to understand the current state of the codebase, if you haven't already. Use the project's domain glossary vocabulary and respect any ADRs in the area you're touching.
 
 2. Describe verification proportional to the work, using tdd's scope guidance. Reuse established test boundaries and prior decisions. Ask only when a new interface or unresolved behavioral contract materially changes the plan; existing seams need no confirmation round.
 
-3. Write the spec using the template below. Include only agreed outcomes and necessary work; keep optional improvements out. For multi-slice work, identify the first end-to-end tracer bullet and the evidence that will validate it. Apply `technical-writing` to the title and body, then publish it to the configured GitHub or GitLab issue tracker. A spec is a planning artifact, not an executable work item. Do not apply `ready-for-agent` to it. `to-tickets` applies that state to the implementation tickets it creates.
+3. Choose the artifact. If the agreed work fits one executable issue, write one issue or brief with the outcome and acceptance criteria. Apply `technical-writing`. Publish the issue with the configured `ready-for-agent` label when tracker work is required; otherwise return the brief. This path is complete. For work needing a planning spec, continue to step 4.
+
+4. Write the spec using the template below. Include only agreed outcomes and necessary work; keep optional improvements out. For multi-slice work, identify the first end-to-end tracer bullet and the evidence that will validate it. Apply `technical-writing` to the title and body, then publish it to the configured GitHub or GitLab issue tracker. A spec is a planning artifact, not an executable work item. Do not apply `ready-for-agent` to it. `to-tickets` applies that state to the implementation tickets it creates.
 
 <spec-template>
 

@@ -8,8 +8,8 @@ Treat the user's requested outcome and accepted constraints as the boundary. Inc
 
 ## Choose the lightest workflow
 
-A single observable outcome with no material unresolved contract or dependency graph fits one executable issue or brief, or direct implementation when repository policy permits. Skip the planning spec and ticket graph. Use the full planning chain when the work has multiple accepted outcomes, meaningful dependencies, material risk, or a need for cross-session coordination. Preserve repository-required steps in either path.
+A single observable outcome that fits one execution unit uses one executable issue or brief, or direct implementation when repository policy permits. Use the full planning chain when accepted work needs distinct delivery slices with dependencies or unresolved design decisions that require a durable spec. Let risk determine verification and review depth; use a handoff when another session must continue. Preserve repository-required steps in either path.
 
 ## Start broad work with a tracer bullet
 
-For accepted work that needs multiple slices, choose the smallest end-to-end slice through only the layers it needs. Prefer the slice that verifies the critical path or a risky shared assumption. Verify it before repeating the same approach across later slices, and use the result to refine the remaining plan. Each later slice must deliver a distinct accepted outcome or a real prerequisite. If evidence changes the agreed outcome, contract, or scope, pause for the user's decision before expanding the work.
+For accepted work that needs multiple slices, choose the smallest end-to-end slice through only the layers it needs. Prefer the slice that verifies the critical path or a risky shared assumption. Verify it before repeating the same approach across later slices, and use the result to refine the remaining plan. Each later slice must deliver a distinct accepted outcome or a real prerequisite. If evidence materially changes the agreed outcome, contract, or scope, seek the user's decision before expanding the work.
