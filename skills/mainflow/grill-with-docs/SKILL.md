@@ -1,9 +1,9 @@
 ---
 name: grill-with-docs
-description: A relentless interview to sharpen a plan or design, which also creates docs (ADR's and glossary) as we go.
+description: Interview to sharpen a plan or design; record domain and architecture decisions when the work warrants it.
 disable-model-invocation: true
 ---
 
-Call the Skill tool twice, for "grill-me" and "domain-modeling".
+Read [scope-and-slicing.md](../scope-and-slicing.md) before shaping the work. Call the Skill tool for "grill-me" to settle decisions that materially affect the requested outcome, acceptance criteria, constraints, dependencies, or risk; keep optional enhancements as follow-on ideas unless the user accepts them. Call "domain-modeling" only when the agreed work changes domain terms or relationships, or makes a durable architectural trade-off. Existing vocabulary can be read without creating or editing domain records.
 
-When a plan bundles many functional changes or has a broad implementation surface, recommend breaking delivery into small, narrow tickets or phases. Keep the user's full goal intact while identifying a manageable first slice and follow-on work; limited ticket scope makes changes easier to manage and helps prevent tangled implementations. This is guidance about how to deliver the work, not a limit on what the user can choose to build. Support the user's chosen overall scope, including a broad one if they prefer it.
+For a single outcome with no material unresolved contract or dependency graph, keep the interview focused and capture the agreed behavior in one executable issue or brief; the rest of the planning chain is unnecessary. For broader work, preserve the user's accepted scope and identify the first tracer bullet before planning follow-on slices.

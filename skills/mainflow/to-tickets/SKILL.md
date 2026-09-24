@@ -24,7 +24,7 @@ Introduce prerequisite refactoring only when a concrete obstacle prevents the re
 
 ### 3. Draft vertical slices
 
-Break the work into **tracer bullet** tickets.
+Read [scope-and-slicing.md](../scope-and-slicing.md), then break the accepted work into **tracer bullet** tickets. Count distinct outcomes and real dependencies, not files or layers. One cohesive outcome can remain one ticket even when it crosses layers.
 
 <vertical-slice-rules>
 
@@ -32,10 +32,11 @@ Break the work into **tracer bullet** tickets.
 - A completed slice is demoable or verifiable on its own
 - Each slice is sized to fit in a single fresh context window
 - Keep small related changes together; create a separate prerequisite only when it genuinely blocks delivery.
+- For a multi-slice plan, make the first ticket the smallest slice that validates the critical path or a risky shared assumption. State that evidence in its acceptance criteria.
 
 </vertical-slice-rules>
 
-Give each ticket its **blocking edges**: the other tickets that must complete before it can start. A ticket with no blockers can start immediately.
+Give each ticket its **blocking edges**: the other tickets that must complete before it can start. List the tracer bullet in "Blocked by" for each later ticket whose implementation depends on its unverified path or contract. A ticket with no blockers can start immediately.
 
 **Wide refactors are the exception to vertical slicing.** A **wide refactor** is one mechanical change (rename a column, retype a shared symbol) whose **blast radius** fans across the whole codebase, so a single edit breaks thousands of call sites at once and no vertical slice can land green. Don't force it into a tracer bullet; sequence it as **expand–contract**. First expand: add the new form beside the old so nothing breaks. Then migrate the call sites over in batches sized by blast radius (per package, per directory), each batch its own ticket blocked by the expand, keeping CI green batch to batch because the old form still exists. Finally contract: delete the old form once no caller remains, in a ticket blocked by every migrate batch. When even the batches can't stay green alone, keep the sequence but let them share an integration branch that all block a final integrate-and-verify ticket; green is promised only there.
 
@@ -49,7 +50,7 @@ Present the proposed breakdown as a numbered list. For each ticket, show:
 
 Resolve material uncertainty about granularity or blocking edges with one focused question. Combine related changes when splitting would add coordination without an independently verifiable outcome.
 
-Reuse an already approved breakdown. If the user authorized publishing and left granularity to you, proceed with the scoped breakdown; ask only about unresolved scope or dependencies that materially change delivery.
+Reuse an already approved breakdown. If the user authorized publishing and left granularity to you, proceed with the scoped breakdown; ask only about unresolved scope or dependencies that materially change delivery. Keep optional improvements out of executable tickets unless the user accepts them.
 
 ### 5. Publish the tickets to the configured tracker
 
