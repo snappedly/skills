@@ -53,6 +53,8 @@ Reuse an already approved breakdown. If the user authorized publishing and left 
 
 ### 5. Publish the tickets to the configured tracker
 
+Apply `technical-writing` to every ticket title and body before publishing.
+
 Publish the approved tickets. **How** depends on the tracker `/setup-snappedly-skills` configured; the tickets are the same either way, only the shape of the blocking edges changes:
 - **Issue tracker (GitHub, GitLab)** → publish one issue per ticket in dependency order (blockers first) so each ticket's blocking edges can reference real identifiers. Use the platform's native blocking / sub-issue relationship where it has one; otherwise set each ticket's "Blocked by" to the blocking issues. Apply the `ready-for-agent` triage label unless instructed otherwise; the tickets are agent-grabbable by construction.
 
