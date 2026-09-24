@@ -43,6 +43,7 @@ Delegate only a bounded independent task when parallel work or an independent ju
 - `/triage`: evaluate incoming issues and external PRs/MRs. Already executable tickets need no triage.
 - `/research`: investigate a substantive question and capture cited findings. A quick factual lookup needs no research artifact or agent.
 - `/improve-codebase-architecture`: explicitly survey architectural friction. An incidental maintainability concern does not start a survey.
+- `/retro`: review a coding session and recommend improvements to the agent's environment from observed difficulties. Invoke when requested; it is not an automatic closeout step.
 - `/resolving-merge-conflicts`: finish an in-progress merge or rebase, preserving intent.
 - `/wizard`: produce a procedure for steps only a human can perform.
 - `/teach`: sustained learning and practice.

@@ -60,7 +60,7 @@ Small, low-risk changes receive a local review of the diff against the request, 
 
 The agent may push the task branch, create or update its GitHub pull request or GitLab merge request, fix task-related failures, and merge after every required check and repository review passes.
 
-[State the base branch, pull or merge request requirements, merge strategy, issue-closing point, and whether preview deployments may run before production approval.]
+[State the base branch, pull or merge request requirements, merge strategy, and whether preview deployments may run before production approval. Specify when executable tickets close and, separately, when their parent spec closes: merge, sign-off, or another event. Integration into a task branch establishes dependency readiness, not tracker closure.]
 
 ## Production release
 

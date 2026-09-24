@@ -37,6 +37,22 @@ Both paths still implement two tickets and integrate twice. The bounded path has
 
 For a measured investigation, retain each agent's purpose, start/completion SHA and status, command invocation/result, duplicate or rerun reason, and branch change relative to the review target. Total implementation, integration, cleanup, review, and fix cycles. Compare those records with this model. Per-agent tokens and time remain unknown unless the runtime provides them.
 
+## Dependency and worktree scenarios
+
+Walk these instruction paths when changing scheduling or worker setup. They are review scenarios, not measured harness runs.
+
+| Starting condition | Expected outcome |
+| --- | --- |
+| Ticket A is integrated; dependent B is still blocked by open issue A on the tracker | Record A's integration commit and release B from the run graph. Leave issue A open until its configured closure event. |
+| Worker A reports completion but its branch has not been integrated | Keep B blocked until the coordinator accepts A's integration. If A is later reverted, recompute dependent readiness. |
+| A fresh worker starts on the wrong base and has uncommitted work | Preserve that work and correct the base safely before implementation; never discard it with an unconditional reset. |
+| A resumed worker has commits above its assigned base | Verify ancestry and account for its commits; do not reset merely because HEAD differs from the starting SHA. |
+| Workers A and B both synchronize with tip T; A integrates first | Recheck B against the new tip and integrate serially. Reuse only checks whose inputs remain equivalent. |
+| A required corpus test skips because an ignored fixture is absent | Report acceptance as unverified. Set up the supported environment or serialize verification of the candidate in a prepared checkout. |
+| Independent UI tickets need the same new translation key | Assign one owner/dependency or pin the exact shared key before dispatch, even if the consumers edit different files. |
+| Parallel commits invoke hooks that share mutable backup state | Serialize the affected operations or use supported isolation; worktree separation is insufficient. |
+| Tickets close on PR merge; the parent spec requires sign-off | Use closing references for tickets and an ordinary link for the parent. Keep the parent open pending sign-off. |
+
 ## Small-work routing checks
 
 These are expected instruction paths for review, not measured agent runs.

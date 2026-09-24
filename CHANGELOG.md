@@ -4,6 +4,17 @@ All notable changes to Snappedly Skills are recorded here.
 
 ## Unreleased
 
+### Added
+
+- Explicitly invoked `retro` skill for session-based recommendations to improve the agent's environment.
+
+### Changed
+
+- `implement-spec` now reads tracker policy explicitly, tracks dependency readiness independently of issue closure, and defines worker base, verification environment, shared-contract, and integration safeguards.
+- Setup distinguishes executable-ticket closure from parent-spec closure.
+- Validation evidence identifies required tests skipped because their environment is unavailable.
+- `pr` honors repository templates, makes visuals optional, repairs its component-tree example, and assesses the reversibility of effects as well as code.
+
 ## [0.2.0] - 2026-09-24
 
 ### Added
