@@ -4,6 +4,8 @@ All notable changes to Snappedly Skills are recorded here.
 
 ## Unreleased
 
+## [0.2.1] - 2026-09-24
+
 ### Added
 
 - Explicitly invoked `retro` skill for session-based recommendations to improve the agent's environment.
