@@ -43,7 +43,7 @@ Each skill lives at `skills/<group>/<name>/SKILL.md`. The catalog follows the di
 | `begin/` | Choose and configure the workflow | `help-snappedly`, `setup-snappedly-skills` |
 | `direction/` | Explore ideas and settle design decisions | `grill-me`, `prototype`, `research`, `wayfinder` |
 | `mainflow/` | Shape and implement planned work | `grill-with-docs`, `to-spec`, `to-tickets`, `implement-spec`, `build-local` |
-| `tools/` | Standalone workflow tools | `code-review`, `frontend-design`, `handoff`, `implement`, `wait-what`, `wizard`, `show-me-your-work` |
+| `tools/` | Standalone workflow tools | `code-review`, `frontend-design`, `handoff`, `implement`, `wait-what`, `wizard`, `show-me-your-work`, `workflow-mapping` |
 | `misc/` | Local maintenance and learning | `teach` |
 | `upkeep/` | Maintain the codebase and triage incoming work | `codebase-cleanup`, `diagnosing-bugs`, `improve-codebase-architecture`, `resolving-merge-conflicts`, `triage` |
 | `practices/` | Reusable engineering disciplines and references | `code-cleanup`, `codebase-design`, `domain-modeling`, `frontend-guidelines`, `pr`, `remove-slop`, `tdd`, `technical-writing`, `writing-for-agents` |
@@ -70,6 +70,7 @@ Each skill lives at `skills/<group>/<name>/SKILL.md`. The catalog follows the di
 | Recover when context did not land | `wait-what` |
 | Generate a wizard for manual setup steps | `wizard` |
 | Keep a decision and evidence log for reviewed work | `show-me-your-work` |
+| Map workflow scenarios, outcomes, and missing cases | `workflow-mapping` |
 | Diagnose hard bugs and regressions | `diagnosing-bugs` |
 | Find opportunities to improve codebase architecture | `improve-codebase-architecture` |
 | Sweep a codebase for unnecessary code and tests | `codebase-cleanup` |
