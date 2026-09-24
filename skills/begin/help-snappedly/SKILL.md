@@ -1,10 +1,10 @@
 ---
-name: ask-snappedly
-description: "Choose the Snappedly skill or workflow that fits the user's current situation."
+name: help-snappedly
+description: "Help choose the Snappedly skill or workflow that fits the user's current situation."
 disable-model-invocation: true
 ---
 
-# Ask Snappedly
+# Help Snappedly
 
 Choose the shortest workflow that satisfies the request. A skill is guidance for the current task, not a reason to add another task or start another agent. Recommend the relevant entry point; do not load every skill in the route.
 

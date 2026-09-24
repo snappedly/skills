@@ -40,7 +40,7 @@ Each skill lives at `skills/<group>/<name>/SKILL.md`. The catalog follows the di
 
 | Directory | Purpose | Skills |
 | --- | --- | --- |
-| `begin/` | Choose and configure the workflow | `ask-snappedly`, `setup-snappedly-skills` |
+| `begin/` | Choose and configure the workflow | `help-snappedly`, `setup-snappedly-skills` |
 | `direction/` | Explore ideas and settle design decisions | `grill-me`, `prototype`, `research`, `wayfinder` |
 | `mainflow/` | Shape and implement planned work | `grill-with-docs`, `to-spec`, `to-tickets`, `implement-spec`, `build-local` |
 | `tools/` | Standalone workflow tools | `code-review`, `frontend-design`, `handoff`, `implement`, `wait-what`, `wizard` |
@@ -52,7 +52,7 @@ Each skill lives at `skills/<group>/<name>/SKILL.md`. The catalog follows the di
 
 | Workflow concern | Skill |
 | --- | --- |
-| Choose the Snappedly skill or workflow for the current situation | `ask-snappedly` |
+| Choose the Snappedly skill or workflow for the current situation | `help-snappedly` |
 | Configure a repository for Snappedly skills | `setup-snappedly-skills` |
 | Stress-test a plan or decision | `grill-me` |
 | Build a throwaway prototype to answer a design question | `prototype` |
