@@ -34,7 +34,7 @@ Use the full flow when accepted work needs distinct delivery slices with depende
 
 `grill-with-docs` → `to-spec` → `to-tickets` → `implement-spec`
 
-For one observable outcome, implement directly or use `implement` once the request is clear, even if the change touches several files. In broader work, start with a verified end-to-end tracer bullet. See [scope-and-slicing.md](skills/mainflow/scope-and-slicing.md). Presentation edits use visual checks; changed logic uses focused tests, with check and review depth set by risk. Cleanup and review stay in the current agent for low-risk work. Use `build-local` when a browser preview is useful. Use `handoff` when another session or directory needs to continue the work.
+For one observable outcome, implement directly or use `implement` once the request is clear, even if the change touches several files. In broader work, start with a verified end-to-end tracer bullet. Presentation edits use visual checks; changed logic uses focused tests, with check and review depth set by risk. Cleanup and review stay in the current agent for low-risk work. Use `build-local` when a browser preview is useful. Use `handoff` when another session or directory needs to continue the work.
 
 ## Skill groups
 

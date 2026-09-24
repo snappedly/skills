@@ -6,7 +6,7 @@ disable-model-invocation: true
 
 Synthesize the current conversation and codebase understanding. Do not interview the user.
 
-Read [scope-and-slicing.md](../scope-and-slicing.md) to choose the artifact by accepted outcomes and delivery dependencies, regardless of how many files the work may touch.
+Choose the artifact by accepted outcomes and delivery dependencies, regardless of how many files the work may touch. Keep the user's requested outcome and accepted constraints as the boundary; include necessary work and leave optional improvements out unless accepted or required to deliver the outcome.
 
 When publishing, read the existing tracker and label configuration or reuse it from context. If the publishing destination cannot be established, prepare the local draft and ask for that missing destination; use `/setup-snappedly-skills` when repository-wide configuration is needed.
 
