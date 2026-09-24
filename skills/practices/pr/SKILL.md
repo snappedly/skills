@@ -26,14 +26,14 @@ When code behavior should stay untouched, prefer PR description and review notes
 
 ## PR Body
 
-Use this template for writing the PR body:
+Read the repository's applicable PR/MR template and contribution guidance first. Preserve its required structure and fit the intent, evidence, and merge risk into the appropriate fields. Use the template below when no repository template governs; include a visual only when it explains the change more clearly than concise prose.
 
 ```markdown
 ## Summary
 
 <TL;DR that matches the actual diff>
 
-<diagram, diff-sketch, or tree>
+<optional diagram, diff-sketch, or tree>
 
 ## Evidence
 
@@ -79,9 +79,11 @@ submitForm
 
 - Show UI structure as a component tree, including state and module boundaries that matter:
 
-```tsx
-<SessionPage>(apps / example / src / routes / session.tsx);
-useSessionEvents() < SessionToolbar > <RunSkillButton>(packages / ui);
+```text
+<SessionPage> (apps/example/src/routes/session.tsx)
+  useSessionEvents()
+  <SessionToolbar>
+    <RunSkillButton> (packages/ui)
 ```
 
 - Show file responsibility or a broad refactor as a shallow file tree:
@@ -183,6 +185,8 @@ Execution-based evidence is A-tier. Test results, console output. Show the exact
 Describe whether it's a one-way or two-way door. You can walk back through two-way doors, but not one-way doors. A PR that is cheap to roll back is lower risk. Changes that involve destructive actions or hard-to-reverse decisions are one-way doors.
 
 The blast radius is the potential impact or scope of the changes introduced by this PR. Consider all possibilities. Examples are layout shift, breakages for consumers, mobile responsiveness, etc.
+
+Assess reversibility of effects as well as code: reverting a commit may not restore deleted data, reverse a migration, or undo messages already sent. Use the spec and rollout context to state any recovery limits.
 
 ## History Cleanup
 

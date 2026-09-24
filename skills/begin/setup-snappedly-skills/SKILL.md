@@ -73,7 +73,7 @@ Record a feedback-loop contract in `docs/agents/workflow.md`: the formatter/auto
 
 Use the release policy in [workflow.md](workflow.md) as the default and ask only about differences. Record:
 
-- The base branch, pull or merge request requirements, merge strategy, issue-closing point, and whether a preview deployment may run before production approval.
+- The base branch, pull or merge request requirements, merge strategy, separate closure points for executable tickets and their parent spec, and whether a preview deployment may run before production approval.
 - How the release system identifies the production candidate and prevents an unapproved candidate from deploying. If a merge automatically deploys to production, require an approval gate in the deployment system before agent-controlled merge can be selected.
 - The command or workflow that deploys the approved candidate, plus the production environment.
 - The production verification steps and health signals that establish that the changed behavior works.

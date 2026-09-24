@@ -6,7 +6,7 @@ disable-model-invocation: true
 
 Deliver the spec and its dependency-aware ticket graph on one integration branch and one pull or merge request. Use `pr` when creating the pull or merge request. The coordinator owns phase transitions; code-cleanup returns validation evidence and code-review returns findings.
 
-Read the spec, all tickets, and `docs/agents/workflow.md`. The workflow defines required checks and finding dispositions. If it is missing, recommend `/setup-snappedly-skills` before branch creation. For an already authorized task, inspect existing CI and contribution rules, state any policy gaps, and preserve the user's scope.
+Read the spec, all tickets, `docs/agents/issue-tracker.md`, and `docs/agents/workflow.md`, or reuse their unchanged contents from context. The tracker configuration defines provider operations and relationships; the workflow defines checks, finding dispositions, and ticket/spec closure points. If configuration is missing, inspect existing contribution rules and CI, preserve the user's authorized scope, and clarify only decisions needed to proceed. Recommend `/setup-snappedly-skills` when repository-wide configuration is needed.
 
 ## Select scope and ownership
 
@@ -22,13 +22,19 @@ Before launching agents, state a short budget: implementation assignments, optio
 
 Use implementers in separate worktrees for independent tickets. Share pointers to requirements, relevant files, verification scope, existing test boundaries, and the integrated starting SHA. Small sequential work may stay with the coordinator when delegation adds no reasoning benefit. The coordinator performs conflict-free merges, cleanup, and small final corrections directly. Loading a skill does not require launching another agent. Exploration and conflict resolution agents need a concrete unresolved question and a place in the budget.
 
+Before dispatching worktree workers, read [worktrees.md](worktrees.md) for base verification, environment prerequisites, and integration. Include the relevant requirements in worker briefs.
+
 Keep briefs bounded to the assignment; avoid copying the full conversation. Reuse a reviewer for a relevant follow-up when possible. Close completed agents. Cancel superseded work promptly, confirm cancellation before mutating its target, and preserve unfinished changes before removing worktrees. Use completion notifications; wait only when the next step depends on the result.
 
 Compare actual launches and full validation passes with the budget before adding work. On an overrun, stop automatic scheduling and report the cause and a concrete reduced plan. Resume only with an explicit coordinator decision within existing authority, or a user decision when scope, requirements, or finding policy would change. Never silently raise the budget.
 
 Keep the ticket graph, verification scope, source pointers, and check commands in the existing run record. Refresh them when requirements or configuration change. Bound parallel work by available workers and independent file ownership; group small related tickets when their dependency order permits, or implement sequentially if delegation is unavailable. Workers return commit SHAs, completed tickets, changed paths, check results, and blockers, with file pointers for detailed logs.
 
+Check shared contracts as well as file ownership: registry entries, translation keys, schemas, and exports can span files. Assign one owner or a blocking edge for a shared change, or pin the exact contract in shared notes before parallel work. Update those notes when integrated work changes a contract later workers need.
+
 ## Phases
+
+The coordinator owns readiness in the run record. Track each ticket's pending, running, blocked, or integrated state, recording its accepted integration commit. A ticket becomes ready when its prerequisites are integrated in this run or verified complete outside it. Worker completion alone does not unblock dependents. Tracker issues may remain open until delivery; do not wait for their open-blocker count to fall or close them merely to advance scheduling. Recompute readiness if integrated work is reverted or invalidated.
 
 | Phase | Work and completion condition |
 | --- | --- |
@@ -41,7 +47,7 @@ Keep the ticket graph, verification scope, source pointers, and check commands i
 
 Ticket checks establish local correctness; the integrated cleanup owns any required full-suite tests and production builds. A spec invocation alone does not make those checks required. Follow repository policy if it explicitly requires a broader ticket check, and account for that cost in the budget. Run checks after meaningful changes, not after every edit. Reuse aggregate check results rather than running their components again. Code-cleanup defines evidence reuse; supply its existing results to reviewers rather than invoking cleanup again.
 
-Create or resume the integration branch and draft request with the provider's issue-closing references. If no diff exists yet, create the draft after the first integrated commit. Include verification scope in implementer and fix briefs: use tdd's scope guidance for visual edits versus changed logic. Workers may select established test boundaries; route unresolved contract decisions through the coordinator. Prose-only edits need no artificial keyword tests.
+Create or resume the integration branch and draft request. Use closing references only for tickets or the parent spec whose configured closure point is request merge; use ordinary links for work awaiting sign-off or another event. If no diff exists yet, create the draft after the first integrated commit. Include verification scope and a pointer to tdd in implementer and fix briefs for changed logic; presentation edits use visual checks. Workers may select established test boundaries; route unresolved contract decisions through the coordinator. Prose-only edits need no artificial keyword tests.
 
 For integrated review, commit all task content, including new files. Preserve unrelated changes separately; an exclusion must not hide an unimplemented requirement. Reviewers use fixed SHAs rather than moving branch names. If a target unexpectedly changes, cancel obsolete work, record old/new SHAs and invalidate affected results. Reuse an unaffected axis only after checking its files, relevant context, requirements, and standards are unchanged, and record the carry-forward reason. A stale result must never be silently relabeled as a review of the new SHA.
 
