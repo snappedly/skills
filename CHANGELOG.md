@@ -4,17 +4,25 @@ All notable changes to Snappedly Skills are recorded here.
 
 ## Unreleased
 
+## [0.2.0] - 2026-09-24
+
 ### Added
 
+- Five skills: `codebase-cleanup`, `pr`, `technical-writing`, `show-me-your-work`, and `workflow-mapping`.
+- A decision-log template and helper for `show-me-your-work`.
 - Security policy and private vulnerability reporting guidance.
 
 ### Changed
 
+- Renamed `ask-snappedly` to `help-snappedly` and clarified skill selection and setup guidance.
+- Expanded implementation, PR, technical-writing, work-log, cleanup, and workflow-mapping guidance.
 - Replaced the private all-rights-reserved notice with the PolyForm Strict License 1.0.0 and opened the repository for noncommercial use.
 - Clarified the contribution and license summaries in the README.
-- Removed the TypeScript feedback-loop research note.
-- `setup-snappedly-skills` now maintains only `AGENTS.md` as the root agent-instruction file.
-- Removed `CLAUDE.md` from the agent-document guidance.
+- `setup-snappedly-skills` now maintains `AGENTS.md` as the root agent-instruction file; removed `CLAUDE.md` from setup and agent-document guidance.
+
+### Removed
+
+- The TypeScript feedback-loop research note.
 
 ## [0.1.0] - 2026-09-17
 
