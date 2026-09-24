@@ -6,7 +6,7 @@ disable-model-invocation: true
 
 Deliver the spec and its dependency-aware ticket graph on one integration branch and one pull or merge request. Use `pr` when creating the pull or merge request. The coordinator owns phase transitions; code-cleanup returns validation evidence and code-review returns findings.
 
-Read [scope-and-slicing.md](../scope-and-slicing.md), the spec, all tickets, `docs/agents/issue-tracker.md`, and `docs/agents/workflow.md`, or reuse their unchanged contents from context. The tracker configuration defines provider operations and relationships; the workflow defines checks, finding dispositions, and ticket/spec closure points. If configuration is missing, inspect existing contribution rules and CI, preserve the user's authorized scope, and clarify only decisions needed to proceed. Recommend `/setup-snappedly-skills` when repository-wide configuration is needed.
+Read the spec, all tickets, `docs/agents/issue-tracker.md`, and `docs/agents/workflow.md`, or reuse their unchanged contents from context. The tracker configuration defines provider operations and relationships; the workflow defines checks, finding dispositions, and ticket/spec closure points. Deliver the accepted outcomes and necessary work in scope; leave optional improvements out unless the user accepts them or they block delivery. If configuration is missing, inspect existing contribution rules and CI, preserve the user's authorized scope, and clarify only decisions needed to proceed. Recommend `/setup-snappedly-skills` when repository-wide configuration is needed.
 
 ## Select scope and ownership
 

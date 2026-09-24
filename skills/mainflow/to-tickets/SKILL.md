@@ -24,7 +24,7 @@ Introduce prerequisite refactoring only when a concrete obstacle prevents the re
 
 ### 3. Draft vertical slices
 
-Read [scope-and-slicing.md](../scope-and-slicing.md), then break the accepted work into **tracer bullet** tickets. Count distinct outcomes and real dependencies, not files or layers. One cohesive outcome can remain one ticket even when it crosses layers.
+Break the accepted work into **tracer bullet** tickets. Count distinct outcomes and real dependencies, not files or layers. Keep the user's accepted outcomes and constraints as the boundary; leave optional improvements out unless the user accepts them or they are necessary to deliver an outcome. One cohesive outcome can remain one ticket even when it crosses layers.
 
 <vertical-slice-rules>
 
