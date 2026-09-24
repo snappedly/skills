@@ -77,7 +77,7 @@ Each skill lives at `skills/<group>/<name>/SKILL.md`. The catalog follows the di
 | Find opportunities to improve codebase architecture | `improve-codebase-architecture` |
 | Sweep a codebase for unnecessary code and tests | `codebase-cleanup` |
 | Resolve an in-progress merge or rebase conflict | `resolving-merge-conflicts` |
-| Review a session and recommend improvements to the agent's environment | `retro` (explicitly invoked) |
+| Review a session and recommend improvements to the agent's environment | `retro` |
 | Triage tracker work | `triage` |
 | Clean and validate changes before review or commit | `code-cleanup` |
 | Design deep modules and clear seams | `codebase-design` |
