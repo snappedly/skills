@@ -7,6 +7,8 @@ All notable changes to Snappedly Skills are recorded here.
 ### Changed
 
 - `setup-snappedly-skills` now treats existing repository configuration as the starting point on repeat runs and leaves it untouched when current.
+- Setup records user-selected PR/MR delivery, merge, ticket closure, and spec closure events with responsible actors and required evidence in repository workflow configuration.
+- `implement`, `implement-spec`, `pr`, tracker guidance, and handoff now apply or carry that policy, including pending sign-off and separate parent-spec acceptance.
 
 ## [0.2.1] - 2026-09-24
 

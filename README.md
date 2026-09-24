@@ -26,6 +26,8 @@ For a global installation, run `npx skills update -g`.
 
 Run `setup-snappedly-skills` for the first time in a target repository. It records the git tracker, team workflow and feedback-loop contract, triage label mapping, domain-document layout, frontend conventions, and root agent instructions in that repository. The other skills read those files instead of carrying project-specific policy.
 
+Setup asks when PRs/MRs should be created and merged, when tickets and parent specs should close, and who acts or signs off. It saves those choices and required evidence in `docs/agents/workflow.md`, with a pointer in `AGENTS.md`. `implement`, `implement-spec`, and `pr` follow that policy and carry pending events into handoff.
+
 If direction is needed, start with the direction skills and then move to the mainflow.
 
 ## Main workflow
@@ -106,6 +108,8 @@ The same check runs in GitHub Actions for pull requests and pushes to `main`.
 Updating skills refreshes their instructions; it does not rewrite a repository's `AGENTS.md` or `docs/agents/*.md`. Run `setup-snappedly-skills` again when the repository's conventions change or a release calls for a configuration update. It uses the existing files as the starting point, proposes only needed edits, and leaves current configuration untouched when no changes are needed. Review its proposed edits before they are written. New skill defaults do not replace recorded project choices.
 
 For older workflow configuration, review `AGENTS.md` and `docs/agents/workflow.md` for blanket test-first, full-suite/build, and independent-review requirements. Update those clauses to the agreed verification scope; preserved repository requirements still take precedence over skill defaults. The setup workflow template supplies the new defaults.
+
+Older repositories also need their delivery and closure choices recorded explicitly. Re-run setup to confirm missing choices, or update `docs/agents/workflow.md` and its `AGENTS.md` pointer directly. Preserve existing confirmed policy, including any human merge or sign-off requirement.
 
 ## Contributing
 

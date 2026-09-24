@@ -8,7 +8,7 @@ Implement the user request, spec, or tickets.
 
 Use a clear user request as the brief for a small change; no separate ticket is needed unless repository policy requires it. For ticketed work, confirm that the requested work is one executable issue, ticket, or agent brief. A planning spec or wayfinder decision ticket must first go through `/to-tickets`; use `/implement-spec` only when the user explicitly asks to deliver the whole spec as one integrated pull request.
 
-Read `docs/agents/workflow.md`. It is the source of truth for required checks and finding disposition. If it is missing, use applicable agent instructions, CI, and contribution rules; report material policy gaps without blocking an otherwise authorized small edit.
+Read `docs/agents/workflow.md` for required checks, finding disposition, and delivery and closure policy. For ticketed work or PR/MR operations, also read `docs/agents/issue-tracker.md`. Reuse unchanged configuration from context. If configuration is missing, use applicable agent instructions, CI, and contribution rules; clarify unresolved delivery or closure decisions before the affected action while continuing authorized implementation.
 
 ## When assigned by a coordinator
 
@@ -24,4 +24,4 @@ For standalone work, choose completion by risk. For a small, low-risk edit, fini
 
 Commit your work to the current branch once required checks pass, the selected local review or required independent axes have completed or been handled under repository policy, and every finding has the disposition required by `docs/agents/workflow.md`. If checks are blocked or coverage is missing, report the gap before proceeding; a completed cleanup report alone does not establish readiness to commit.
 
-Implementation stops at the verified commit. Continue with the repository's own pull or merge request and release process. Use `pr` when creating the pull or merge request.
+After the verified commit, follow the configured delivery and closure policy within the requested scope. Perform due transitions assigned to the agent, verify their resulting state, and hand off transitions awaiting another event or actor. Keep executable-ticket closure and parent-spec closure separate. Use `pr` when creating or updating the pull or merge request. Report the policy file, current PR/MR and ticket/spec states, and any pending event, evidence, or responsible actor so another session can continue without guessing.

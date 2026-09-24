@@ -73,9 +73,18 @@ Capture the source of truth and the point at which implementation may start. A c
 
 Ensure `docs/agents/workflow.md` records a feedback-loop contract: the formatter/autofix command, the fastest reliable static check, the focused test command and scope, broader suite/build/release checks, and the local, agent, CI, and preview adapters that enforce them. Use the repository's existing package manager and scripts. If a surface is absent, record `not configured` or `not applicable` and explain the trigger for adding it. Do not install a test runner, formatter, linter, hook, or CI workflow merely because the repository uses TypeScript; adding tooling requires an explicit opt-in.
 
-When no release policy is recorded, use [workflow.md](workflow.md) as the default and ask only about differences. Record:
+Ensure delivery and closure choices are explicit. For a new setup, ask how the user wants them handled. On a repeat run, carry forward recorded choices; when a required transition is missing or ambiguous, present related existing policy as a proposed answer and confirm only the unresolved choice:
 
-- The base branch, pull or merge request requirements, merge strategy, separate closure points for executable tickets and their parent spec, and whether a preview deployment may run before production approval.
+- When should the agent create a draft or ready PR/MR, and who should merge it after which checks or approvals?
+- When should an executable ticket close: verified implementation, PR/MR merge, human sign-off, deployment verification, or another named event?
+- Separately, when should the parent spec close? Does it require acceptance beyond completing its child tickets?
+- For each transition, who acts: the agent, provider automation, or a human? If sign-off is required, who gives it, where is it recorded, and what work does it cover?
+
+Write the confirmed answers in the delivery and closure table in `docs/agents/workflow.md`, including the evidence that establishes each event. A custom event needs an observable completion condition. Record `not applicable` for unused transitions; do not infer permission to merge from a closure-on-merge choice. Existing confirmed choices carry forward across sessions.
+
+When no production release policy is recorded, use [workflow.md](workflow.md) as the default and ask only about differences. Record:
+
+- The base branch, merge strategy, and whether a preview deployment may run before production approval.
 - How the release system identifies the production candidate and prevents an unapproved candidate from deploying. If a merge automatically deploys to production, require an approval gate in the deployment system before agent-controlled merge can be selected.
 - The command or workflow that deploys the approved candidate, plus the production environment.
 - The production verification steps and health signals that establish that the changed behavior works.
@@ -163,7 +172,7 @@ For a new `## Agent skills` block, use this shape, filling each line with the co
 
 ### Team workflow
 
-[one-line summary of the agreed flow]. See `docs/agents/workflow.md`.
+[one-line summary of the agreed flow]. Read `docs/agents/workflow.md` before implementation, PR/MR creation or merge, and completion-based ticket or spec closure; it defines the configured actors, events, and evidence.
 
 ### Triage labels
 
