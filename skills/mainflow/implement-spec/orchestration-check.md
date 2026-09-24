@@ -51,7 +51,23 @@ Walk these instruction paths when changing scheduling or worker setup. They are 
 | A required corpus test skips because an ignored fixture is absent | Report acceptance as unverified. Set up the supported environment or serialize verification of the candidate in a prepared checkout. |
 | Independent UI tickets need the same new translation key | Assign one owner/dependency or pin the exact shared key before dispatch, even if the consumers edit different files. |
 | Parallel commits invoke hooks that share mutable backup state | Serialize the affected operations or use supported isolation; worktree separation is insufficient. |
-| Tickets close on PR merge; the parent spec requires sign-off | Use closing references for tickets and an ordinary link for the parent. Keep the parent open pending sign-off. |
+| Tickets use provider closure on PR merge; the parent spec requires sign-off | Use closing references for tickets whose other prerequisites are satisfied and an ordinary link for the parent. Keep the parent open pending sign-off. |
+
+## Saved delivery policy scenarios
+
+These scenarios cover setup output and its consumers, including standalone implementation and PR work.
+
+| Starting condition | Expected outcome |
+| --- | --- |
+| Setup records ticket closure on merge, spec closure on recorded acceptance, and human-owned merging | Save each transition separately in repository workflow configuration and add the root instruction pointer. A fresh implementation session reads those choices without asking the user to select them again. |
+| Standalone `implement` finishes a verified commit; policy permits the agent to open a PR but reserves merge for a human | Create the PR within scope, then report pending human merge. Do not infer merge authority from ticket closure on merge. |
+| A ticket closes on verified implementation, with closure assigned to the agent | Once the configured verification evidence exists, the standalone implementer or coordinator closes that ticket and verifies tracker state. The parent follows its own acceptance rule. |
+| A worker runs `implement` under `implement-spec` | Return implementation and verification evidence to the coordinator; do not independently run delivery or closure. |
+| An existing PR says `Closes` for a spec that must await sign-off | During an authorized PR update, use an ordinary spec link; during review-only work, report the mismatch without editing. |
+| Required sign-off already exists and covers the candidate | Reuse it and perform the due action only if assigned to the agent. Leave human-owned actions to the human. |
+| Sign-off or a custom deployment event has not happened | Keep closure pending and hand off the next actor and missing evidence. A green implementation check does not substitute for the event. |
+| An older repo has no explicit closure policy | Continue authorized implementation or drafting; resolve the missing choice before enabling automatic closure or performing an undecided transition. Updating the installed skill does not rewrite repo policy. |
+| A merge succeeds but provider issue closure is delayed or did not apply | Verify tracker state and report closure as pending; do not claim that a closing reference proves closure. |
 
 ## Small-work routing checks
 

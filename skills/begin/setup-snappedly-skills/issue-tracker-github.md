@@ -2,6 +2,8 @@
 
 Work items and specs for this repo live as GitHub issues. Use the `gh` CLI for tracker operations.
 
+Before completion-based closure or adding automatic closing references, read the delivery and closure policy in `docs/agents/workflow.md`. It defines when each ticket or spec closes and who acts; the commands below do not establish completion or authority to close it.
+
 ## Conventions
 
 - Create an issue with `gh issue create --title "..." --body "..."`.
