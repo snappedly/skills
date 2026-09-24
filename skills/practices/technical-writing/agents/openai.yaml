@@ -1,0 +1,6 @@
+interface:
+  display_name: "Technical Writing"
+  short_description: "Write and review docs, RFCs, READMEs, PR descriptions, and commit messages"
+  default_prompt: "Use $technical-writing to write or review this technical document or message."
+policy:
+  allow_implicit_invocation: true
