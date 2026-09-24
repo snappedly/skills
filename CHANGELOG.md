@@ -4,6 +4,10 @@ All notable changes to Snappedly Skills are recorded here.
 
 ## Unreleased
 
+### Changed
+
+- `setup-snappedly-skills` now treats existing repository configuration as the starting point on repeat runs and leaves it untouched when current.
+
 ## [0.2.1] - 2026-09-24
 
 ### Added
