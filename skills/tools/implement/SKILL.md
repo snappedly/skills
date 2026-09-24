@@ -24,4 +24,4 @@ For standalone work, choose completion by risk. For a small, low-risk edit, fini
 
 Commit your work to the current branch once required checks pass, the selected local review or required independent axes have completed or been handled under repository policy, and every finding has the disposition required by `docs/agents/workflow.md`. If checks are blocked or coverage is missing, report the gap before proceeding; a completed cleanup report alone does not establish readiness to commit.
 
-Implementation stops at the verified commit. Continue with the repository's own pull or merge request and release process.
+Implementation stops at the verified commit. Continue with the repository's own pull or merge request and release process. Use `pr` when creating the pull or merge request.
