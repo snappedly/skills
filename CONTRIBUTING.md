@@ -10,7 +10,7 @@ To preserve Snappedly's ability to offer commercial licenses, we can accept only
 2. Keep the `name` frontmatter value aligned with the skill directory.
 3. Add or update `agents/openai.yaml` when the skill's invocation metadata changes.
 4. Keep supporting Markdown files local to the skill package.
-5. Update the README or changelog when a user-facing workflow changes.
+5. Update the README or changelog when a user-facing workflow changes. When setup changes required repository configuration, explain the migration for existing repositories and update the setup skill's repeat-run path.
 6. Run the validation check:
 
    ```bash

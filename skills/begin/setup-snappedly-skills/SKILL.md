@@ -6,7 +6,9 @@ disable-model-invocation: true
 
 # Setup Snappedly skills
 
-Create the per-repo configuration that Snappedly skills read. This is a prompt-driven setup: inspect the repo, summarize what you found, ask for the decisions that affect the team, show drafts, then write.
+Create or update the per-repo configuration that Snappedly skills read. This is a prompt-driven setup: inspect the repo, summarize what you found, ask for unresolved decisions, show proposed changes, then write.
+
+On a repeat run, treat `AGENTS.md` and `docs/agents/*.md` as the team's current choices. Compare them with the repository and this skill's current requirements. Preserve existing choices unless the user requests a change or a requirement is unmet. A new default alone does not replace a recorded choice.
 
 This process requires a usable connection to a GitHub or GitLab repository. A local checkout without either provider connection cannot be configured by this skill.
 
@@ -30,7 +32,7 @@ Read the repo before proposing configuration. Do not infer conventions from the 
 - `git remote -v` and `.git/config`: identify the host and repository.
 - `AGENTS.md` at the repo root: inspect existing reporting rules, any `## Agent skills` section, and whether the path is a symlink.
 - `CONTRIBUTING.md`, `README.md`, and other process docs: find existing team rules that the Snappedly workflow must preserve.
-- `docs/agents/`: check for configuration written by an earlier run, including `issue-tracker.md`, `workflow.md`, `triage-labels.md`, `domain.md`, and `frontend.md`.
+- `docs/agents/`: read configuration written by an earlier run, including `issue-tracker.md`, `workflow.md`, `triage-labels.md`, `domain.md`, and `frontend.md`. Note recorded choices, local edits, missing required information, and conflicts with the current repo.
 - `CONTEXT.md` and `CONTEXT-MAP.md` at the repo root, plus `docs/adr/` and any context-scoped ADR directories.
 - Git provider connection: confirm that the remote points to GitHub or GitLab and that the matching CLI connection is available (`gh auth status` or `glab auth status`).
 - An installed `triage` skill: this decides whether the triage-label section applies.
@@ -38,11 +40,11 @@ Read the repo before proposing configuration. Do not infer conventions from the 
 - Monorepo signals: `pnpm-workspace.yaml`, a `workspaces` field in `package.json`, or a populated `packages/*` tree with its own `src/`.
 - Feedback-loop signals: the package manager and lockfile, package scripts, TypeScript configuration, test runner, formatter/linter configuration, Git hooks, CI workflows, and any configured development or preview server.
 
-Completion criterion: you have a file-by-file inventory, know what the root instruction file contains, know whether the triage, frontend, and multi-context choices apply, have mapped the existing feedback-loop surfaces, and have confirmed a usable GitHub or GitLab connection.
+Completion criterion: you have a file-by-file inventory, know what the root instruction file contains, know whether the triage, frontend, and multi-context choices apply, have mapped the existing feedback-loop surfaces, have confirmed a usable GitHub or GitLab connection, and can name each missing or conflicting configuration item. If an existing setup satisfies the current requirements and the user requested no changes, report that no changes are needed and stop.
 
 ### 2. Align
 
-Present the findings before asking questions. Take one section at a time. Lead with the recommended answer so the user can accept it briefly. Explain a choice only when it changes the resulting workflow.
+Present the findings before asking questions. Take one section at a time. For a new setup, lead with the recommended answer so the user can accept it briefly. On a repeat run, present recorded answers only for sections needing attention and ask only about missing information or conflicts. Apply a clear user-requested change without re-asking. Ask before removing a section or file that appears no longer applicable. Explain a choice only when it changes the resulting workflow.
 
 #### Section A: Git provider and work tracker
 
@@ -57,11 +59,11 @@ If the remote is absent, points to another provider, or the matching GitHub/GitL
 
 Resume only after the repo has a GitHub or GitLab remote and a usable provider connection. Do not substitute local files or another tracker.
 
-Record the selected provider in `docs/agents/issue-tracker.md`. Keep the `PRs as a request surface` setting off unless the user explicitly opts in.
+Record the selected provider in `docs/agents/issue-tracker.md`. For a new setup, keep the `PRs as a request surface` setting off unless the user explicitly opts in. Preserve the recorded setting on a repeat run.
 
 #### Section B: Team workflow
 
-Read existing process documentation and feedback-loop surfaces first. Preserve its rules and ask the user whether the default Snappedly flow fits:
+Read existing process documentation and feedback-loop surfaces first. Preserve their rules. When no team workflow is recorded, ask whether the default Snappedly flow fits:
 
 For small, clear requests: `edit -> focused verification -> local review`.
 
@@ -69,9 +71,9 @@ For planned multi-session work: `clarify -> specify -> ticket -> implement -> co
 
 Capture the source of truth and the point at which implementation may start. A clear user request can be the brief for a small change unless the team requires a tracker issue. Ticketed `/implement` work uses an executable issue or brief; planning specs and wayfinder decision tickets do not qualify. `/implement-spec` is the explicit whole-spec path. Record checks with explicit applicability for presentation edits, local logic changes, and cross-cutting or release work. Full tests and production/deployment builds are not universal defaults. Record when local review is sufficient and when independent axes are required, the allowed disposition for each kind of finding, and the information a handoff must contain. Require cleanup and applicable verification before commit. Small changes can perform these steps and local review inline; separate skill invocations and reports are optional. After review fixes, rerun only affected checks and review the changed scope.
 
-Record a feedback-loop contract in `docs/agents/workflow.md`: the formatter/autofix command, the fastest reliable static check, the focused test command and scope, broader suite/build/release checks, and the local, agent, CI, and preview adapters that enforce them. Use the repository's existing package manager and scripts. If a surface is absent, record `not configured` or `not applicable` and explain the trigger for adding it. Do not install a test runner, formatter, linter, hook, or CI workflow merely because the repository uses TypeScript; adding tooling requires an explicit opt-in.
+Ensure `docs/agents/workflow.md` records a feedback-loop contract: the formatter/autofix command, the fastest reliable static check, the focused test command and scope, broader suite/build/release checks, and the local, agent, CI, and preview adapters that enforce them. Use the repository's existing package manager and scripts. If a surface is absent, record `not configured` or `not applicable` and explain the trigger for adding it. Do not install a test runner, formatter, linter, hook, or CI workflow merely because the repository uses TypeScript; adding tooling requires an explicit opt-in.
 
-Ask how the user wants delivery and closure handled. Present existing policy for confirmation and ask only about missing or changed choices:
+Ensure delivery and closure choices are explicit. For a new setup, ask how the user wants them handled. On a repeat run, carry forward recorded choices; when a required transition is missing or ambiguous, present related existing policy as a proposed answer and confirm only the unresolved choice:
 
 - When should the agent create a draft or ready PR/MR, and who should merge it after which checks or approvals?
 - When should an executable ticket close: verified implementation, PR/MR merge, human sign-off, deployment verification, or another named event?
@@ -80,7 +82,7 @@ Ask how the user wants delivery and closure handled. Present existing policy for
 
 Write the confirmed answers in the delivery and closure table in `docs/agents/workflow.md`, including the evidence that establishes each event. A custom event needs an observable completion condition. Record `not applicable` for unused transitions; do not infer permission to merge from a closure-on-merge choice. Existing confirmed choices carry forward across sessions.
 
-Use the production release policy in [workflow.md](workflow.md) as the default and ask only about differences. Record:
+When no production release policy is recorded, use [workflow.md](workflow.md) as the default and ask only about differences. Record:
 
 - The base branch, merge strategy, and whether a preview deployment may run before production approval.
 - How the release system identifies the production candidate and prevents an unapproved candidate from deploying. If a merge automatically deploys to production, require an approval gate in the deployment system before agent-controlled merge can be selected.
@@ -90,15 +92,15 @@ Use the production release policy in [workflow.md](workflow.md) as the default a
 
 Record the result in `docs/agents/workflow.md`.
 
-Use tdd's verification scope as the default: presentation and copy changes use visual/direct checks; changed logic uses focused failing tests at existing public boundaries. Agents select established seams without another approval round; ask when the contract is unresolved. Capture any team overrides in the same file. When updating older configuration, identify blanket test-first, full-build, and independent-review clauses in workflow and root instructions and replace them consistently with the agreed scope. Summarize the workflow, feedback-loop contract, and production approval boundary in the `### Team workflow` line of the `## Agent skills` block so both load in every session.
+When no verification scope is recorded, use tdd's scope as the default: presentation and copy changes use visual/direct checks; changed logic uses focused failing tests at existing public boundaries. Agents select established seams without another approval round; ask when the contract is unresolved. Capture any team overrides in the same file. When updating older configuration, identify blanket test-first, full-build, and independent-review clauses in workflow and root instructions. If they came from older setup defaults, propose scoped replacements and confirm the team's intent; if their origin is unclear, ask. Preserve documented team overrides. Update affected files consistently with the agreed scope. Summarize the workflow, feedback-loop contract, and production approval boundary in the `### Team workflow` line of the `## Agent skills` block so both load in every session.
 
-If the repo already has a clear workflow, summarize it and confirm that Snappedly skills should follow it. Treat the repo's existing rules as the source of truth when they conflict with the default flow.
+If the repo has a clear workflow but no Snappedly workflow configuration, summarize it and confirm that Snappedly skills should follow it. Treat the repo's existing rules as the source of truth when they conflict with the default flow.
 
 #### Section C: Triage labels
 
 Skip this section when no `triage` skill is installed. An uninstalled skill needs no label mapping.
 
-When `triage` is installed, ask exactly one question:
+When `triage` is installed and a mapping already exists, keep it unless the tracker or the user's choice has changed. Ask only about missing or conflicting roles. For a new mapping, ask exactly one question:
 
 > Keep the default triage labels? (recommended: yes)
 
@@ -106,7 +108,7 @@ The canonical roles are `needs-triage`, `needs-info`, `ready-for-agent`, `ready-
 
 #### Section D: Domain docs
 
-Use a single context by default: one `CONTEXT.md` at the repo root and `docs/adr/` for shared decisions. Offer a multi-context layout only when exploration found monorepo signals. If selected, use a root `CONTEXT-MAP.md` with a `CONTEXT.md` and context-scoped ADR directory for each bounded context.
+For a new setup, use a single context by default: one `CONTEXT.md` at the repo root and `docs/adr/` for shared decisions. Offer a multi-context layout only when exploration found monorepo signals. If selected, use a root `CONTEXT-MAP.md` with a `CONTEXT.md` and context-scoped ADR directory for each bounded context. On a repeat run, preserve the recorded layout. If the repository no longer supports it, explain the conflict and ask how to update it.
 
 Record the consumer rules and selected layout in `docs/agents/domain.md`. Do not create `CONTEXT.md`, `CONTEXT-MAP.md`, or ADRs during setup. The domain-modeling workflow creates them when a real term or decision needs recording.
 
@@ -128,7 +130,7 @@ Ask only what exploration could not answer, and lead with what you found. Record
 
 Maintain the canonical root instruction file. Preserve surrounding project instructions in `AGENTS.md` and update existing matching sections in place.
 
-Add or update this section in `AGENTS.md`:
+For a new setup, add this section to `AGENTS.md`. On a repeat run, preserve existing reporting guidance and propose this rule only if the section is missing or the user requests it:
 
 ```markdown
 ## Reporting
@@ -142,9 +144,8 @@ Completion criterion: every applicable section has an explicit answer, `AGENTS.m
 
 ### 3. Confirm
 
-Show the user the exact draft before writing:
+For a new setup, show the user the exact draft before writing:
 
-- The `## Agent skills` block to write to `AGENTS.md`.
 - `docs/agents/issue-tracker.md`.
 - `docs/agents/workflow.md`.
 - `docs/agents/domain.md`.
@@ -152,15 +153,15 @@ Show the user the exact draft before writing:
 - `docs/agents/frontend.md` when the frontend section ran.
 - The `AGENTS.md` reporting section and canonical `## Agent skills` block.
 
-Use the GitHub or GitLab tracker template and the other seed templates in this skill directory as starting points. Replace their bracketed guidance with the repo's confirmed facts. Let the user edit the draft before proceeding.
+On a repeat run, show a focused diff for each proposed edit and the complete content of any new file. Skip unchanged files. Use existing configuration as the starting point; use the templates only to fill missing content. Let the user edit the proposal before proceeding.
 
-Completion criterion: the user has confirmed the root instruction file and every applicable configuration file, after a usable GitHub or GitLab connection was confirmed.
+Completion criterion: the user has confirmed every proposed change, after a usable GitHub or GitLab connection was confirmed.
 
 ### 4. Write
 
-Update or create `AGENTS.md`. Preserve surrounding content and update existing matching sections in place rather than appending duplicates. Keep the concise `## Reporting` rule and the `## Agent skills` block there.
+Write only the confirmed changes. Update or create `AGENTS.md` when needed. Preserve surrounding content and update existing matching sections in place rather than appending duplicates. Keep the agreed `## Reporting` rule and the `## Agent skills` block there.
 
-Use this block, filling each line with the confirmed configuration:
+For a new `## Agent skills` block, use this shape, filling each line with the confirmed configuration. On a repeat run, edit only affected entries:
 
 ```markdown
 ## Agent skills
@@ -186,14 +187,14 @@ Use this block, filling each line with the confirmed configuration:
 [one-line summary of the design system in use and the directories holding user-facing interface]. See `docs/agents/frontend.md`.
 ```
 
-Add the `## Reporting` section shown in step 2 above to `AGENTS.md`.
+Add the `## Reporting` section shown in step 2 when it is missing and agreed. Preserve existing reporting guidance on a repeat run.
 
-Include the `### Triage labels` subsection and its file only when the triage section ran, and the `### Frontend` subsection and its file only when the frontend section ran. Write `docs/agents/issue-tracker.md` from the matching GitHub or GitLab tracker template. Write `docs/agents/workflow.md`, `docs/agents/domain.md`, and `docs/agents/frontend.md` from their seed templates.
+Include the `### Triage labels` subsection and its file only when the triage section applies, and the `### Frontend` subsection and its file only when the frontend section applies. For a new setup, write `docs/agents/issue-tracker.md` from the matching GitHub or GitLab tracker template and the other applicable files from their seed templates. On a repeat run, edit only confirmed sections and create only missing required files.
 
-Completion criterion: `AGENTS.md` and every applicable `docs/agents/` file contain the confirmed GitHub or GitLab configuration, with no duplicate managed sections or unfinished template placeholders.
+Completion criterion: `AGENTS.md` and every applicable `docs/agents/` file contain the confirmed GitHub or GitLab configuration, unchanged content remains intact, and no duplicate managed sections or unfinished template placeholders remain.
 
 ### 5. Finish
 
-Tell the user which files were written and which Snappedly skills will read them. Explain that `AGENTS.md` is the canonical project-instruction file and `docs/agents/*.md` files are the direct editing points for small convention changes. Re-run this setup only when the tracker, team workflow, labels, domain layout, frontend conventions, or root agent instructions change.
+Tell the user which files were written, or that the existing setup is current, and which Snappedly skills read them. Explain that `AGENTS.md` is the canonical project-instruction file and `docs/agents/*.md` files are the direct editing points for small convention changes. Re-run this setup when those conventions change or when a Snappedly release calls for a repository configuration update.
 
 Completion criterion: the user can locate each configuration file and knows which file to edit for each kind of change.
