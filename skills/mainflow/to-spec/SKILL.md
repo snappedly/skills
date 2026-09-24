@@ -14,7 +14,7 @@ Read the existing tracker configuration or reuse it from context. If the publish
 
 2. Describe verification proportional to the work, using tdd's scope guidance. Reuse established test boundaries and prior decisions. Ask only when a new interface or unresolved behavioral contract materially changes the plan; existing seams need no confirmation round.
 
-3. Write the spec using the template below, then publish it to the configured GitHub or GitLab issue tracker. A spec is a planning artifact, not an executable work item. Do not apply `ready-for-agent` to it. `to-tickets` applies that state to the implementation tickets it creates. For a change small enough to implement as one issue, skip `to-spec` and put the agreed requirements in that executable issue instead.
+3. Write the spec using the template below. Apply `technical-writing` to its title and body, then publish it to the configured GitHub or GitLab issue tracker. A spec is a planning artifact, not an executable work item. Do not apply `ready-for-agent` to it. `to-tickets` applies that state to the implementation tickets it creates. For a change small enough to implement as one issue, skip `to-spec` and put the agreed requirements in that executable issue instead; apply `technical-writing` to that issue too.
 
 <spec-template>
 

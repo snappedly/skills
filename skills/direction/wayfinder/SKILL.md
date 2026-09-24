@@ -22,6 +22,8 @@ The map is a single issue on this repo's issue tracker, labelled `wayfinder:map`
 
 The map is an **index**, not a store. It lists the decisions made and points at the tickets that hold their detail; a decision lives in exactly one place, its ticket, so the map never restates it, only gists it and links.
 
+Apply `technical-writing` to the map and every decision ticket before creating their issues, and to any new ticket created while working through the map.
+
 **Where the map, its child tickets, blocking, and frontier queries physically live is tracker-specific.** The configured GitHub or GitLab tracker should have been provided to you. If not, tell the user to run `/setup-snappedly-skills` and stop before creating the map. Consult the tracker doc's "Wayfinding operations" section for how this repo expresses them.
 
 ### The map body
