@@ -24,7 +24,7 @@ Introduce prerequisite refactoring only when a concrete obstacle prevents the re
 
 ### 3. Draft vertical slices
 
-Break the work into **tracer bullet** tickets.
+Read [scope-and-slicing.md](../scope-and-slicing.md), then break the accepted work into **tracer bullet** tickets. Count distinct outcomes and real dependencies, not files or layers. One cohesive outcome can remain one ticket even when it crosses layers.
 
 <vertical-slice-rules>
 
@@ -32,6 +32,7 @@ Break the work into **tracer bullet** tickets.
 - A completed slice is demoable or verifiable on its own
 - Each slice is sized to fit in a single fresh context window
 - Keep small related changes together; create a separate prerequisite only when it genuinely blocks delivery.
+- For a multi-slice plan, put the smallest slice that validates the critical path or a risky shared assumption first.
 
 </vertical-slice-rules>
 
@@ -49,7 +50,7 @@ Present the proposed breakdown as a numbered list. For each ticket, show:
 
 Resolve material uncertainty about granularity or blocking edges with one focused question. Combine related changes when splitting would add coordination without an independently verifiable outcome.
 
-Reuse an already approved breakdown. If the user authorized publishing and left granularity to you, proceed with the scoped breakdown; ask only about unresolved scope or dependencies that materially change delivery.
+Reuse an already approved breakdown. If the user authorized publishing and left granularity to you, proceed with the scoped breakdown; ask only about unresolved scope or dependencies that materially change delivery. Keep optional improvements out of executable tickets unless the user accepts them.
 
 ### 5. Publish the tickets to the configured tracker
 

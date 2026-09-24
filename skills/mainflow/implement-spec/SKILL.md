@@ -6,7 +6,7 @@ disable-model-invocation: true
 
 Deliver the spec and its dependency-aware ticket graph on one integration branch and one pull or merge request. Use `pr` when creating the pull or merge request. The coordinator owns phase transitions; code-cleanup returns validation evidence and code-review returns findings.
 
-Read the spec, all tickets, `docs/agents/issue-tracker.md`, and `docs/agents/workflow.md`, or reuse their unchanged contents from context. The tracker configuration defines provider operations and relationships; the workflow defines checks, finding dispositions, and ticket/spec closure points. If configuration is missing, inspect existing contribution rules and CI, preserve the user's authorized scope, and clarify only decisions needed to proceed. Recommend `/setup-snappedly-skills` when repository-wide configuration is needed.
+Read [scope-and-slicing.md](../scope-and-slicing.md), the spec, all tickets, `docs/agents/issue-tracker.md`, and `docs/agents/workflow.md`, or reuse their unchanged contents from context. The tracker configuration defines provider operations and relationships; the workflow defines checks, finding dispositions, and ticket/spec closure points. If configuration is missing, inspect existing contribution rules and CI, preserve the user's authorized scope, and clarify only decisions needed to proceed. Recommend `/setup-snappedly-skills` when repository-wide configuration is needed.
 
 ## Select scope and ownership
 
@@ -17,6 +17,8 @@ Assign each check and review once. Workers, including workers using implement, p
 The coordinator also owns the configured delivery and closure transitions. At each relevant event, perform due actions assigned to the agent within the requested scope and verify their resulting state. Reuse applicable recorded sign-off. Keep transitions awaiting another event or actor pending, with the required evidence and responsible actor recorded. Ticket completion and parent-spec acceptance are separate decisions; workers return evidence rather than closing work independently.
 
 TDD applies to changed logic according to its scope guidance. Presentation-only tickets use visual verification even inside a large spec. Required integrated checks still cover interactions across tickets.
+
+For multi-slice work, prioritize the tracer bullet when later tickets rely on the same unverified path or contract. Integrate and verify it before releasing those dependents, then use the evidence to guide the remaining accepted work. Continue when the result supports the plan; pause only when it reveals a material change to the agreed outcome, contract, or scope.
 
 ## Budget and delegation
 
