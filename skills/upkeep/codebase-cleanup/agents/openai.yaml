@@ -1,0 +1,3 @@
+interface:
+  display_name: "Codebase Cleanup"
+  short_description: "Remove clear code and test redundancy across a repo"
