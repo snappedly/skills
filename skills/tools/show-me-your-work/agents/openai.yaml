@@ -1,0 +1,5 @@
+interface:
+  display_name: "Show Me Your Work"
+  short_description: "Keep a decision and evidence log for reviewed work"
+policy:
+  allow_implicit_invocation: false
