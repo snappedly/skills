@@ -1,0 +1,6 @@
+interface:
+  display_name: "PR"
+  short_description: "Create and review PRs with clear evidence and reviewer guidance"
+  default_prompt: "Use $pr to make this pull request easy to review, with a concise summary, concrete evidence, and merge risk."
+policy:
+  allow_implicit_invocation: true

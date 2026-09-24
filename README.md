@@ -46,7 +46,7 @@ Each skill lives at `skills/<group>/<name>/SKILL.md`. The catalog follows the di
 | `tools/` | Standalone workflow tools | `code-review`, `frontend-design`, `handoff`, `implement`, `wait-what`, `wizard` |
 | `misc/` | Local maintenance and learning | `teach` |
 | `upkeep/` | Maintain the codebase and triage incoming work | `codebase-cleanup`, `diagnosing-bugs`, `improve-codebase-architecture`, `resolving-merge-conflicts`, `triage` |
-| `practices/` | Reusable engineering disciplines and references | `code-cleanup`, `codebase-design`, `domain-modeling`, `frontend-guidelines`, `remove-slop`, `tdd`, `writing-for-agents` |
+| `practices/` | Reusable engineering disciplines and references | `code-cleanup`, `codebase-design`, `domain-modeling`, `frontend-guidelines`, `pr`, `remove-slop`, `tdd`, `writing-for-agents` |
 
 ## Skills list
 
@@ -79,6 +79,7 @@ Each skill lives at `skills/<group>/<name>/SKILL.md`. The catalog follows the di
 | Build the shared domain model | `domain-modeling` |
 | Set the visual direction for a UI surface | `frontend-design` |
 | Audit UI code against interface guidelines | `frontend-guidelines` |
+| Create and review PRs with clear evidence and reviewer guidance | `pr` |
 | Remove AI-generated slop from code and writing | `remove-slop` |
 | Drive behavior-first tests | `tdd` |
 | Write documents for agents | `writing-for-agents` |

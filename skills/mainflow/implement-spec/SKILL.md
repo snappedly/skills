@@ -4,7 +4,7 @@ description: "Implement a whole specification through parallel ticket work, deli
 disable-model-invocation: true
 ---
 
-Deliver the spec and its dependency-aware ticket graph on one integration branch and one pull or merge request. The coordinator owns phase transitions; code-cleanup returns validation evidence and code-review returns findings.
+Deliver the spec and its dependency-aware ticket graph on one integration branch and one pull or merge request. Use `pr` when creating the pull or merge request. The coordinator owns phase transitions; code-cleanup returns validation evidence and code-review returns findings.
 
 Read the spec, all tickets, and `docs/agents/workflow.md`. The workflow defines required checks and finding dispositions. If it is missing, recommend `/setup-snappedly-skills` before branch creation. For an already authorized task, inspect existing CI and contribution rules, state any policy gaps, and preserve the user's scope.
 
