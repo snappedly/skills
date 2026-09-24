@@ -19,6 +19,7 @@ Choose the shortest workflow that satisfies the request. A skill is guidance for
 | Open visual direction or requested redesign | `/frontend-design`; existing UI corrections follow the established design. |
 | A design question needs a runnable experiment | `/prototype`, scoped to that question. |
 | User wants to stress-test an idea | `/grill-me`, or `/grill-with-docs` when domain records are useful. |
+| Enumerate user journeys or process outcomes and expose missing cases | `/workflow-mapping`. |
 | Multi-session implementation needs planning | `/to-spec` then `/to-tickets`; `/implement` handles executable tickets. |
 | Explicitly deliver a whole spec as one PR/MR | `/implement-spec`. |
 | Huge effort with unresolved dependent decisions | `/wayfinder`. |

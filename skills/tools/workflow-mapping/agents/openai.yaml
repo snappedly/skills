@@ -1,0 +1,5 @@
+interface:
+  display_name: "Workflow Mapping"
+  short_description: "Map workflow scenarios, outcomes, and missing cases"
+policy:
+  allow_implicit_invocation: false
