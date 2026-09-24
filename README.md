@@ -45,7 +45,7 @@ Each skill lives at `skills/<group>/<name>/SKILL.md`. The catalog follows the di
 | `mainflow/` | Shape and implement planned work | `grill-with-docs`, `to-spec`, `to-tickets`, `implement-spec`, `build-local` |
 | `tools/` | Standalone workflow tools | `code-review`, `frontend-design`, `handoff`, `implement`, `wait-what`, `wizard` |
 | `misc/` | Local maintenance and learning | `teach` |
-| `upkeep/` | Maintain the codebase and triage incoming work | `diagnosing-bugs`, `improve-codebase-architecture`, `resolving-merge-conflicts`, `triage` |
+| `upkeep/` | Maintain the codebase and triage incoming work | `codebase-cleanup`, `diagnosing-bugs`, `improve-codebase-architecture`, `resolving-merge-conflicts`, `triage` |
 | `practices/` | Reusable engineering disciplines and references | `code-cleanup`, `codebase-design`, `domain-modeling`, `frontend-guidelines`, `remove-slop`, `tdd`, `writing-for-agents` |
 
 ## Skills list
@@ -71,6 +71,7 @@ Each skill lives at `skills/<group>/<name>/SKILL.md`. The catalog follows the di
 | Generate a wizard for manual setup steps | `wizard` |
 | Diagnose hard bugs and regressions | `diagnosing-bugs` |
 | Find opportunities to improve codebase architecture | `improve-codebase-architecture` |
+| Sweep a codebase for unnecessary code and tests | `codebase-cleanup` |
 | Resolve an in-progress merge or rebase conflict | `resolving-merge-conflicts` |
 | Triage tracker work | `triage` |
 | Clean and validate changes before review or commit | `code-cleanup` |
