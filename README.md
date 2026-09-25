@@ -90,23 +90,6 @@ Each skill lives at `skills/<group>/<name>/SKILL.md`. The catalog follows the di
 | Write and review docs, RFCs, READMEs, PR descriptions, and commit messages | `technical-writing` |
 | Write documents for agents | `writing-for-agents` |
 
-## Validation
-
-Install the validation dependency and run the repository check:
-
-```bash
-python -m pip install -r requirements-validation.txt
-python scripts/validate-skills.py
-```
-
-The same check runs in GitHub Actions for pull requests and pushes to `main`.
-
-## Updating older workflow configuration
-
-Installed skills and existing repository instructions are separate copies. After updating skills, review `AGENTS.md` and `docs/agents/workflow.md` for blanket test-first, full-suite/build, and independent-review requirements. Update those clauses to the agreed verification scope; preserved repository requirements still take precedence over skill defaults. The setup workflow template supplies the new defaults.
-
-Older repositories also need their delivery and closure choices recorded explicitly. Re-run setup to confirm missing choices, or update `docs/agents/workflow.md` and its `AGENTS.md` pointer directly. Updating installed skills alone does not update repository configuration. Preserve existing confirmed policy, including any human merge or sign-off requirement.
-
 ## Contributing
 
 Contributions are welcome from people who can grant Snappedly the relicensing rights described in [CONTRIBUTING.md](CONTRIBUTING.md). Please open an issue before starting work if no contributor agreement is already in place.
