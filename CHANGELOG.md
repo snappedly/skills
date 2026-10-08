@@ -6,7 +6,7 @@ All notable changes to Snappedly Skills are recorded here.
 
 ### Added
 
-- `deploy` supports invocation approval. When the workflow records it, running `deploy` approves merging what the approver's checkout holds, including a merge that deploys to production, and the same run continues through close-out. `deploy` merges only under the approver's code host account. It asks before merging only when content from outside the checkout entered the delivery, such as commits pushed from elsewhere or merge conflicts it resolved. The approver can then let it merge, or merge on the code host and say so.
+- `deploy` supports invocation approval. When the workflow records it, the approver's instruction to merge approves merging what their checkout holds, including a merge that deploys to production. `deploy` is the usual form of that instruction, and the same run continues through close-out; a direct instruction in chat merges without `deploy`'s checks and close-out. `deploy` merges only under the approver's code host account. It asks before merging only when content from outside the checkout entered the delivery, such as commits pushed from elsewhere or merge conflicts it resolved. The approver can then let it merge, or merge on the code host and say so.
 - `deploy` verifies production after the merge when the workflow assigns that to the agent. It waits up to 15 minutes for the release of the merged commit and reports verification as pending when the release starts later.
 
 ### Fixed
