@@ -12,6 +12,8 @@ How work moves from an agreed request to a production-verified change.
 
 The main flow is `/grill` (optional), `/execute`, `/clean-up`, then `/deploy`; the last three read this file for checks, review depth, finding disposition, and the delivery and closure table below. A small, clear user request can serve as the implementation brief. Ticketed work starts from an executable issue or agent brief, which `/execute` takes as its plan. A planning spec is not an executable work item; its executable child tickets carry the work.
 
+`/clean-up` leaves its edits unstaged and uncommitted on the current branch and shows what it changed. `/deploy` commits pending task changes, cleanup edits included, before delivery, or delivers the existing HEAD when none remain. An explicit commit request can also commit the batch; on the base or default branch it first creates a task branch, as `/deploy` does. Recorded commit checks, conventions, delivery actors, and approval requirements still apply.
+
 ## Verification scope
 
 Use tdd's scope guidance even when no skill is invoked: visually inspect styling, layout, and copy changes at the viewports recorded under Feedback loops and exercise static link corrections. Test changed logic, state, validation, and behavioral regressions at existing seams. For mixed changes, verify each part appropriately. Select established seams autonomously; clarify unresolved contracts.
@@ -44,7 +46,7 @@ Broader checks are required when repository policy, dependency/build/package cha
 
 [List configured commands, directories, and applicability for presentation edits, local logic changes, and cross-cutting or release work. Prefer affected-file/package checks and focused tests. Require full suites and production/deployment builds only where risk or delivery needs justify them. Record browser-test server ownership and any supported external-preview setting.]
 
-Complete cleanup and applicable verification before commit. A small change can perform these steps and its local review inline; separate skill invocations and reports are optional. Reuse passing checks on unchanged inputs. After review fixes, rerun only the affected checks and review the changed scope.
+Complete cleanup and applicable verification before a change is delivered. A small change can perform these steps and its local review inline; separate skill invocations and reports are optional. Reuse passing checks on unchanged inputs. After review fixes, rerun only the affected checks and review the changed scope.
 
 ## Review findings
 

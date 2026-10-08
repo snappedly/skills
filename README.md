@@ -46,8 +46,10 @@ flowchart LR
 | --- | --- |
 | `grill` | Interviews you about a plan until every open decision is settled. Skip it when the change is clear: describe what you want, let the agent propose a change, and run `execute` on that proposal. |
 | `execute` | Carries out the settled plan, or a tracker issue you name, such as `/execute #42`. Substantial independent pieces run in parallel agents. Then it cleans up, reviews the result, and opens a preview. |
-| `clean-up` | The final check. For an independent look, run it in a fresh session, ideally on a different model or provider. It repeats cleanup and review over everything changed on the branch, fixes clear findings, and commits. |
-| `deploy` | Commits anything left over, pushes, opens or updates the PR, and waits for its checks. Then it merges into the branch your workflow names and closes the tickets your workflow assigns to the agent. It stops before the merge when your workflow gives the merge to a person, or when an unconfigured repository would deploy to production on merge. |
+| `clean-up` | The final check. For an independent look, run it in a fresh session, ideally on a different model or provider. It repeats cleanup and review over everything changed on the branch, fixes clear findings, and shows what it changed. Edits stay uncommitted. |
+| `deploy` | Commits pending task changes first, including edits left by `clean-up`, and creates a task branch when you start on the base or default branch. Then it pushes, opens or updates the PR, waits for its checks, merges into the branch your workflow names, and closes the tickets your workflow assigns to the agent. It stops before the merge when your workflow gives the merge to a person, or when an unconfigured repository would deploy to production on merge. |
+
+When setup records local, branch-only, or integration-branch delivery, `deploy` follows that workflow and verifies its result without requiring a hosted PR. Local-only delivery does not fetch or push remote branches.
 
 Use `build-local` when you want a browser preview of the current changes.
 
@@ -83,8 +85,8 @@ Each skill lives at `skills/<group>/<name>/SKILL.md`, and the groups below follo
 | --- | --- |
 | `grill` | Interviews you about a plan until every open decision is settled. |
 | `execute` | Carries out the settled plan or a named issue, with parallel agents where the work splits, then cleans up, reviews, and opens a preview. |
-| `clean-up` | Cleans up, reviews, fixes, and commits everything changed on the branch in one pass. |
-| `deploy` | Pushes, opens or updates the PR, waits for its checks, and merges it into the branch your workflow names. |
+| `clean-up` | Cleans up, reviews, fixes, and shows what changed, leaving edits uncommitted. |
+| `deploy` | Delivers checked changes through a hosted PR or the configured local, branch-only, or integration-branch workflow. |
 
 ---
 

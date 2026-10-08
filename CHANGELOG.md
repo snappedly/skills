@@ -2,6 +2,25 @@
 
 All notable changes to Snappedly Skills are recorded here.
 
+## [Unreleased]
+
+### Changed
+
+- `clean-up` leaves edits unstaged and uncommitted on the current branch and shows what it changed, with check results and review findings. Committing requires an explicit request or `deploy`.
+- `deploy` commits the task's pending changes, cleanup's edits included, before delivery, delivers the existing commit when none remain, and creates the task branch when you start on the base or default branch, which `clean-up` no longer does. Setup migrates existing workflow and agent instructions to this handoff and keeps delivery approval rules.
+
+### Fixed
+
+- GitHub issue discovery fetches every page before filtering and counting triage queues. Existing repositories receive the corrected operation when setup runs again.
+- `deploy` follows configured local, branch-only, and integration-branch delivery without requiring a hosted pull request.
+- `writing-for-agents` documents both Claude Code and Codex invocation settings and keeps them aligned.
+- Shared-reference guidance keeps distributed skill dependencies inside installed packages while allowing repository-owned context outside them.
+- The diagnostic reproduction script prints the complete capture header and starts the first answer on its own line.
+
+### Updating existing repositories
+
+After updating the skills, rerun `setup-snappedly-skills` to refresh GitHub issue discovery in `docs/agents/issue-tracker.md` and migrate active workflow and agent instructions to the handoff from cleanup to deploy. Existing tracker destinations, triage filters, commit checks, and delivery approval rules are preserved.
+
 ## [1.0.0] - 2026-10-08
 
 The first public release of Snappedly Skills.

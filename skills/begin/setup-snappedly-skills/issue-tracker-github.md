@@ -8,7 +8,7 @@ Before completion-based closure or adding automatic closing references, read the
 
 - Create an issue with `gh issue create --repo <owner/repo> --title "..." --body "..."`.
 - Read an issue with `gh issue view <number> --repo <owner/repo> --comments`, including labels when the workflow needs them.
-- List issues with `gh issue list --repo <owner/repo> --state open --json number,title,body,labels,comments` and filter by the labels and states the calling skill needs.
+- List all open issues, oldest first, with `gh api --paginate 'repos/<owner/repo>/issues?state=open&sort=created&direction=asc&per_page=100' --jq '.[] | select(.pull_request == null)'`. Collect every page before filtering by labels or counting queues. The API also returns pull requests, which this filter excludes. Its `comments` field is a count; use the read command above to inspect comment contents and dates when checking reporter activity. If a page fails, report discovery as incomplete.
 - Comment with `gh issue comment <number> --repo <owner/repo> --body "..."`.
 - Apply or remove labels with `gh issue edit <number> --repo <owner/repo> --add-label "..."` or `--remove-label "..."`.
 - Close with `gh issue close <number> --repo <owner/repo> --comment "..."`.
