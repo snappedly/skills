@@ -1,0 +1,5 @@
+interface:
+  display_name: "Build Local"
+  short_description: "Preview the working tree at a verified local URL"
+policy:
+  allow_implicit_invocation: false

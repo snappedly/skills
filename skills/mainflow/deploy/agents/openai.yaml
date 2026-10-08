@@ -1,0 +1,5 @@
+interface:
+  display_name: "Deploy"
+  short_description: "Commit, push, open the PR, and merge it"
+policy:
+  allow_implicit_invocation: false

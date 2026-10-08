@@ -1,0 +1,24 @@
+name: Feature request
+description: Suggest an improvement to a skill, or a new skill.
+labels: ["enhancement", "needs-triage"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What need or workflow gap would this address?
+    validations:
+      required: true
+  - type: textarea
+    id: direction
+    attributes:
+      label: Proposed direction
+      description: Describe the behavior you want. Leave the implementation open.
+    validations:
+      required: true
+  - type: input
+    id: scope
+    attributes:
+      label: Scope
+      description: The skill this changes, or "new skill".
+      placeholder: code-review

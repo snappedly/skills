@@ -1,0 +1,5 @@
+interface:
+  display_name: "Code Cleanup"
+  short_description: "Clean and validate changes before commit"
+policy:
+  allow_implicit_invocation: true

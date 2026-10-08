@@ -1,0 +1,5 @@
+interface:
+  display_name: "Clean Up"
+  short_description: "Clean up, review, fix, and commit your changes"
+policy:
+  allow_implicit_invocation: false

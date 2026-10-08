@@ -1,0 +1,5 @@
+interface:
+  display_name: "TDD"
+  short_description: "Focused test-first coverage for changed logic"
+policy:
+  allow_implicit_invocation: true

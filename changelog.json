@@ -1,0 +1,32 @@
+[
+  {
+    "version": "1.0.0",
+    "title": "Snappedly Skills Public Release",
+    "changes": [
+      {
+        "type": "feature",
+        "summary": "Snappedly Skills is publicly available under the MIT License: 26 engineering workflow skills for Claude Code, Codex, and other coding agents. Install every skill in one command, then type the setup command to configure your repository."
+      },
+      {
+        "type": "feature",
+        "summary": "The main workflow takes a change from plan to merge. Grill settles the plan, Execute carries it out or works from an issue you name, Clean Up checks and commits the result, and Deploy opens the pull request and merges it once its checks pass."
+      },
+      {
+        "type": "feature",
+        "summary": "Repository setup records your code host, work tracker, team workflow, domain docs, and frontend conventions, and every skill follows them."
+      },
+      {
+        "type": "feature",
+        "summary": "Practice skills hold shared standards for code cleanup, code review, test-driven development, pull requests, and technical writing, and load when a task calls for them."
+      },
+      {
+        "type": "feature",
+        "summary": "Upkeep and tool skills diagnose difficult bugs, survey a codebase's architecture, sweep out dead code, triage incoming issues and pull requests, resolve merge conflicts, and preview changes locally."
+      },
+      {
+        "type": "security",
+        "summary": "Triage reviews outside contributions without running their code on your machine. In a repository without workflow settings, Deploy stops before a merge that would deploy to production."
+      }
+    ]
+  }
+]

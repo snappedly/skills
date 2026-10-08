@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Ask a question or share an idea
+    url: https://github.com/snappedly/skills/discussions
+    about: Use Discussions for questions, ideas, and help with setup.
+  - name: Report a security vulnerability
+    url: https://github.com/snappedly/skills/security/advisories/new
+    about: Report vulnerabilities privately. Do not open a public issue.
+  - name: Skills changelog
+    url: https://docs.snappedly.com/changelog/?product=skills
+    about: See what changed in each release.

@@ -1,0 +1,5 @@
+interface:
+  display_name: "Execute"
+  short_description: "Carry out, review, and preview the settled plan"
+policy:
+  allow_implicit_invocation: false

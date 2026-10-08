@@ -1,0 +1,5 @@
+interface:
+  display_name: "Remove Slop"
+  short_description: "Remove AI slop from code and writing"
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,5 @@
+interface:
+  display_name: "Triage"
+  short_description: "Triage issues and publish the next action"
+policy:
+  allow_implicit_invocation: false

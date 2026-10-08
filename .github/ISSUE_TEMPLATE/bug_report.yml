@@ -1,0 +1,47 @@
+name: Bug report
+description: Report a skill that behaves incorrectly, incompletely, or inconsistently.
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the report. To report a security vulnerability, use [private vulnerability reporting](https://github.com/snappedly/skills/security/advisories/new) instead of this form.
+  - type: input
+    id: skill
+    attributes:
+      label: Skill
+      description: The skill that misbehaved.
+      placeholder: clean-up
+    validations:
+      required: true
+  - type: dropdown
+    id: agent
+    attributes:
+      label: Agent
+      description: The coding agent that ran the skill.
+      options:
+        - Claude Code
+        - Codex
+        - Cursor
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What should the skill have done?
+    validations:
+      required: true
+  - type: textarea
+    id: observed
+    attributes:
+      label: Observed behavior
+      description: What did it do instead? Include the smallest prompt or example that shows the problem.
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: The skills version or commit, the model, and any relevant repository or workflow configuration. Remove credentials and other sensitive details.
