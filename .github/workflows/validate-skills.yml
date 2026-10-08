@@ -12,14 +12,11 @@ permissions:
 jobs:
   validate:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        # 3.9 is the oldest version CONTRIBUTING.md supports.
-        python-version: ["3.9", "3.12"]
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-python@v7
         with:
-          python-version: ${{ matrix.python-version }}
+          # Keep in step with the minimum version in CONTRIBUTING.md.
+          python-version: "3.12"
       - run: python -m pip install -r requirements-validation.txt
       - run: python scripts/validate-skills.py

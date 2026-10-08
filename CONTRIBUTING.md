@@ -17,7 +17,7 @@ Ask questions and discuss ideas in [Discussions](https://github.com/snappedly/sk
 5. Keep supporting Markdown files local to the skill package.
 6. Give each skill `license: MIT` frontmatter and a `LICENSE.txt` file. `npx skills add` copies only the skill folder, so the file must carry every copyright notice that applies to the skill. When a skill adapts another project's work, add that project's notice to the skill's `LICENSE.txt` and to [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 7. Update the README or changelog when a user-facing workflow changes. When setup changes required repository configuration, explain the migration for existing repositories and update the setup skill's repeat-run path.
-8. Install the validation dependencies, then run the validation check. The check needs Python 3.9 or later.
+8. Install the validation dependencies, then run the validation check. The check needs Python 3.12 or later.
 
    ```bash
    python -m pip install -r requirements-validation.txt
@@ -35,7 +35,7 @@ Ask questions and discuss ideas in [Discussions](https://github.com/snappedly/sk
 
 ## Pull requests
 
-Changes reach `main` through a pull request, and validation must pass on Python 3.9 and 3.12 before it can merge. Describe the user-facing change, the skills affected, and the validation you ran. Keep unrelated workflow changes in separate pull requests. If a change alters invocation behavior, explain the intended implicit or explicit invocation policy in the pull request description.
+Changes reach `main` through a pull request, and validation must pass before it can merge. Describe the user-facing change, the skills affected, and the validation you ran. Keep unrelated workflow changes in separate pull requests. If a change alters invocation behavior, explain the intended implicit or explicit invocation policy in the pull request description.
 
 ## Releases
 
