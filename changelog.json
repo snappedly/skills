@@ -1,5 +1,43 @@
 [
   {
+    "version": "1.1.0",
+    "title": "Deploy Owns the Commit",
+    "changes": [
+      {
+        "type": "improvement",
+        "summary": "Clean Up leaves its edits unstaged and uncommitted on the current branch and shows what it changed, with check results and review findings. Committing happens on an explicit request or through Deploy."
+      },
+      {
+        "type": "improvement",
+        "summary": "Deploy commits the pending task changes first, including edits left by Clean Up, creates the task branch when you start on the base or default branch, and delivers the existing commit when nothing is pending."
+      },
+      {
+        "type": "improvement",
+        "summary": "Setup Snappedly Skills migrates existing workflow and agent instructions to the handoff from Clean Up to Deploy and preserves commit checks and delivery approval rules."
+      },
+      {
+        "type": "fix",
+        "summary": "GitHub issue discovery fetches every page before filtering and counting triage queues. Setup Snappedly Skills refreshes the operation in existing repositories."
+      },
+      {
+        "type": "fix",
+        "summary": "Deploy follows configured local, branch-only, and integration-branch delivery without requiring a hosted pull request."
+      },
+      {
+        "type": "fix",
+        "summary": "Writing For Agents documents both Claude Code and Codex invocation settings and keeps them aligned."
+      },
+      {
+        "type": "fix",
+        "summary": "Shared-reference guidance keeps distributed skill dependencies inside installed packages while allowing repository-owned context outside them."
+      },
+      {
+        "type": "fix",
+        "summary": "The diagnostic reproduction script in Diagnosing Bugs prints the complete capture header and starts the first answer on its own line."
+      }
+    ]
+  },
+  {
     "version": "1.0.0",
     "title": "Snappedly Skills Public Release",
     "changes": [

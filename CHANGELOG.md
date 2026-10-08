@@ -4,6 +4,8 @@ All notable changes to Snappedly Skills are recorded here.
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-10-08
+
 ### Changed
 
 - `clean-up` leaves edits unstaged and uncommitted on the current branch and shows what it changed, with check results and review findings. Committing requires an explicit request or `deploy`.
@@ -50,4 +52,5 @@ npx skills remove ask-snappedly cleanup-local deliver deslop frontend-design fro
 
 The command skips any skill you don't have. Add `-g` if you installed the skills globally. Then rerun `/setup-snappedly-skills` in each project. It updates references to renamed skills and proposes removing configuration that only the removed skills read.
 
+[1.1.0]: https://github.com/snappedly/skills/releases/tag/v1.1.0
 [1.0.0]: https://github.com/snappedly/skills/releases/tag/v1.0.0
