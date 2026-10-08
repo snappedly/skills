@@ -69,7 +69,7 @@ This policy governs implementation delivery and completion-based closure. Apply 
 | Transition | Trigger and prerequisites | Actor | Required evidence |
 | --- | --- | --- | --- |
 | Publish branch and create or update change request when required | [When to publish; draft or ready; applicable checks; branch-only delivery or another review equivalent when explicitly chosen] | [Agent or human] | [Commit, checks, or other evidence] |
-| Merge or deliver change | [Checks and approvals required before merge or delivery] | [Agent, agent on a named human's `/deploy` (invocation approval), provider automation, or human] | [Passing checks and recorded approval, if required] |
+| Merge or deliver change | [Checks and approvals required before merge or delivery] | [Agent, agent on a named human's instruction to merge, such as `/deploy` (invocation approval), provider automation, or human] | [Passing checks and recorded approval, if required] |
 | Close executable ticket | [Verified implementation, merge, sign-off, deployment verification, or named event] | [Agent, provider automation, or human] | [Evidence proving this ticket meets the condition] |
 | Close parent spec | [Independent acceptance condition for the whole spec] | [Agent, provider automation, or human] | [Whole-spec acceptance evidence] |
 | Last child ticket closes without closing the spec | [Comment on the spec that it is ready for acceptance, or report only] | [Agent] | [Comment link, or the report] |
@@ -77,7 +77,7 @@ This policy governs implementation delivery and completion-based closure. Apply 
 
 [Record whether preview deployments may run before production approval. For required sign-off, name the approver, where approval is recorded, and the revision or scope it covers. For invocation approval, name the approver, their code host account, and where approval is recorded. For each agent transition that follows a human or external event, name what starts the agent. Define custom events with observable completion conditions. Use `not applicable` for unused transitions.]
 
-Under invocation approval, the named approver's `/deploy` approves merging the hosted change request that carries what their checkout holds at that moment, which they are expected to have reviewed, so the same run continues through close-out. `/deploy` cannot tell who sent it, so a `/deploy` queued, scheduled, or sent by another agent in the approver's session also counts as their approval.
+Under invocation approval, the named approver's instruction to merge approves merging the hosted change request that carries what their checkout holds at that moment, which they are expected to have reviewed. `/deploy` is one form of that instruction. The agent cannot tell who sent an instruction, so one queued, scheduled, or sent by another agent in the approver's session also counts as their approval.
 
 Every agent transition needs something that starts the agent: an earlier agent step in the same run, such as a merge under invocation approval, or a recorded event, such as the merger running `/deploy` again after merging on the host. Follow each transition's configured actor and prerequisites. Reuse applicable recorded approval; ask only for missing decisions or sign-off. If an event is pending, leave that transition pending and report the next actor and evidence needed. Verify the resulting change-request or tracker state after an authorized action, including provider automation; issuing a command or adding a closing reference is not proof of closure.
 

@@ -1,5 +1,35 @@
 [
   {
+    "version": "1.2.0",
+    "title": "Merge Approval and Production Verification",
+    "changes": [
+      {
+        "type": "feature",
+        "summary": "With invocation approval configured, the approver's instruction to merge authorizes delivery, including merges that deploy to production. Deploy adds drift approval, merge verification, and close-out. A direct chat instruction follows the configured merge policy without those steps."
+      },
+      {
+        "type": "feature",
+        "summary": "Deploy verifies production when the workflow assigns it to the agent, checks the currently deployed revision, and leaves verification-dependent closures pending when the change is no longer deployed or the revision changes during checks."
+      },
+      {
+        "type": "fix",
+        "summary": "Running Deploy again on a merged branch or naming the merged change request resumes ticket closure and production verification instead of stopping on an empty batch."
+      },
+      {
+        "type": "fix",
+        "summary": "Deploy preserves newer work on a merged change request's remote branch and deletes eligible branches only when the remote tip still matches the original merged head."
+      },
+      {
+        "type": "improvement",
+        "summary": "Setup Snappedly Skills records what starts each agent step after a merge, proposes invocation approval where needed, and migrates the old stop-at-merge instruction to include close-out while preserving release actors and approval gates."
+      },
+      {
+        "type": "security",
+        "summary": "Deploy stops before any merge that would deploy to production without a recorded deployment approval gate or invocation approval. Rerun Setup Snappedly Skills after updating to configure the approval policy."
+      }
+    ]
+  },
+  {
     "version": "1.1.0",
     "title": "Deploy Owns the Commit",
     "changes": [

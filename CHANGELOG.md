@@ -4,15 +4,20 @@ All notable changes to Snappedly Skills are recorded here.
 
 ## [Unreleased]
 
+## [1.2.0] - 2026-10-09
+
 ### Added
 
-- `deploy` supports invocation approval. When the workflow records it, running `deploy` approves merging what the approver's checkout holds, including a merge that deploys to production, and the same run continues through close-out. `deploy` merges only under the approver's code host account. It asks before merging only when content from outside the checkout entered the delivery, such as commits pushed from elsewhere or merge conflicts it resolved. The approver can then let it merge, or merge on the code host and say so.
+- `deploy` supports invocation approval. When the workflow records it, the approver's instruction to merge approves merging what their checkout holds, including a merge that deploys to production. `deploy` is the usual form of that instruction, and the same run continues through close-out; a direct instruction in chat merges without `deploy`'s checks and close-out. `deploy` merges only under the approver's code host account. It asks before merging only when content from outside the checkout entered the delivery, such as commits pushed from elsewhere or merge conflicts it resolved. The approver can then let it merge, or merge on the code host and say so.
 - `deploy` verifies production after the merge when the workflow assigns that to the agent. It waits up to 15 minutes for the release of the merged commit and reports verification as pending when the release starts later.
 
 ### Fixed
 
 - After a person merges a PR, running `deploy` again on its branch, or naming the PR, verifies the merge, closes out tickets and the parent spec, and verifies production. It previously reported an empty batch and stopped.
+- `deploy` preserves a merged PR's remote branch when its tip has changed and makes deletion conditional on the original merged head, including when close-out resumes later.
+- Production verification requires the merged commit to remain deployed while its checks run, so an earlier release cannot satisfy ticket closure after a rollback.
 - `setup-snappedly-skills` requires every agent step in the workflow to have something that starts it, such as a merge under invocation approval or the merger running `deploy` again, so no agent step waits on an event the agent never sees.
+- `setup-snappedly-skills` replaces the older template's instruction that `deploy` ends at merge with the close-out boundary, preserving the repository's release actors and approval gates.
 
 ### Security
 
@@ -78,5 +83,6 @@ npx skills remove ask-snappedly cleanup-local deliver deslop frontend-design fro
 
 The command skips any skill you don't have. Add `-g` if you installed the skills globally. Then rerun `/setup-snappedly-skills` in each project. It updates references to renamed skills and proposes removing configuration that only the removed skills read.
 
+[1.2.0]: https://github.com/snappedly/skills/releases/tag/v1.2.0
 [1.1.0]: https://github.com/snappedly/skills/releases/tag/v1.1.0
 [1.0.0]: https://github.com/snappedly/skills/releases/tag/v1.0.0
