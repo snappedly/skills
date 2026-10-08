@@ -18,7 +18,8 @@ Recommend the shortest workflow that satisfies the request and name its entry po
 | Carry out the plan the conversation settled on | `/execute` (implementation, cleanup, review, and preview), then `/clean-up` as the final check and change report. |
 | Carry out a tracker issue or its agent brief | `/execute` with the issue, such as `/execute #42`, then `/clean-up`. |
 | Finish a batch of your own changes | `/clean-up`: cleanup, review, clear fixes, and a report showing what changed. Edits stay uncommitted. |
-| Happy with the branch and want it merged | `/deploy`: commit pending changes, push, open or update the PR, and merge it once its checks pass, or stop at mergeable when the workflow assigns the merge to a human or an unconfigured merge would deploy to production. |
+| Happy with the branch and want it merged | `/deploy`: commit pending changes, push, open or update the PR, merge it once its checks pass, then close out tickets and verify production as the workflow assigns. It stops at mergeable when the workflow assigns the merge to a human or a merge would deploy to production without a recorded deployment approval gate or invocation approval. |
+| Merged a PR on the host yourself | `/deploy` on its branch, or naming the PR, such as `/deploy #42`: verify the merge, then close out and verify production as the workflow assigns. |
 | Inspect current changes in a browser | `/build-local`. |
 | Uncertain or persistent bug | `/diagnosing-bugs`; a clear local defect can be fixed and checked directly. |
 | User asks what would have prevented a bug, or how a session's difficulties should change the agent's environment | `/retro` in the same session, or with that session's log. |

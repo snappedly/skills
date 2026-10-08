@@ -1,5 +1,5 @@
 interface:
   display_name: "Deploy"
-  short_description: "Commit and deliver through the configured workflow"
+  short_description: "Commit, deliver, and close out through the workflow"
 policy:
   allow_implicit_invocation: false

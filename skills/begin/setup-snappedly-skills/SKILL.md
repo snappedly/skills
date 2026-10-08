@@ -20,6 +20,15 @@ Older configuration needs these migrations as part of the run, without a separat
 - When an older `issue-tracker.md` holds change-request operations, move them and their request-surface policy into `code-host.md` and their closure policy into the delivery and closure section of `workflow.md`, carrying each over unchanged.
 - Replace GitHub issue-list operations that stop at the CLI's default limit with the paginated operation in [issue-tracker-github.md](issue-tracker-github.md). Preserve the configured tracker repository and triage filters, and retain any existing operation that already exhausts all pages.
 - Give the base branch and merge strategy their own lines in `workflow.md`, taking each from wherever the configuration already records it, `code-host.md` included. Move a merge actor recorded in `code-host.md` into the workflow's merge transition, asking when it conflicts with the actor recorded there. Then remove the base branch, strategy, and actor from `code-host.md` so its merge line names only the operation. When nothing records a base branch or strategy, propose the default branch or the host's default merge method and confirm it.
+- Propose invocation approval for a hosted change request in any of these cases:
+  - The merge belongs to a human, and an agent transition after the merge has nothing recorded that starts the agent.
+  - The merge belongs to the agent after a human approval the code host cannot record, such as an approval of one's own change request.
+  - An agent merge deploys to production with neither invocation approval nor a deployment-system approval gate recorded.
+
+  On acceptance, name the approver and their code host account, record where approval is recorded, and add and verify the acting-account operation in `code-host.md`. In `workflow.md`, set the Merge or deliver change row, with the approver's `/deploy` replacing any approval the code host cannot record as its prerequisite; rewrite the file's other sentences about who merges or what gates the merge; and add the template's invocation approval paragraph and its Production release sentence on invocation approval, plus the approval-request sentence ("The approval request names…") when that section lacks it. Update every agent instruction file that states who merges or what gates the merge, such as `AGENTS.md`, in the same change; for human process docs, propose conflicting rules as the handoff migration above does.
+
+  On decline, resolve what made the proposal apply: assign the merge to a human, record a deployment-system approval gate for a merge that deploys, or replace an approval the code host cannot record with one it can. Then record what starts each agent transition after the merge, such as the merger running `/deploy` again, or reassign the transition, and record the declined proposal under Delivery and closure in `workflow.md` so a repeat run does not propose it again.
+- Add the template's Verify production row when it is missing, taking its trigger and actor from the recorded release and verification policy, and ask when none records them. When `workflow.md` lacks it, add the template's sentence that every agent transition needs something that starts the agent.
 - Refresh the root `### Code host` instruction so agents apply the title policy before every change-request create or update, including outside `pr`.
 - Migrate legacy domain `CONTEXT.md` and `CONTEXT-MAP.md` files as Section D directs.
 - For blanket test-first, full-build, and independent-review clauses in workflow or root instructions: when they came from older setup defaults, propose scoped replacements and confirm the team's intent; when their origin is unclear, ask. Preserve documented team overrides, and update every affected file to the agreed scope together.
@@ -69,15 +78,16 @@ For the feedback-loop contract, record the commands and adapters the repository 
 
 For a new setup, ask how the user wants delivery and closure handled. On a repeat run, when a required transition is missing or ambiguous, present related existing policy as a proposed answer and confirm only the unresolved choice:
 
-- Is delivery through one hosted change request, another review equivalent, or an explicitly chosen integration branch? When should the agent publish it, and who should merge or deliver it after which checks or approvals?
+- Is delivery through one hosted change request, another review equivalent, or an explicitly chosen integration branch? When should the agent publish it, and who should merge or deliver it after which checks or approvals: the agent, a human, or, for a hosted change request, the agent on a named human's `/deploy`, which approves merging what their checkout holds (invocation approval)? For a hosted change request, recommend that the agent merges when `/deploy` runs: under invocation approval when the merge deploys to production without a deployment-system approval gate, and otherwise as a plain agent merge.
 - Which base branch do change requests target, and which merge strategy does the merge use: merge, squash, or rebase?
 - When should an executable ticket close: verified implementation, change-request merge, human sign-off, deployment verification, or another named event?
 - Separately, when should the parent spec close? Does it require acceptance beyond completing its child tickets? When its last child closes without closing the spec, should the agent comment on the spec that it is ready for acceptance, or only report it? `deploy` follows the recorded answer.
-- For each transition, who acts: the agent, provider automation, or a human? If sign-off is required, who gives it, where is it recorded, and what work does it cover?
+- Who verifies production after a release, and what starts the release? `deploy` runs the verification when the agent owns it.
+- For each transition, who acts: the agent, provider automation, or a human? If sign-off is required, who gives it, where is it recorded, and what work does it cover? For an agent transition that follows a human or external event, what starts the agent: a merge under invocation approval, the merger running `/deploy` again with the merged change request, or another recorded event? Without one, assign the transition to provider automation or a human.
 
 Write the confirmed answers in the delivery and closure section: the base branch and merge strategy on their own lines, and each transition in its table with the evidence that establishes the event. Merge permission is its own answer: a closure-on-merge choice grants none.
 
-When no production release policy is recorded, propose the template's release policy as the default and ask only about differences and the repository's specifics. If a merge automatically deploys to production, require an approval gate in the deployment system before agent-controlled merge can be selected.
+When no production release policy is recorded, propose the template's release policy as the default and ask only about differences and the repository's specifics. If a merge automatically deploys to production, an agent merge needs an approval gate in the deployment system or invocation approval, whose `/deploy` approves the production candidate.
 
 #### Section C: Triage roles
 
@@ -111,7 +121,7 @@ For a new setup, offer this section in the proposal as an optional rule, and add
 When reporting information to me, be extremely concise, sacrificing grammar for concision.
 ```
 
-Completion criterion: every applicable section has an explicit answer, `AGENTS.md` exposes the required project rules, and every recorded provider operation is verified.
+Completion criterion: every applicable section has an explicit answer, every agent transition has something that starts the agent, `AGENTS.md` exposes the required project rules, and every recorded provider operation is verified.
 
 ### 3. Confirm
 
