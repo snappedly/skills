@@ -49,6 +49,8 @@ flowchart LR
 | `clean-up` | The final check. For an independent look, run it in a fresh session, ideally on a different model or provider. It repeats cleanup and review over everything changed on the branch, fixes clear findings, and commits. |
 | `deploy` | Commits anything left over, pushes, opens or updates the PR, and waits for its checks. Then it merges into the branch your workflow names and closes the tickets your workflow assigns to the agent. It stops before the merge when your workflow gives the merge to a person, or when an unconfigured repository would deploy to production on merge. |
 
+When setup records local, branch-only, or integration-branch delivery, `deploy` follows that workflow and verifies its result without requiring a hosted PR. Local-only delivery does not fetch or push remote branches.
+
 Use `build-local` when you want a browser preview of the current changes.
 
 ## All skills
@@ -84,7 +86,7 @@ Each skill lives at `skills/<group>/<name>/SKILL.md`, and the groups below follo
 | `grill` | Interviews you about a plan until every open decision is settled. |
 | `execute` | Carries out the settled plan or a named issue, with parallel agents where the work splits, then cleans up, reviews, and opens a preview. |
 | `clean-up` | Cleans up, reviews, fixes, and commits everything changed on the branch in one pass. |
-| `deploy` | Pushes, opens or updates the PR, waits for its checks, and merges it into the branch your workflow names. |
+| `deploy` | Delivers checked changes through a hosted PR or the configured local, branch-only, or integration-branch workflow. |
 
 ---
 

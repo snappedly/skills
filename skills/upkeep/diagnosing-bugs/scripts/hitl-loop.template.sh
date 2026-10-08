@@ -61,7 +61,7 @@ capture_paste() {
 
 print_captured() {
   local key value
-  printf '\n--- Captured: paste from here to the '--- End captured ---' line back to the agent ---\n'
+  printf '\n%s\n' "--- Captured: paste from here to the '--- End captured ---' line back to the agent ---"
   for key in ${CAPTURED[@]+"${CAPTURED[@]}"}; do
     value="${!key}"
     if [[ "$value" == *$'\n'* ]]; then

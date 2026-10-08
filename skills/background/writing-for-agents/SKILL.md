@@ -33,7 +33,7 @@ A document is built from two content types: **steps** (the ordered actions the a
 
 1. **In-file step** is the primary tier: what the agent does, in order.
 2. **In-file reference** is consulted on demand. Often a legitimately flat peer-set (every rule of a review on one rung), which is a fine arrangement, not a smell.
-3. **Disclosed reference** is pushed out into a separate file, reached by a context pointer, loaded only when the pointer fires. It ranges from a sibling file in the same folder to fully external reference that lives anywhere and that any document can point at.
+3. **Disclosed reference** is pushed out into a separate file, reached by a context pointer, loaded only when the pointer fires. It can be a sibling file or external context supplied by the repository or host. For distributable skills, follow the packaging guidance in [`SKILL-MECHANICS.md`](SKILL-MECHANICS.md).
 
 Push too little down and the top bloats; push too much and you hide material the agent actually needs. That tension is the whole decision.
 

@@ -1,5 +1,5 @@
 interface:
   display_name: "Deploy"
-  short_description: "Commit, push, open the PR, and merge it"
+  short_description: "Commit and deliver through the configured workflow"
 policy:
   allow_implicit_invocation: false
