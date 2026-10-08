@@ -12,7 +12,10 @@ All notable changes to Snappedly Skills are recorded here.
 ### Fixed
 
 - After a person merges a PR, running `deploy` again on its branch, or naming the PR, verifies the merge, closes out tickets and the parent spec, and verifies production. It previously reported an empty batch and stopped.
+- `deploy` preserves a merged PR's remote branch when its tip has changed and makes deletion conditional on the original merged head, including when close-out resumes later.
+- Production verification requires the merged commit to remain deployed while its checks run, so an earlier release cannot satisfy ticket closure after a rollback.
 - `setup-snappedly-skills` requires every agent step in the workflow to have something that starts it, such as a merge under invocation approval or the merger running `deploy` again, so no agent step waits on an event the agent never sees.
+- `setup-snappedly-skills` replaces the older template's instruction that `deploy` ends at merge with the close-out boundary, preserving the repository's release actors and approval gates.
 
 ### Security
 
