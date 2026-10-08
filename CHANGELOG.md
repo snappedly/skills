@@ -4,6 +4,8 @@ All notable changes to Snappedly Skills are recorded here.
 
 ## [Unreleased]
 
+## [1.2.0] - 2026-10-09
+
 ### Added
 
 - `deploy` supports invocation approval. When the workflow records it, the approver's instruction to merge approves merging what their checkout holds, including a merge that deploys to production. `deploy` is the usual form of that instruction, and the same run continues through close-out; a direct instruction in chat merges without `deploy`'s checks and close-out. `deploy` merges only under the approver's code host account. It asks before merging only when content from outside the checkout entered the delivery, such as commits pushed from elsewhere or merge conflicts it resolved. The approver can then let it merge, or merge on the code host and say so.
@@ -81,5 +83,6 @@ npx skills remove ask-snappedly cleanup-local deliver deslop frontend-design fro
 
 The command skips any skill you don't have. Add `-g` if you installed the skills globally. Then rerun `/setup-snappedly-skills` in each project. It updates references to renamed skills and proposes removing configuration that only the removed skills read.
 
+[1.2.0]: https://github.com/snappedly/skills/releases/tag/v1.2.0
 [1.1.0]: https://github.com/snappedly/skills/releases/tag/v1.1.0
 [1.0.0]: https://github.com/snappedly/skills/releases/tag/v1.0.0
