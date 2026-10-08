@@ -4,6 +4,24 @@ All notable changes to Snappedly Skills are recorded here.
 
 ## [Unreleased]
 
+### Added
+
+- `deploy` supports invocation approval. When the workflow records it, the approver's `deploy` command approves merging what their checkout holds, including a merge that deploys to production, and the same run continues through close-out. `deploy` merges only under the approver's code host account, and asks before merging only when content from outside their checkout entered the delivery, such as commits pushed from elsewhere or merge conflicts it resolved. They can then let it merge, or merge on the code host and say so.
+- `deploy` verifies production after the merge when the workflow assigns that to the agent. It waits up to 15 minutes for the release of the merged commit and reports verification as pending when the release starts later.
+
+### Fixed
+
+- After a person merges a PR, running `deploy` again on its branch, or naming the PR, verifies the merge, closes out tickets and the parent spec, and verifies production. It previously reported an empty batch and stopped.
+- `setup-snappedly-skills` requires every agent step in the workflow to have something that starts it, such as a merge under invocation approval or the merger running `deploy` again, so no agent step waits on an event the agent never sees.
+
+### Security
+
+- `deploy` stops before any merge that would deploy to production when the workflow records neither a deployment approval gate nor invocation approval. It previously checked this only in repositories without a workflow file.
+
+### Updating existing repositories
+
+After updating the skills, rerun `setup-snappedly-skills`. Until you do, `deploy` stops before a merge that would deploy to production without a recorded approval gate or invocation approval. Setup proposes invocation approval when a person merges and nothing starts the agent steps after the merge, when the agent merges after an approval your code host cannot record, or when an agent merge would deploy to production without an approval gate. It applies the change only when you agree. If you decline, setup records what starts each agent step after the merge and does not propose it again. New setups recommend that `deploy` merges when you run it, using invocation approval when the merge deploys to production. Setup also adds a Verify production row to the workflow.
+
 ## [1.1.0] - 2026-10-08
 
 ### Changed

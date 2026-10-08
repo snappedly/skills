@@ -69,12 +69,15 @@ This policy governs implementation delivery and completion-based closure. Apply 
 | Transition | Trigger and prerequisites | Actor | Required evidence |
 | --- | --- | --- | --- |
 | Publish branch and create or update change request when required | [When to publish; draft or ready; applicable checks; branch-only delivery or another review equivalent when explicitly chosen] | [Agent or human] | [Commit, checks, or other evidence] |
-| Merge or deliver change | [Checks and approvals required before merge or delivery] | [Agent, provider automation, or human] | [Passing checks and recorded approval, if required] |
+| Merge or deliver change | [Checks and approvals required before merge or delivery] | [Agent, agent on a named human's `/deploy` (invocation approval), provider automation, or human] | [Passing checks and recorded approval, if required] |
 | Close executable ticket | [Verified implementation, merge, sign-off, deployment verification, or named event] | [Agent, provider automation, or human] | [Evidence proving this ticket meets the condition] |
 | Close parent spec | [Independent acceptance condition for the whole spec] | [Agent, provider automation, or human] | [Whole-spec acceptance evidence] |
 | Last child ticket closes without closing the spec | [Comment on the spec that it is ready for acceptance, or report only] | [Agent] | [Comment link, or the report] |
+| Verify production | [The release of the merged commit; checks under Verification and recovery] | [Agent, provider automation, or human] | [Released revision and verification results] |
 
-[Record whether preview deployments may run before production approval. For required sign-off, name the approver, where approval is recorded, and the revision or scope it covers. Define custom events with observable completion conditions. Use `not applicable` for unused transitions.]
+[Record whether preview deployments may run before production approval. For required sign-off, name the approver, where approval is recorded, and the revision or scope it covers. For invocation approval, name the approver, their code host account, and where approval is recorded. For each agent transition that follows a human or external event, name what starts the agent. Define custom events with observable completion conditions. Use `not applicable` for unused transitions.]
+
+Under invocation approval, the named approver's `/deploy` approves merging the hosted change request that carries what their checkout holds at that moment, which they are expected to have reviewed, so the same run continues through close-out. `/deploy` asks before merging only when content their checkout did not hold entered the delivery, such as commits pushed from elsewhere or merge conflicts it resolved. Any `/deploy` sent in the approver's session carries this approval, including one queued, scheduled, or sent by another agent. Every agent transition needs something that starts it: an earlier agent step in the same run, such as a merge under invocation approval, or a recorded trigger, such as the merger running `/deploy` again after merging on the host.
 
 Follow each transition's configured actor and prerequisites. Reuse applicable recorded approval; ask only for missing decisions or sign-off. If an event is pending, leave that transition pending and report the next actor and evidence needed. Verify the resulting change-request or tracker state after an authorized action, including provider automation; issuing a command or adding a closing reference is not proof of closure.
 
@@ -82,9 +85,9 @@ Use automatic closing references only for items configured to close on that merg
 
 ## Production release
 
-A human must approve the exact production candidate before deployment starts. The approval request names the commit and immutable artifact when available, target environment, changes, validation, migrations, verification plan, and recovery procedure. Any changed candidate requires a new approval. `/deploy` ends at merge and reports the next step this section names; the release itself follows the approval and process recorded here.
+A human must approve the exact production candidate before deployment starts. The approval request names the commit and immutable artifact when available, target environment, changes, validation, migrations, verification plan, and recovery procedure. Any changed candidate requires a new approval. Under invocation approval, the candidate is the approved change merged onto the current base, so a base that only moved ahead keeps the approval; content their checkout did not hold needs the approval request above. `/deploy` ends after the merge's close-out, including production verification when the agent owns it, and reports the next step this section names; the release itself follows the approval and process recorded here.
 
-[State what happens after merge and who starts the release, how the release system identifies the candidate and enforces approval, the deployment command or workflow, and the production environment. If merging triggers production, name the deployment-system approval gate that pauses it.]
+[State what happens after merge and who starts the release, how the release system identifies the candidate and enforces approval, the deployment command or workflow, and the production environment. If merging triggers production, name the deployment-system approval gate that pauses it, or record invocation approval as the production approval.]
 
 ## Verification and recovery
 
