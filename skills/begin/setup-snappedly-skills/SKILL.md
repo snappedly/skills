@@ -31,7 +31,9 @@ Older configuration needs these migrations as part of the run, without a separat
 - Add the template's Verify production row when it is missing, taking its trigger and actor from the recorded release and verification policy, and ask when none records them. When `workflow.md` lacks it, add the template's sentence that every agent transition needs something that starts the agent.
 - Replace the old template sentence beginning "`/deploy` ends at merge" in `docs/agents/workflow.md` with the current template's sentence beginning "`/deploy` ends after the merge's close-out". Update copies of that template boundary in `AGENTS.md` and the other agent instruction files Explore found. Preserve the recorded actors, release triggers, and approval gates. Apply this migration whether invocation approval is accepted, declined, or not proposed; for human process docs, propose conflicting changes as the handoff migration above does.
 - Refresh the root `### Code host` instruction so agents apply the title policy before every change-request create or update, including outside `pr`.
+- When `code-host.md` has no base branch protection line, propose the protection as [branch-protection.md](branch-protection.md) directs.
 - Migrate legacy domain `CONTEXT.md` and `CONTEXT-MAP.md` files as Section D directs.
+- Propose retiring each repository `CLAUDE.md`, including a bridge an earlier run kept, as [instruction-files.md](instruction-files.md) directs. Skip only a `CLAUDE.md` whose recorded reason for remaining still holds.
 - For blanket test-first, full-build, and independent-review clauses in workflow or root instructions: when they came from older setup defaults, propose scoped replacements and confirm the team's intent; when their origin is unclear, ask. Preserve documented team overrides, and update every affected file to the agreed scope together.
 
 ## Process
@@ -41,9 +43,10 @@ Older configuration needs these migrations as part of the run, without a separat
 Inventory the repository, file by file:
 
 - Code host: `git remote -v` and `.git/config` identify the host and repository. Confirm how the agent can inspect and publish branches and change requests there, through the host's CLI, API, or another available connection. A local-only repository may record local delivery if the team does not require a hosted change request.
+- Base branch protection: for a hosted repository, the rules on the recorded base branch, else the default branch, inspected as [branch-protection.md](branch-protection.md) directs.
 - Work tracker: identify it from the repository and existing configuration, independently of the code host; a GitHub remote is no evidence of GitHub Issues. Confirm how the agent can read and publish work, set the required fields, read parent and child relationships, and observe state.
 - `AGENTS.md` at the repo root: existing reporting rules, any `## Agent skills` section, and whether the path is a symlink.
-- Other agent instruction files: repository `CLAUDE.md`, `.claude/CLAUDE.md`, and relevant nested instruction files, with their unique rules, imports, and symlink targets.
+- Other agent instruction files: every `CLAUDE.md` and `.claude/CLAUDE.md` in the repository, other relevant nested instruction files, and any `CLAUDE.local.md` or `CLAUDE.md` above the repository root, with their unique rules, imports, and symlink targets.
 - `CONTRIBUTING.md`, `README.md`, and other process docs: existing team rules that the Snappedly workflow must preserve.
 - Change-request naming: documented title rules, title checks, and recent requests on the code host. Compare scope usage with domain docs and repository structure; recent titles are evidence for a proposal, not an approved scope list.
 - `docs/agents/`: every file an earlier run wrote. Note recorded choices, local edits, missing required information, and conflicts with the current repo.
@@ -88,6 +91,8 @@ For a new setup, ask how the user wants delivery and closure handled. On a repea
 
 Write the confirmed answers in the delivery and closure section: the base branch and merge strategy on their own lines, and each transition in its table with the evidence that establishes the event. Merge permission is its own answer: a closure-on-merge choice grants none.
 
+For delivery through a hosted change request, once the base branch, merge strategy, and merge actor are settled, propose base branch protection as [branch-protection.md](branch-protection.md) directs.
+
 When no production release policy is recorded, propose the template's release policy as the default and ask only about differences and the repository's specifics. If a merge automatically deploys to production, an agent merge needs an approval gate in the deployment system or invocation approval, whose instruction approves the production candidate.
 
 #### Section C: Triage roles
@@ -112,7 +117,7 @@ Run this section when exploration found frontend signals. Fill `docs/agents/fron
 
 `AGENTS.md` is the canonical root instruction file; treat references to `agent.md` as that file, and create it when missing. It carries the canonical `## Agent skills` block from step 4 alongside the project's other instructions, plus the optional `## Reporting` rule when the team accepts it.
 
-When the repo has `CLAUDE.md`, `.claude/CLAUDE.md`, nested instruction files, or an `AGENTS.md` symlink, read [instruction-files.md](instruction-files.md) and include their handling in the proposal.
+When the repo has a `CLAUDE.md` or `.claude/CLAUDE.md` at any level, other nested instruction files, or an `AGENTS.md` symlink, read [instruction-files.md](instruction-files.md) and include their handling in the proposal, with the recommended `CLAUDE.md` retirement.
 
 For a new setup, offer this section in the proposal as an optional rule, and add it to `AGENTS.md` only when the user accepts it. On a repeat run, preserve existing reporting guidance and propose this rule only when the user requests it:
 
@@ -130,8 +135,9 @@ For a new setup, show the user the exact draft before writing:
 
 - `docs/agents/code-host.md`, `issue-tracker.md`, `workflow.md`, and `domain.md`, plus `triage-labels.md` when `triage` is installed and `frontend.md` when Section E ran.
 - The canonical `## Agent skills` block for `AGENTS.md`, and the optional reporting section.
+- The base branch protection rule, and whether setup applies it through the host's API or the user applies it.
 - The domain-document migration, including content destinations, reference updates, and legacy file removals.
-- Any instruction-file changes, including preserved rules, compatibility files, and proposed removals.
+- Any instruction-file changes: the destination of each `CLAUDE.md` instruction, each proposed removal or bridge, and other preserved rules.
 
 On a repeat run, show a focused diff for each proposed edit and the complete content of any new file. Let the user edit the proposal before proceeding.
 
@@ -139,7 +145,7 @@ Completion criterion: the user has confirmed every proposed change, and every re
 
 ### 4. Write
 
-Write only the confirmed changes. In `AGENTS.md`, preserve surrounding content and update existing matching sections in place. Write each applicable `docs/agents/` file from the template step 2 names; on a repeat run, edit only confirmed sections and create only missing required files. Apply the domain migration as [domain-migration.md](domain-migration.md) directs, and instruction-file changes as [instruction-files.md](instruction-files.md) directs.
+Write only the confirmed changes. In `AGENTS.md`, preserve surrounding content and update existing matching sections in place. Write each applicable `docs/agents/` file from the template step 2 names; on a repeat run, edit only confirmed sections and create only missing required files. Apply the domain migration as [domain-migration.md](domain-migration.md) directs, instruction-file changes as [instruction-files.md](instruction-files.md) directs, and confirmed base branch protection as [branch-protection.md](branch-protection.md) directs.
 
 For a new `## Agent skills` block, use this shape, filling each line with the confirmed configuration. On a repeat run, edit only affected entries. Include the `### Triage roles` subsection only when `triage` is installed, and the `### Frontend` subsection only when Section E ran:
 
@@ -177,6 +183,10 @@ Completion criterion: `AGENTS.md` and every applicable `docs/agents/` file conta
 
 Tell the user which files were written and which Snappedly skills read them. Explain that `AGENTS.md` is the canonical project-instruction file and `docs/agents/*.md` files are the direct editing points for small convention changes. Re-run this setup when those conventions change or when a Snappedly release calls for a repository configuration update.
 
+Report the base branch protection as read back from the code host, or the reason `code-host.md` records for having none.
+
 For a domain migration, report the removed legacy paths, the destinations of their useful content, and any integration that could not be verified.
+
+For a `CLAUDE.md` retirement, report each removed or bridged file, where its instructions went, and any private `CLAUDE.local.md` or ancestor `CLAUDE.md` that still hides `AGENTS.md`. Tell the user to confirm in a new Claude Code session that `/memory` lists `AGENTS.md`.
 
 Completion criterion: the user can locate each configuration file and knows which file to edit for each kind of change.

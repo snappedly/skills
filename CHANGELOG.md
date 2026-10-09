@@ -4,6 +4,20 @@ All notable changes to Snappedly Skills are recorded here.
 
 ## [Unreleased]
 
+### Added
+
+- `setup-snappedly-skills` recommends protecting the base branch so every change arrives through a merged PR. The rule blocks direct pushes and force pushes for everyone, administrators included, and requires no approving review, so agents can still merge PRs. Setup applies it through the code host's API when it has admin access, or gives you the settings to apply, then reads the rule back and records it in `docs/agents/code-host.md`.
+
+### Changed
+
+- `setup-snappedly-skills` recommends retiring each repository `CLAUDE.md`. Claude Code reads `AGENTS.md` only when no `CLAUDE.md` exists, so a leftover `CLAUDE.md` hid the `AGENTS.md` that setup writes. Setup moves each rule `AGENTS.md` lacks into the `AGENTS.md` at the same directory, puts Claude-specific rules in `.claude/rules/`, and asks about conflicting rules. When a teammate's Claude Code cannot read `AGENTS.md` directly, setup proposes a `CLAUDE.md` that only imports `AGENTS.md` instead.
+
+### Updating existing repositories
+
+Rerun `setup-snappedly-skills` to review base branch protection and migrate an existing `CLAUDE.md`. Setup keeps existing branch rules, flags any that would block an agent merge, and records a declined rule with its reason so later runs do not ask again.
+
+For `CLAUDE.md`, setup shows where each rule goes and removes the file only when you agree. If you keep it, setup adds an `AGENTS.md` import and records your reason in the file so later runs do not ask again while it holds.
+
 ## [1.2.0] - 2026-10-09
 
 ### Added

@@ -11,6 +11,7 @@ Repository: [remote URL or local path]. The code host and work tracker are indep
 - Review capability: [hosted change requests, local branch review, or another review equivalent; selected delivery policy lives in `docs/agents/workflow.md`].
 - Checks and review: [how to inspect their current state].
 - Merge or delivery: [operation only; the base branch, merge strategy, and who may merge or deliver live in `docs/agents/workflow.md`].
+- Base branch protection: [the rule that requires a merged change request for every change to the base branch, its bypass actors, and the operation that reads it back; or why the base branch has none; `not applicable` without hosted change requests].
 - Work-item links: [link syntax and whether it automatically closes an item on the configured work tracker].
 
 ## Change request titles
