@@ -1,5 +1,19 @@
 [
   {
+    "version": "1.2.1",
+    "title": "Branch Protection and CLAUDE.md Retirement",
+    "changes": [
+      {
+        "type": "feature",
+        "summary": "Setup Snappedly Skills recommends protecting the base branch so every change arrives through a merged pull request. The rule blocks direct pushes, force pushes, and branch deletion for everyone, administrators included, and requires no approving review, so agents can still merge pull requests."
+      },
+      {
+        "type": "improvement",
+        "summary": "Setup Snappedly Skills recommends retiring each repository CLAUDE.md, because Claude Code ignores AGENTS.md while one exists. Setup moves each rule AGENTS.md lacks into it, keeps Claude-specific rules where Claude Code still loads them, and asks before removing anything."
+      }
+    ]
+  },
+  {
     "version": "1.2.0",
     "title": "Merge Approval and Production Verification",
     "changes": [

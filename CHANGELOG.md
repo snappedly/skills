@@ -4,6 +4,8 @@ All notable changes to Snappedly Skills are recorded here.
 
 ## [Unreleased]
 
+## [1.2.1] - 2026-10-09
+
 ### Added
 
 - `setup-snappedly-skills` recommends protecting the base branch so every change arrives through a merged PR. The rule blocks direct pushes and force pushes for everyone, administrators included, and requires no approving review, so agents can still merge PRs. Setup applies it through the code host's API when it has admin access, or gives you the settings to apply, then reads the rule back and records it in `docs/agents/code-host.md`.
@@ -97,6 +99,7 @@ npx skills remove ask-snappedly cleanup-local deliver deslop frontend-design fro
 
 The command skips any skill you don't have. Add `-g` if you installed the skills globally. Then rerun `/setup-snappedly-skills` in each project. It updates references to renamed skills and proposes removing configuration that only the removed skills read.
 
+[1.2.1]: https://github.com/snappedly/skills/releases/tag/v1.2.1
 [1.2.0]: https://github.com/snappedly/skills/releases/tag/v1.2.0
 [1.1.0]: https://github.com/snappedly/skills/releases/tag/v1.1.0
 [1.0.0]: https://github.com/snappedly/skills/releases/tag/v1.0.0
