@@ -4,6 +4,23 @@ All notable changes to Snappedly Skills are recorded here.
 
 ## [Unreleased]
 
+## [1.3.0] - 2026-10-10
+
+### Added
+
+- `submit` takes a branch to a PR ready for review and stops before the merge. It commits pending task changes, pushes, opens or updates the PR, marks it ready for review, and waits for its checks, the same way `deploy` does up to that point. When you run it again after review feedback, it re-requests review from each reviewer who asked for changes. Its report lists any steps the workflow gives the agent after the merge, such as closing tickets or verifying production, because no agent runs after a person merges.
+- `deploy` labels its PR `agent-merge` when the agent expects to merge it without waiting for anyone's review or approval, so reviewers can tell its PRs from ones awaiting their review. It creates the label when the repository lacks it. `deploy` removes the label whenever it stops without merging and adds it back on a later run that can merge. `submit` also removes it.
+
+### Changed
+
+- The README, `help-snappedly`, and `setup-snappedly-skills` now end the main workflow with `submit`, and present `deploy` as the way to skip human review and have the agent merge.
+
+### Updating existing repositories
+
+`npx skills update` updates only the skills you have installed, so add `submit` with `npx skills add snappedly/skills --skill submit`.
+
+Rerun `setup-snappedly-skills` to update the main workflow in `docs/agents/workflow.md` so it ends with `submit` and offers `deploy` to skip human review. Setup keeps an ending your team chose in place of the old default.
+
 ## [1.2.1] - 2026-10-09
 
 ### Added
@@ -99,6 +116,7 @@ npx skills remove ask-snappedly cleanup-local deliver deslop frontend-design fro
 
 The command skips any skill you don't have. Add `-g` if you installed the skills globally. Then rerun `/setup-snappedly-skills` in each project. It updates references to renamed skills and proposes removing configuration that only the removed skills read.
 
+[1.3.0]: https://github.com/snappedly/skills/releases/tag/v1.3.0
 [1.2.1]: https://github.com/snappedly/skills/releases/tag/v1.2.1
 [1.2.0]: https://github.com/snappedly/skills/releases/tag/v1.2.0
 [1.1.0]: https://github.com/snappedly/skills/releases/tag/v1.1.0

@@ -41,6 +41,18 @@ LINK_TARGETS = (
     re.compile(r"\b(?:href|src)\s*=\s*[\"']([^\"']+)[\"']", re.IGNORECASE),
 )
 URI_SCHEME = re.compile(r"[a-z][a-z0-9+.-]*:", re.IGNORECASE)
+# Each shared block and the files that must each carry one identical copy of it. Listing them here makes
+# the check fail when a copy's markers are deleted or mistyped, instead of silently skipping that copy.
+SHARED_BLOCKS = {
+    "delivery-base": ("skills/mainflow/deploy/SKILL.md", "skills/mainflow/submit/SKILL.md"),
+    "prepare-delivery": ("skills/mainflow/deploy/SKILL.md", "skills/mainflow/submit/SKILL.md"),
+}
+SHARED_BLOCK = re.compile(
+    r"^[ \t]*<!-- shared: ([a-z0-9-]+) -->\n(.*?)^[ \t]*<!-- /shared: \1 -->$", re.DOTALL | re.MULTILINE
+)
+SHARED_MARKER = re.compile(r"^[ \t]*<!-- /?shared: [a-z0-9-]+ -->$", re.MULTILINE)
+# Anything that looks like a shared marker, however it is spaced or cased.
+SHARED_MARKER_LIKE = re.compile(r"<!--\s*/?\s*shared\b", re.IGNORECASE)
 RELEASE_NOTES = ROOT / "changelog.json"
 CHANGE_TYPES = {"feature", "improvement", "fix", "security", "deprecation"}
 PRIVATE_TEXT = re.compile(
@@ -88,6 +100,39 @@ def validate_links(markdown_file: Path, package_root: Path, errors: list[str]) -
                 errors.append(f"{relative}: local link escapes skill package: {target}")
             elif not resolved.exists():
                 errors.append(f"{relative}: unresolved link {target}")
+
+
+def validate_shared_blocks(errors: list[str]) -> None:
+    # Skills install as separate folders, so steps that two skills share are copied into each one.
+    copies: dict[str, list[tuple[str, str]]] = {}
+    for markdown_file in sorted(SKILLS.rglob("*.md")):
+        relative = markdown_file.relative_to(ROOT).as_posix()
+        text = markdown_file.read_text(encoding="utf-8")
+        blocks = SHARED_BLOCK.findall(text)
+        markers = len(SHARED_MARKER_LIKE.findall(text))
+        if markers != len(SHARED_MARKER.findall(text)):
+            errors.append(
+                f"{relative}: malformed shared marker; write <!-- shared: name --> or <!-- /shared: name --> "
+                "alone on its line, with a lowercase name"
+            )
+        elif markers != 2 * len(blocks):
+            errors.append(f"{relative}: shared marker without a matching opening or closing marker")
+        for name, body in blocks:
+            if relative not in SHARED_BLOCKS.get(name, ()):
+                errors.append(f"{relative}: shared block '{name}' is not listed for this file in SHARED_BLOCKS")
+            copies.setdefault(name, []).append((relative, body))
+
+    for name, paths in SHARED_BLOCKS.items():
+        found = [(relative, body) for relative, body in copies.get(name, []) if relative in paths]
+        for path in paths:
+            count = sum(relative == path for relative, _ in found)
+            if count != 1:
+                errors.append(f"{path}: expected one shared block '{name}', found {count}")
+        if found:
+            first, expected = found[0]
+            for relative, body in found[1:]:
+                if body != expected:
+                    errors.append(f"{relative}: shared block '{name}' differs from {first}; make the copies identical")
 
 
 def validate_release_notes(errors: list[str]) -> None:
@@ -281,6 +326,7 @@ def main() -> int:
         if f"`{name}`" not in readme:
             errors.append(f"{README.name}: missing skill `{name}`")
 
+    validate_shared_blocks(errors)
     validate_release_notes(errors)
 
     if errors:

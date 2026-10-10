@@ -1,0 +1,5 @@
+interface:
+  display_name: "Submit"
+  short_description: "Commit and hand a ready change request to reviewers"
+policy:
+  allow_implicit_invocation: false
