@@ -42,8 +42,8 @@ Most work goes through four steps.
 ```mermaid
 flowchart LR
     grill["grill<br/>(optional)"] --> execute --> cleanup["clean-up"] --> submit --> review["a person reviews<br/>and merges"] --> merged(["merged"])
-    cleanup -.->|skip human review| deploy
-    deploy -.-> merged
+    cleanup -.-> deploy
+    deploy -.->|skip human review| merged
 ```
 
 | Skill | What it does |
