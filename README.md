@@ -11,7 +11,7 @@ Snappedly Skills is a collection of [Agent Skills](https://agentskills.io): Mark
 Each skill does one job, such as stress-testing a plan, reviewing a diff, or diagnosing an intermittent bug. The skills hand work to each other. They read your team's conventions from files in your repository, so one set of skills fits teams with different hosts, trackers, and review rules.
 
 > [!IMPORTANT]
-> These skills direct an AI agent that can edit files, run commands, push code, and merge pull requests. They are provided as is, without warranty of any kind, and you use them at your own risk. Read the [disclaimer](#disclaimer) before you install them.
+> These skills direct an AI agent that can edit files, run commands, push code, and merge pull requests. Read the [disclaimer](#disclaimer) before you install them.
 
 ## Quick start
 
@@ -23,7 +23,7 @@ Each skill does one job, such as stress-testing a plan, reviewing a diff, or dia
 
    The main workflow skills use the practice skills in the [Background](#background-practices) group, such as `code-cleanup`, `code-review`, and `pr`, and `resolving-merge-conflicts` from Upkeep. If you install only some skills, include those too.
 
-2. In the repository you work on, type `/setup-snappedly-skills` in Claude Code or `$setup-snappedly-skills` in Codex. Setup asks about your code host, work tracker, and team workflow, and saves your answers in the repository.
+2. In the repository you work on, type `/setup-snappedly-skills` in your coding agent. Setup asks about your code host, work tracker, and team workflow, and saves your answers in the repository.
 
 3. Describe the change you want, then run the main workflow:
 
@@ -33,11 +33,11 @@ Each skill does one job, such as stress-testing a plan, reviewing a diff, or dia
 
    A person then reviews and merges the PR. To skip that review and let the agent merge the PR itself, end with `/deploy` instead of `/submit`.
 
-To run a skill, type its name as a command: `/grill` in Claude Code or `$grill` in Codex. Some skills, such as `setup-snappedly-skills`, `execute`, `clean-up`, `submit`, and `deploy`, start only when you type their command. Others, such as `grill`, `code-review`, and `tdd`, also load on their own when a task calls for them. If you are not sure which skill fits, type `/help-snappedly` or `$help-snappedly`.
+To run a skill, type its name as a command: `/grill`. Some skills, such as `setup-snappedly-skills`, `execute`, `clean-up`, `submit`, and `deploy`, start only when you type their command. Others, such as `grill`, `code-review`, and `tdd`, load automatically when a task calls for them. If you are not sure which skill fits, type `/help-snappedly`.
 
 ## The main workflow
 
-Most work goes through four steps. Settle the plan, carry it out, check the result, and open a PR that a person reviews and merges. When the change doesn't need that review, `deploy` replaces `submit` and the agent merges the PR itself.
+Most work goes through four steps.
 
 ```mermaid
 flowchart LR
@@ -71,7 +71,6 @@ Each skill lives at `skills/<group>/<name>/SKILL.md`, and the groups below follo
 
 ---
 
-
 ### Direction: explore ideas and settle design decisions
 
 | Skill | What it does |
@@ -80,7 +79,6 @@ Each skill lives at `skills/<group>/<name>/SKILL.md`, and the groups below follo
 | `research` | Investigates a question against primary sources and captures cited findings. |
 
 ---
-
 
 ### Mainflow: plan, build, check, and merge
 
@@ -96,7 +94,6 @@ Each skill lives at `skills/<group>/<name>/SKILL.md`, and the groups below follo
 
 ---
 
-
 ### Tools: standalone helpers
 
 | Skill | What it does |
@@ -107,7 +104,6 @@ Each skill lives at `skills/<group>/<name>/SKILL.md`, and the groups below follo
 | `workflow-mapping` | Maps user journeys and process scenarios, with their outcomes, logic mismatches, and missing cases. |
 
 ---
-
 
 ### Upkeep: maintain the codebase and triage incoming work
 
@@ -120,7 +116,6 @@ Each skill lives at `skills/<group>/<name>/SKILL.md`, and the groups below follo
 | `triage` | Moves issues and external PRs through triage, verifies claims, and writes agent-ready briefs. |
 
 ---
-
 
 ### Background: practices
 
@@ -147,7 +142,6 @@ The skills carry no project-specific policy. `setup-snappedly-skills` writes you
 - `docs/agents/issue-tracker.md`: your work tracker. GitHub Issues is built in. For another tracker, setup records the operations your team uses.
 - `docs/agents/workflow.md`: the base branch and merge strategy, when change requests open and merge, who merges and who approves the merge, when tickets and specs close, who signs off and who verifies production, and the evidence each step needs.
 - `docs/agents/triage-labels.md`, `docs/agents/domain.md`, and `docs/agents/frontend.md`: triage roles, the layout of your domain docs, and your frontend conventions.
-- `AGENTS.md`: pointers to all of these files. Claude Code ignores `AGENTS.md` while a `CLAUDE.md` exists, so setup recommends moving an older `CLAUDE.md`'s rules into `AGENTS.md` and removing the file.
 
 The `pr` skill titles pull requests as `type(scope): description` by default, with a scope from the approved list. If your repository has its own title convention, that convention wins.
 
