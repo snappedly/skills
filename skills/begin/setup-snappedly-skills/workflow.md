@@ -10,9 +10,9 @@ How work moves from an agreed request to a production-verified change.
 
 [State what must be agreed before implementation starts and any exceptions to the verification defaults below.]
 
-The main flow is `/grill` (optional), `/execute`, `/clean-up`, then `/deploy`; the last three read this file for checks, review depth, finding disposition, and the delivery and closure table below. A small, clear user request can serve as the implementation brief. Ticketed work starts from an executable issue or agent brief, which `/execute` takes as its plan. A planning spec is not an executable work item; its executable child tickets carry the work.
+The main flow is `/grill` (optional), `/execute`, `/clean-up`, then `/submit` for a person to review and merge, or `/deploy` to skip that review and have the agent merge; every step after `/grill` reads this file for checks, review depth, finding disposition, and the delivery and closure table below. A small, clear user request can serve as the implementation brief. Ticketed work starts from an executable issue or agent brief, which `/execute` takes as its plan. A planning spec is not an executable work item; its executable child tickets carry the work.
 
-`/clean-up` leaves its edits unstaged and uncommitted on the current branch and shows what it changed. `/deploy` commits pending task changes, cleanup edits included, before delivery, or delivers the existing HEAD when none remain. An explicit commit request can also commit the batch; on the base or default branch it first creates a task branch, as `/deploy` does. Recorded commit checks, conventions, delivery actors, and approval requirements still apply.
+`/clean-up` leaves its edits unstaged and uncommitted on the current branch and shows what it changed. `/submit` and `/deploy` commit pending task changes, cleanup edits included, before delivery, or deliver the existing HEAD when none remain. An explicit commit request can also commit the batch; on the base or default branch it first creates a task branch, as `/submit` and `/deploy` do. Recorded commit checks, conventions, delivery actors, and approval requirements still apply.
 
 ## Verification scope
 

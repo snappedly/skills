@@ -31,6 +31,7 @@ Ask questions and discuss ideas in [Discussions](https://github.com/snappedly/sk
 - Each skill has `license: MIT` frontmatter and a `LICENSE.txt` file with the Snappedly copyright notice.
 - Local links, images, reference definitions, and `href` or `src` attributes resolve to files inside the skill package.
 - The README names every skill.
+- Each shared block listed in `SHARED_BLOCKS` in `scripts/validate-skills.py` appears exactly once in each file listed for it, between `<!-- shared: name -->` and `<!-- /shared: name -->` lines, and every copy is identical. Skills install as separate folders, so text that two skills share, such as the `prepare-delivery` steps in `deploy` and `submit`, is copied into each skill. Validation fails on a missing, duplicated, or differing copy, a malformed or unmatched marker, and a block `SHARED_BLOCKS` does not list. Edit one copy, then paste it over the others. To share new text, wrap each copy in markers and add the block to `SHARED_BLOCKS`.
 - `changelog.json` lists releases newest first, and each entry follows the rules in [Releases](#releases).
 
 ## Pull requests

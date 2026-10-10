@@ -1,5 +1,23 @@
 [
   {
+    "version": "1.3.0",
+    "title": "Submit for Review",
+    "changes": [
+      {
+        "type": "feature",
+        "summary": "Submit takes a branch to a pull request ready for review and stops before the merge. It commits pending task changes, pushes, opens or updates the pull request, marks it ready for review, and waits for its checks. When you run it again after review feedback, it requests review again from each reviewer who asked for changes. Its report lists any steps the workflow gives the agent after the merge, because no agent runs after a person merges."
+      },
+      {
+        "type": "feature",
+        "summary": "Deploy labels its pull request agent-merge when the agent expects to merge it without waiting for anyone's review or approval, so reviewers can tell it from pull requests awaiting their review. Deploy removes the label whenever it stops without merging, and Submit removes it too."
+      },
+      {
+        "type": "improvement",
+        "summary": "The README, Help Snappedly, and Setup Snappedly Skills now end the main workflow with Submit, and present Deploy as the way to skip human review and have the agent merge. Rerun Setup Snappedly Skills to update the workflow an existing repository records."
+      }
+    ]
+  },
+  {
     "version": "1.2.1",
     "title": "Branch Protection and CLAUDE.md Retirement",
     "changes": [

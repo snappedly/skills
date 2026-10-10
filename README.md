@@ -28,18 +28,22 @@ Each skill does one job, such as stress-testing a plan, reviewing a diff, or dia
 3. Describe the change you want, then run the main workflow:
 
    ```text
-   /grill  →  /execute  →  /clean-up  →  /deploy
+   /grill  →  /execute  →  /clean-up  →  /submit
    ```
 
-To run a skill, type its name as a command: `/grill` in Claude Code or `$grill` in Codex. Some skills, such as `setup-snappedly-skills`, `execute`, `clean-up`, and `deploy`, start only when you type their command. Others, such as `grill`, `code-review`, and `tdd`, also load on their own when a task calls for them. If you are not sure which skill fits, type `/help-snappedly` or `$help-snappedly`.
+   A person then reviews and merges the PR. To skip that review and let the agent merge the PR itself, end with `/deploy` instead of `/submit`.
+
+To run a skill, type its name as a command: `/grill` in Claude Code or `$grill` in Codex. Some skills, such as `setup-snappedly-skills`, `execute`, `clean-up`, `submit`, and `deploy`, start only when you type their command. Others, such as `grill`, `code-review`, and `tdd`, also load on their own when a task calls for them. If you are not sure which skill fits, type `/help-snappedly` or `$help-snappedly`.
 
 ## The main workflow
 
-Most work goes through four skills. Settle the plan, carry it out, check the result, and merge it.
+Most work goes through four steps. Settle the plan, carry it out, check the result, and open a PR that a person reviews and merges. When the change doesn't need that review, `deploy` replaces `submit` and the agent merges the PR itself.
 
 ```mermaid
 flowchart LR
-    grill["grill<br/>(optional)"] --> execute --> cleanup["clean-up"] --> deploy
+    grill["grill<br/>(optional)"] --> execute --> cleanup["clean-up"] --> submit --> review["a person reviews<br/>and merges"] --> merged(["merged"])
+    cleanup -.->|skip human review| deploy
+    deploy -.-> merged
 ```
 
 | Skill | What it does |
@@ -47,9 +51,10 @@ flowchart LR
 | `grill` | Interviews you about a plan until every open decision is settled. Skip it when the change is clear: describe what you want, let the agent propose a change, and run `execute` on that proposal. |
 | `execute` | Carries out the settled plan, or a tracker issue you name, such as `/execute #42`. Substantial independent pieces run in parallel agents. Then it cleans up, reviews the result, and opens a preview. |
 | `clean-up` | The final check. For an independent look, run it in a fresh session, ideally on a different model or provider. It repeats cleanup and review over everything changed on the branch, fixes clear findings, and shows what it changed. Edits stay uncommitted. |
-| `deploy` | Commits pending task changes first, including edits left by `clean-up`, and creates a task branch when you start on the base or default branch. Then it pushes, opens or updates the PR, waits for its checks, merges into the branch your workflow names, closes the tickets your workflow assigns to the agent, and verifies production when your workflow asks it to. When your workflow records invocation approval, your instruction to merge is the approval, even for a merge that deploys to production. `deploy` is one way to give it: it asks you first only when content from outside your checkout entered the delivery, such as commits pushed from elsewhere or merge conflicts it resolved, and it verifies and closes out afterwards. Saying "merge this" in chat also merges, without those steps. It stops before the merge when your workflow gives the merge to a person, or when the merge would deploy to production without a recorded deployment approval gate or invocation approval. After you merge, run `deploy` again to close out. |
+| `submit` | Commits pending task changes first, including edits left by `clean-up`, and creates a task branch when you start on the base or default branch. Then it pushes, opens or updates the PR, marks it ready for review, and waits for its checks. A person reviews the PR and merges it: `submit` never merges, whatever your workflow records. When you run it again after review feedback, it re-requests review from each reviewer who asked for changes. It also removes the `agent-merge` label if `deploy` added it earlier. Its report lists any steps your workflow gives the agent after the merge, because no agent runs after a person merges. |
+| `deploy` | Skips human review when your workflow and code host let the agent merge. It commits, pushes, opens or updates the PR, and waits for its checks as `submit` does, then merges into the branch your workflow names, closes the tickets your workflow assigns to the agent, and verifies production when your workflow asks it to. When your workflow records invocation approval, your instruction to merge is the approval, even for a merge that deploys to production. `deploy` is one way to give it: it asks you first only when content from outside your checkout entered the delivery, such as commits pushed from elsewhere or merge conflicts it resolved, and it verifies and closes out afterwards. Saying "merge this" in chat also merges, without those steps. It stops before the merge when your workflow gives the merge to a person, or when the merge would deploy to production without a recorded deployment approval gate or invocation approval. After you merge, run `deploy` again to close out. When `deploy` expects to merge the PR without waiting for anyone's review or approval, it labels the PR `agent-merge`, so reviewers can tell it apart and filter it out with `-label:agent-merge`. It removes the label whenever it stops without merging. |
 
-When setup records local, branch-only, or integration-branch delivery, `deploy` follows that workflow and verifies its result without requiring a hosted PR. Local-only delivery does not fetch or push remote branches.
+Setup can record local, branch-only, or integration-branch delivery instead of a hosted PR. Then `submit` publishes the checked branch for review and leaves that workflow's delivery step to the reviewer. `deploy` follows that workflow and verifies its result. Local-only delivery does not fetch or push remote branches.
 
 Use `build-local` when you want a browser preview of the current changes.
 
@@ -86,7 +91,8 @@ Each skill lives at `skills/<group>/<name>/SKILL.md`, and the groups below follo
 | `grill` | Interviews you about a plan until every open decision is settled. |
 | `execute` | Carries out the settled plan or a named issue, with parallel agents where the work splits, then cleans up, reviews, and opens a preview. |
 | `clean-up` | Cleans up, reviews, fixes, and shows what changed, leaving edits uncommitted. |
-| `deploy` | Delivers checked changes through a hosted PR or the configured local, branch-only, or integration-branch workflow. |
+| `submit` | Opens or updates a PR ready for review, waits for its checks, and leaves the merge to a person. |
+| `deploy` | Delivers checked changes through a hosted PR or the configured local, branch-only, or integration-branch workflow, merging without human review when your workflow allows. |
 
 ---
 
@@ -155,7 +161,7 @@ The `pr` skill titles pull requests as `type(scope): description` by default, wi
 
 2. Rerun `setup-snappedly-skills` in each project. Setup keeps your existing conventions and shows each proposed change for your approval.
 
-`npx skills update` does not uninstall a skill that a release removed. It reports the skill as failed and leaves the old copy in place. Remove it with `npx skills remove <name>`. The changelog lists the skills each release removed.
+`npx skills update` updates only the skills you have installed. To add a skill a release introduced, run `npx skills add snappedly/skills --skill <name>`. It also does not uninstall a skill that a release removed. It reports the skill as failed and leaves the old copy in place. Remove it with `npx skills remove <name>`. The changelog lists the skills each release removed.
 
 The [Skills changelog](https://docs.snappedly.com/changelog/?product=skills) lists what changed in each release. [CHANGELOG.md](CHANGELOG.md) has the full details.
 
