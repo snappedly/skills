@@ -1,5 +1,27 @@
 [
   {
+    "version": "1.4.5",
+    "title": "Isolated Checks and Resumable Validation",
+    "changes": [
+      {
+        "type": "fix",
+        "summary": "Execute workers can run focused checks and prerequisite builds in parallel when their resources are isolated. Required full suites and final builds run on the combined change unless repository policy requires them earlier."
+      },
+      {
+        "type": "fix",
+        "summary": "Code Cleanup uses supported resource isolation or shared locks for concurrent checks. Resource acquisition defaults to a five-minute timeout, separate from check execution. Deferred checks retain their records and resume once their resume condition is met."
+      },
+      {
+        "type": "fix",
+        "summary": "Code Review reports deferred checks with their resume condition. Execute and Clean Up retain the check record. Submit and Deploy stop before delivery and resume preparation when run again after the condition is met. Required deferred checks prevent delivery until verified."
+      },
+      {
+        "type": "fix",
+        "summary": "Setup Snappedly Skills records shared resources, supported isolation or locking commands, and resource-acquisition timeouts. Rerun setup to refresh existing repositories while preserving team requirements and correcting entries that classify worktree-local output as shared."
+      }
+    ]
+  },
+  {
     "version": "1.4.4",
     "title": "Concurrent Check Runs",
     "changes": [
