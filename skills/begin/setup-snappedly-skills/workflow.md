@@ -44,7 +44,7 @@ Broader checks are required when repository policy, dependency/build/package cha
 
 ### Concurrent runs
 
-[Each check that two worktrees on one machine cannot run at the same time, with the shared resource it holds or removes, such as a fixed port, a container or database name, a lock, build output, or a cleanup of every container carrying a label; or `All checks can run concurrently`.]
+[Each check that two worktrees on one machine cannot run at the same time, with the shared resource it holds or removes; or `All checks can run concurrently`.]
 
 ## Required checks
 

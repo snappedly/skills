@@ -9,7 +9,7 @@
       },
       {
         "type": "improvement",
-        "summary": "Code Cleanup checks for another worktree's run before starting a check that cannot run concurrently. When a check collides with another run, it leaves that run going, reruns once after it exits, and reports a repeated collision as blocked rather than as a failure of the change."
+        "summary": "Code Cleanup checks for another worktree's run before starting a check that cannot run concurrently. When a check collides with another worktree's check run, it leaves that run going and reruns once after it finishes. A collision that repeats, or one with a process that stays up such as another worktree's preview server, is reported as blocked rather than as a failure of the change."
       },
       {
         "type": "improvement",

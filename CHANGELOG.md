@@ -12,12 +12,12 @@ All notable changes to Snappedly Skills are recorded here.
 
 ### Changed
 
-- `code-cleanup` checks for another worktree's run before starting a check listed under Concurrent runs. When a check fails because a port or other resource is taken, or another run removed what the check created, it finds that run, leaves it running, and reruns once after it exits. A repeated collision is recorded as blocked, naming the other run and the resource, rather than as a failure of the change, and is reported as a gap the repository can close by making the check safe to run concurrently.
+- `code-cleanup` checks for another worktree's run before starting a check listed under Concurrent runs. When a check fails because a port or other resource is taken, or another process removed what the check created, it finds that process and stops it only if the task started it. When the process is another worktree's check run, it reruns the check once after that run finishes. When the process stays up, such as another worktree's preview server, or the collision repeats, the check is recorded as blocked, naming the process and the resource, rather than as a failure of the change, and is reported as a gap the repository can close by making the check safe to run concurrently.
 - `execute` workers run only focused checks. Full suites, builds, and the checks listed under Concurrent runs run once on the combined result, since the workers share one machine.
 
 ### Updating existing repositories
 
-Rerun `setup-snappedly-skills` to add the Concurrent runs section to `docs/agents/workflow.md`. Setup fills it from each check's configuration and moves any port or resource note already recorded for a check into it.
+Rerun `setup-snappedly-skills` to add the Concurrent runs section to `docs/agents/workflow.md`. Setup fills it from the shared resources it finds for each check and moves any port or resource note already recorded for a check into it.
 
 ## [1.4.3] - 2026-10-11
 
