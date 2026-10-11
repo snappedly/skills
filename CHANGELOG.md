@@ -4,13 +4,16 @@ All notable changes to Snappedly Skills are recorded here.
 
 ## [Unreleased]
 
+## [1.4.1] - 2026-10-11
+
 ### Added
 
-- `grill` checks whether a settled code change fits one `execute` run and one reviewable PR. When it does not, `grill` recommends a planning spec with executable child tickets, and proposes the tickets as tracer bullets. The first ticket is the thinnest slice that works end to end through every layer, and each later ticket adds one behavior to that working path. After you confirm, `grill` publishes the spec and tickets to your tracker, links each ticket to the spec, and recommends running `execute` on the first ticket in a fresh session.
+- `grill` checks whether a settled code change fits one `execute` run and one reviewable PR. When it does not, `grill` recommends a planning spec with executable child tickets, and proposes the tickets as tracer bullets. The first ticket is the thinnest slice that works end to end through every layer, and each later ticket adds one behavior to that working path. After you confirm, `grill` publishes the spec and tickets to your tracker, links each ticket to the spec, and recommends running `execute` on the spec in a fresh session.
+- `execute` carries out a planning spec. Name the spec, such as `/execute #40`, and its ready tickets become the plan: the open tickets whose blockers have all closed. Naming the spec approves its tickets, so they need no `ready-for-agent` label, but a ticket in another triage state, such as `ready-for-human`, stays out. Each ticket's acceptance criteria become requirements, tickets that share no files or contracts run on parallel workers, and the tickets land as one combined change. On a `grill` spec, the first run builds only the tracer bullet, because it blocks every other ticket. After each run's tickets close, the next run takes the tickets they unblocked. The report lists which tickets the change completes, so `submit` and `deploy` can link them, and each child it left out with the reason, such as the blockers it waits on.
 
 ### Changed
 
-- `help-snappedly` routes a large effort through `grill`'s spec and tickets, then `execute` on one ticket at a time.
+- `help-snappedly` routes a large effort through `grill`'s spec and tickets, then `execute` on the spec, in a fresh session each time its finished tickets close.
 
 ## [1.4.0] - 2026-10-11
 
@@ -140,6 +143,7 @@ npx skills remove ask-snappedly cleanup-local deliver deslop frontend-design fro
 
 The command skips any skill you don't have. Add `-g` if you installed the skills globally. Then rerun `/setup-snappedly-skills` in each project. It updates references to renamed skills and proposes removing configuration that only the removed skills read.
 
+[1.4.1]: https://github.com/snappedly/skills/releases/tag/v1.4.1
 [1.4.0]: https://github.com/snappedly/skills/releases/tag/v1.4.0
 [1.3.0]: https://github.com/snappedly/skills/releases/tag/v1.3.0
 [1.2.1]: https://github.com/snappedly/skills/releases/tag/v1.2.1
