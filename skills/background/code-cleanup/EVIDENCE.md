@@ -8,4 +8,14 @@ After validation, the caller may commit. Verify that the commit contains the che
 
 Across later commits, reuse a passing result only when its checked files and relevant dependencies, configuration, command, directory, scope, tool versions, and environment assumptions remain unchanged. Record the original validated SHA, current target SHA, and concrete comparison supporting reuse. Consider transitive inputs, not just files named in the command. If coverage or equivalence cannot be established, rerun the affected check. A changed SHA, report timestamp, or evidence label alone does not invalidate a result.
 
-A fix may require a full test/build rerun when it affects inputs to that check. Explain that dependency, and rerun the check even when the rerun exceeds the caller's budget, if any. Repository-required CI still runs, but the coordinator need not duplicate equivalent passing CI locally.
+A fix may require a full test/build rerun when it affects inputs to that check. Explain that dependency and rerun the check. When the caller's deadline or execution budget prevents the rerun, record it as blocked and leave dependent delivery pending. Repository-required CI still runs, but the coordinator need not duplicate equivalent passing CI locally.
+
+## Deferred checks
+
+Use the repository's resource-acquisition timeout, defaulting to five minutes, capped by the caller's remaining time. If the resource remains occupied, mark the check deferred and continue independent work. Check execution uses its own timeout.
+
+Preserve the check record, adding the resource, collision evidence, and resume condition. Use the harness's persistent task state or a caller-owned file outside tracked source and disposable worker worktrees. If persistence is unavailable, return the record for the caller to retain.
+
+Resume only after the resource becomes available or its isolation or locking is fixed. Carry the deferral across cleanup passes and handoffs until then. On resumption, reuse any active check through the harness's task controls and validate current content under the evidence rules above. If the retry also collides, mark the check blocked.
+
+When only deferred checks remain, return their records. Use the harness's supported continuation mechanism when available, or give the command for manual resumption.
