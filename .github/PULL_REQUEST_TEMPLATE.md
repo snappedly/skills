@@ -16,3 +16,7 @@
 ## Release impact
 
 <!-- Note any versioning, invocation, or migration impact. -->
+
+## Docs site
+
+<!-- For a release, link the snappedly/snappedly-website pull request that updates the Skills pages, or write "No change:" and the reason. Otherwise delete this section. -->

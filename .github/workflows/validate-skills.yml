@@ -2,6 +2,8 @@ name: Validate skills
 
 on:
   pull_request:
+    # edited reruns the docs site check when the description changes.
+    types: [opened, synchronize, reopened, edited]
   push:
     branches:
       - main
@@ -14,9 +16,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+        with:
+          # A pull request checks out a merge commit; its first parent is the base branch.
+          fetch-depth: 2
       - uses: actions/setup-python@v7
         with:
           # Keep in step with the minimum version in CONTRIBUTING.md.
           python-version: "3.12"
       - run: python -m pip install -r requirements-validation.txt
       - run: python scripts/validate-skills.py
+      - if: github.event_name == 'pull_request'
+        env:
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: python scripts/check-release-docs.py HEAD^1
