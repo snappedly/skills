@@ -48,8 +48,8 @@ flowchart LR
 
 | Skill | What it does |
 | --- | --- |
-| `grill` | Interviews you about a plan until every open decision is settled. When the plan is too big for one PR, it proposes a spec with tracer-bullet tickets for `execute` to take one at a time. Skip it when the change is clear: describe what you want, let the agent propose a change, and run `execute` on that proposal. |
-| `execute` | Carries out the settled plan, or a tracker issue you name, such as `/execute #42`. Substantial independent pieces run in parallel agents. Then it cleans up, reviews the result, and opens a preview. |
+| `grill` | Interviews you about a plan until every open decision is settled. When the plan is too big for one PR, it proposes a spec with tracer-bullet tickets for `execute` to carry out as their blockers close. Skip it when the change is clear: describe what you want, let the agent propose a change, and run `execute` on that proposal. |
+| `execute` | Carries out the settled plan, or a tracker issue you name, such as `/execute #42`. Name a planning spec to carry out its tickets whose blockers have closed. Substantial independent pieces, such as separate tickets, run in parallel agents. Then it cleans up, reviews the result, and opens a preview. |
 | `clean-up` | The final check. For an independent look, run it in a fresh session, ideally on a different model or provider. It repeats cleanup and review over everything changed on the branch, fixes clear findings, and shows what it changed. Edits stay uncommitted. |
 | `submit` | Commits pending changes, pushes, opens or updates the PR, marks it ready for review, and waits for its checks. A person then reviews and merges it: `submit` never merges. After review feedback, run it again to push fixes and re-request review. |
 | `deploy` | Does what `submit` does, then merges the PR itself when your workflow allows, closes tickets, and verifies production if your workflow asks. It asks you first if commits from elsewhere or resolved conflicts entered the PR, and stops when the merge needs a person. PRs it plans to merge without review get the `agent-merge` label, so reviewers can filter them out. |
@@ -85,7 +85,7 @@ Each skill lives at `skills/<group>/<name>/SKILL.md`, and the groups below follo
 | Skill | What it does |
 | --- | --- |
 | `grill` | Interviews you about a plan until every open decision is settled, and splits a plan too big for one PR into a spec with tracer-bullet tickets. |
-| `execute` | Carries out the settled plan or a named issue, with parallel agents where the work splits, then cleans up, reviews, and opens a preview. |
+| `execute` | Carries out the settled plan, a named issue, or a planning spec's ready tickets, with parallel agents where the work splits, then cleans up, reviews, and opens a preview. |
 | `clean-up` | Cleans up, reviews, fixes, and shows what changed, leaving edits uncommitted. |
 | `submit` | Opens or updates a PR ready for review, waits for its checks, and leaves the merge to a person. |
 | `deploy` | Merges checked changes without human review when your workflow allows, then closes tickets and verifies production. |

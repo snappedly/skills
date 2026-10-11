@@ -8,7 +8,7 @@ A plan too big for one `/execute` run becomes a **planning spec**, which records
 2. **Widen the path one behavior at a time.** Each later ticket adds one behavior to the working path, such as another case, entry point, data shape, or error path. It is a vertical slice too, and the system still works and can be demonstrated when it merges.
 3. **Build each layer inside the slice that first uses it.** A ticket named after a layer, such as "add the tables", "build the endpoints", or "build the screens", is a horizontal slice that nobody can see working until the others land. Re-cut it along behaviors.
 4. **Size each ticket for one run.** A ticket fits one `/execute` session and one reviewable PR. Split a bigger slice along behaviors, and combine a slice too small to demonstrate on its own with its neighbor.
-5. **Order by dependency.** The tracer bullet blocks every other ticket. Name each ticket's blockers. Tickets that share no files or contracts can run in parallel once their blockers merge.
+5. **Order by dependency.** The tracer bullet blocks every other ticket. Name each ticket's blockers. Once their blockers close, `/execute` on the spec carries out the unblocked tickets together, in parallel where they share no files or contracts.
 
 Done when every behavior in the plan belongs to exactly one ticket or to the spec's out-of-scope list, the first ticket is a tracer bullet, and every ticket is a vertical slice with its blockers named.
 
@@ -71,4 +71,4 @@ Publish only after the user confirms the shared understanding, tickets included.
 3. Link each ticket to the spec through the parent and child operation that `issue-tracker.md` records. When triage roles are configured, give the `ready-for-agent` state to the tickets with no open blockers, and report the others as waiting on their blockers.
 4. Fill in the spec's Tickets section, then read the spec and each ticket back from the tracker.
 
-Done when the spec and every ticket exist in the tracker, every ticket links to the spec, and the spec lists the tickets in order. Report each item with its link and blockers. Recommend `/execute` on the first ticket in a fresh session. Also recommend that after each ticket merges, the user updates the remaining tickets with what that ticket revealed before the next one starts.
+Done when the spec and every ticket exist in the tracker, every ticket links to the spec, and the spec lists the tickets in order. Report each item with its link and blockers. Recommend `/execute` on the spec in a fresh session; its first run builds the tracer bullet alone. Also recommend that after each run's change merges, the user updates the remaining tickets with what it revealed before the next run starts.

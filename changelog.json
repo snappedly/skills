@@ -1,5 +1,23 @@
 [
   {
+    "version": "1.4.1",
+    "title": "Planning Specs and Tracer-Bullet Tickets",
+    "changes": [
+      {
+        "type": "feature",
+        "summary": "Grill checks whether a settled code change fits one Execute run and one reviewable pull request. When it does not, Grill recommends a planning spec with executable child tickets and proposes the tickets as tracer bullets: the first is the thinnest slice that works end to end, and each later ticket adds one behavior. After you confirm, Grill publishes the spec and tickets to your tracker and links each ticket to the spec."
+      },
+      {
+        "type": "feature",
+        "summary": "Execute carries out a planning spec. Name the spec, and its ready tickets, the open tickets whose blockers have all closed, become one combined change, built on parallel workers where they share no files. Naming the spec approves its tickets without the ready-for-agent label, but a ticket in another triage state stays out. On a Grill spec, the first run builds only the tracer bullet, and each later run takes the tickets the previous run unblocked."
+      },
+      {
+        "type": "improvement",
+        "summary": "Help Snappedly routes a large effort through Grill's spec and tickets, then Execute on the spec in a fresh session each time its finished tickets close."
+      }
+    ]
+  },
+  {
     "version": "1.4.0",
     "title": "Resolving Merge Conflicts Removed",
     "changes": [
