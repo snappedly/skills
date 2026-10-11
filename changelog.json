@@ -1,5 +1,23 @@
 [
   {
+    "version": "1.4.4",
+    "title": "Concurrent Check Runs",
+    "changes": [
+      {
+        "type": "feature",
+        "summary": "Setup Snappedly Skills records which checks two worktrees on one machine cannot run at the same time, and the shared resource each holds or removes, such as a fixed port, a container name, or a cleanup of every container carrying a label."
+      },
+      {
+        "type": "improvement",
+        "summary": "Code Cleanup checks for another worktree's run before starting a check that cannot run concurrently. When a check collides with another run, it leaves that run going, reruns once after it exits, and reports a repeated collision as blocked rather than as a failure of the change."
+      },
+      {
+        "type": "improvement",
+        "summary": "Execute workers run only focused checks. Full suites, builds, and checks that cannot run concurrently run once on the combined result, since the workers share one machine."
+      }
+    ]
+  },
+  {
     "version": "1.4.3",
     "title": "Diagnosing Bugs Evidence Handling",
     "changes": [

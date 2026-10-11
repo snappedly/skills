@@ -12,13 +12,15 @@ Clean up and validate one coherent change, then return evidence to the caller, w
 
 Read applicable agent instructions, `docs/agents/workflow.md`, CI, and check configuration. Use the caller's base and task scope, including staged, unstaged, and untracked task files. Preserve unrelated work and the index. A review-only request stays read-only and reports missing evidence.
 
-When a coordinating caller splits a change across worker agents, each worker runs targeted tests, typechecking, formatting/lint, and local cleanup; one integrated cleanup owns repository-required full tests and builds. Repository policy overrides this default scoping; record broader requirements in the caller's existing notes.
+When a coordinating caller splits a change across worker agents, each worker runs targeted tests, typechecking, formatting/lint, and local cleanup; one integrated cleanup owns repository-required full tests and builds, and the checks `workflow.md` lists under Concurrent runs. Repository policy overrides this default scoping; record broader requirements in the caller's existing notes.
 
 ## Match checks to the change
 
 When repository policy leaves scope open, use configured checks for affected files or packages and relevant focused tests. Presentation edits use preview evidence and applicable static checks; full suites and production or deployment builds need a concrete dependency risk, a delivery requirement, or explicit policy. Broaden for shared runtime, dependency, build, security, or data changes.
 
 Before browser tests, inspect their server configuration. Let the test runner own its server, or use its supported external-server setting with a verified preview of the same working tree. Check both port and framework lock/output ownership. Resolve a collision before retrying; changing only the port may leave a shared lock conflict. Stop only task-owned servers, and restore a requested preview after testing if needed.
+
+Other worktrees on the machine run the same checks. A check collides with another run when a port, container name, lock, or other shared resource it needs is taken, or when the other run removes what the check created. Before a check `workflow.md` lists under Concurrent runs, and after any failure that looks like a collision, find the other run, such as a process listening on the check's port. Leave a run this task did not start running: wait for it to exit, then run the check once more. When the collision repeats, record the check as blocked, naming the other run and the resource rather than attributing the failure to the change, and report the resource as a coverage gap the repository can close by making the check safe to run concurrently.
 
 ## Clean, then validate
 
