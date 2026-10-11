@@ -4,6 +4,12 @@ All notable changes to Snappedly Skills are recorded here.
 
 ## [Unreleased]
 
+## [1.4.5] - 2026-10-11
+
+### Fixed
+
+- `submit` and `deploy` integrate the base's new commits before running delivery checks, by rebase unless the repository merges its base into branches, so the checks cover what will land. `deploy` returns to that step when the base moves ahead before merging, instead of relying on the host's clean-merge report, which misses semantic conflicts such as two branches adding a migration with the same number. A conflict-free integration needs the checks rerun but no new review, and does not count as drift under invocation approval.
+
 ## [1.4.4] - 2026-10-11
 
 ### Added
@@ -170,6 +176,7 @@ npx skills remove ask-snappedly cleanup-local deliver deslop frontend-design fro
 
 The command skips any skill you don't have. Add `-g` if you installed the skills globally. Then rerun `/setup-snappedly-skills` in each project. It updates references to renamed skills and proposes removing configuration that only the removed skills read.
 
+[1.4.5]: https://github.com/snappedly/skills/releases/tag/v1.4.5
 [1.4.4]: https://github.com/snappedly/skills/releases/tag/v1.4.4
 [1.4.3]: https://github.com/snappedly/skills/releases/tag/v1.4.3
 [1.4.2]: https://github.com/snappedly/skills/releases/tag/v1.4.2

@@ -1,5 +1,15 @@
 [
   {
+    "version": "1.4.5",
+    "title": "Checks Cover the Updated Base",
+    "changes": [
+      {
+        "type": "fix",
+        "summary": "Submit and Deploy bring in the base branch's new commits before running delivery checks, so the checks cover what will land. Deploy repeats that step when the base moves ahead before merging, since a merge the code host reports as clean can still conflict in meaning, such as two branches adding a migration with the same number."
+      }
+    ]
+  },
+  {
     "version": "1.4.4",
     "title": "Concurrent Check Runs",
     "changes": [
