@@ -4,6 +4,22 @@ All notable changes to Snappedly Skills are recorded here.
 
 ## [Unreleased]
 
+## [1.4.0] - 2026-10-11
+
+### Removed
+
+- `resolving-merge-conflicts`. `submit`, `deploy`, and `execute` resolve conflicts themselves: they preserve both sides' intent and stop to ask when the intent is unclear.
+
+### Updating existing repositories
+
+`npx skills update` leaves the removed skill installed and reports it as failed. To remove it, run:
+
+```bash
+npx skills remove resolving-merge-conflicts
+```
+
+Add `-g` if you installed the skills globally.
+
 ## [1.3.0] - 2026-10-10
 
 ### Added
@@ -116,6 +132,7 @@ npx skills remove ask-snappedly cleanup-local deliver deslop frontend-design fro
 
 The command skips any skill you don't have. Add `-g` if you installed the skills globally. Then rerun `/setup-snappedly-skills` in each project. It updates references to renamed skills and proposes removing configuration that only the removed skills read.
 
+[1.4.0]: https://github.com/snappedly/skills/releases/tag/v1.4.0
 [1.3.0]: https://github.com/snappedly/skills/releases/tag/v1.3.0
 [1.2.1]: https://github.com/snappedly/skills/releases/tag/v1.2.1
 [1.2.0]: https://github.com/snappedly/skills/releases/tag/v1.2.0

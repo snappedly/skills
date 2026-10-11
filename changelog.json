@@ -1,5 +1,15 @@
 [
   {
+    "version": "1.4.0",
+    "title": "Resolving Merge Conflicts Removed",
+    "changes": [
+      {
+        "type": "deprecation",
+        "summary": "Resolving Merge Conflicts is removed. Submit, Deploy, and Execute resolve merge conflicts themselves, keeping the intent of both sides and stopping to ask when that intent is unclear."
+      }
+    ]
+  },
+  {
     "version": "1.3.0",
     "title": "Submit and Deploy Skills",
     "changes": [

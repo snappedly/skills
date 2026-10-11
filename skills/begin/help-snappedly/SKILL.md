@@ -49,7 +49,6 @@ Run skills in the current agent; loading one never needs its own agent. Delegate
 - `/triage`: evaluate incoming issues and external PRs. Already executable tickets skip triage.
 - `/research`: investigate a substantive question and capture cited findings. Answer a quick factual lookup directly.
 - `/codebase-cleanup`: hunt for slop across a codebase or subsystem, such as dead code, useless tests, and unnecessary wrappers.
-- `/resolving-merge-conflicts`: finish an in-progress merge or rebase, preserving intent.
 - `/wait-what`: explain the last message more clearly.
 
 ## References and configuration
