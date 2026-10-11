@@ -1,16 +1,19 @@
 #!/usr/bin/env bash
 # Human-in-the-loop reproduction loop.
-# The agent copies this file and edits the steps below. The user runs the copy
-# in their own terminal, since its prompts need someone to answer them:
+# The agent copies this file and writes the steps between the edit markers,
+# using only the three helpers below with single-quoted prompts, so the copy
+# only prompts and records answers. Spell out contractions ("do not") and use
+# double quotes for quoted words. The user reads that section, then runs the
+# copy in their own terminal, since its prompts need someone to answer them:
 #
 #   bash <path-to-copy>
 #
 # then pastes the "Captured" block it prints at the end back to the agent.
 #
 # Three helpers:
-#   step "<instruction>"           → show instruction, wait for Enter
-#   capture VAR "<question>"       → read a one-line answer into VAR
-#   capture_paste VAR "<request>"  → read a multi-line paste into VAR, up to a
+#   step '<instruction>'           → show instruction, wait for Enter
+#   capture VAR '<question>'       → read a one-line answer into VAR
+#   capture_paste VAR '<request>'  → read a multi-line paste into VAR, up to a
 #                                    line containing only END
 #
 # The Captured block prints a one-line value as KEY=VALUE and a multi-line
@@ -75,11 +78,11 @@ print_captured() {
 
 # --- edit below ---------------------------------------------------------
 
-step "Open the app at http://localhost:3000 and sign in."
+step 'Open the app at http://localhost:3000 and sign in.'
 
-capture ERRORED "Click the 'Export' button. Did it throw an error? (y/n)"
+capture ERRORED 'Click the "Export" button. Did it throw an error? (y/n)'
 
-capture_paste ERROR_MSG "Paste the error message (or 'none'):"
+capture_paste ERROR_MSG 'Paste the error message (or "none"):'
 
 # --- edit above ---------------------------------------------------------
 

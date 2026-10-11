@@ -8,7 +8,7 @@ license: MIT
 
 # Submit
 
-Take the branch from "I'm happy with it" to a change request ready for a person to review and merge. The user's invocation authorizes the commit, the push, and opening or updating the change request; the merge stays with the reviewer, whatever merge actor or invocation approval `workflow.md` records. Load each dependency named below through the available skill invocation mechanism or its installed `SKILL.md`; when one is not installed, follow the fallback given with it and report the missing skill as a gap.
+Take the branch from "I am happy with it" to a change request ready for a person to review and merge. The user's invocation authorizes the commit, the push, and opening or updating the change request; the merge stays with the reviewer, whatever merge actor or invocation approval `workflow.md` records. Load each dependency named below through the available skill invocation mechanism or its installed `SKILL.md`; when one is not installed, follow the fallback given with it and report the missing skill as a gap.
 
 Once the change request is registered with the harness, tell a pause from a stop. Step 4's wait for the watcher is a pause: keep the registration, end the turn, and resume when the watcher wakes you. Every other stop ends the run, including the final report: stop watching the change request first so control returns to the user.
 

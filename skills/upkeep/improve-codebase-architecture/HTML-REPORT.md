@@ -16,7 +16,7 @@ The architectural review is one page: a header, one card per candidate, and a cl
       mermaid.initialize({ startOnLoad: true, theme: "neutral" });
     </script>
     <style>
-      /* small custom layer for things Tailwind doesn't cover cleanly:
+      /* small custom layer for things Tailwind does not cover cleanly:
          dashed seam lines, hand-drawn-feeling arrow heads, etc. */
       .seam { stroke-dasharray: 4 4; }
       .leak { stroke: #dc2626; }
@@ -47,7 +47,7 @@ The diagrams carry the weight. Each candidate is one `<article>`:
 - **Before / After diagram**: the centerpiece. Two columns, side by side. See patterns below. Diagram effort tracks recommendation strength: `Speculative` candidates get one compact Mermaid graph per side, and `Strong` and `Worth exploring` candidates use whichever pattern below fits best.
 - **Problem**: one sentence. What hurts.
 - **Solution**: one sentence. What changes.
-- **Wins**: bullets, ≤6 words each, naming the gain in glossary terms, test gains included: "Tests hit one interface", "locality: bugs concentrate in one module", "leverage: one interface, N call sites", "interface shrinks; implementation absorbs the wrappers". A gain the glossary can't name ("easier to maintain", "cleaner code") hasn't earned its place.
+- **Wins**: bullets, ≤6 words each, naming the gain in glossary terms, test gains included: "Tests hit one interface", "locality: bugs concentrate in one module", "leverage: one interface, N call sites", "interface shrinks; implementation absorbs the wrappers". A gain the glossary cannot name ("easier to maintain", "cleaner code") has not earned its place.
 - **ADR callout** (if applicable): one line in an amber-tinted box, e.g. _"contradicts ADR-0007, but worth reopening because…"_
 
 If the diagram needs a paragraph to be understood, redraw the diagram.
@@ -58,7 +58,7 @@ Pick the pattern that fits each candidate, and vary them across the report: Merm
 
 ### Mermaid graph (the workhorse for dependencies / call flow)
 
-Use a Mermaid `flowchart` or `graph` when the point is "X calls Y calls Z, and look at the mess." Wrap it in a Tailwind-styled card so it doesn't feel parachuted in. Color leakage edges red with `linkStyle`, which takes edge indexes counted from 0 in the order the edges are written, and the deep module dark with `classDef deep fill:#0f172a,color:#f8fafc` plus `class <node> deep`. Sequence diagrams work well for "before: 6 round-trips; after: 1."
+Use a Mermaid `flowchart` or `graph` when the point is "X calls Y calls Z, and look at the mess." Wrap it in a Tailwind-styled card so it does not feel parachuted in. Color leakage edges red with `linkStyle`, which takes edge indexes counted from 0 in the order the edges are written, and the deep module dark with `classDef deep fill:#0f172a,color:#f8fafc` plus `class <node> deep`. Sequence diagrams work well for "before: 6 round-trips; after: 1."
 
 ```html
 <div class="rounded-lg border border-slate-200 bg-white p-4">
@@ -74,7 +74,7 @@ Use a Mermaid `flowchart` or `graph` when the point is "X calls Y calls Z, and l
 
 ### Hand-built boxes-and-arrows (when Mermaid's layout fights you)
 
-Modules as `<div>`s with borders and labels. Arrows as inline SVG `<line>` or `<path>` elements positioned absolutely over a relative container. Reach for this when you want the "after" diagram to feel like one thick-bordered deep module with grayed-out internals, since Mermaid won't render that with the right weight.
+Modules as `<div>`s with borders and labels. Arrows as inline SVG `<line>` or `<path>` elements positioned absolutely over a relative container. Reach for this when you want the "after" diagram to feel like one thick-bordered deep module with grayed-out internals, since Mermaid will not render that with the right weight.
 
 ### Cross-section (good for layered shallowness)
 
@@ -98,7 +98,7 @@ Before: a tree of function calls rendered as nested boxes. After: the same tree 
 
 ## Top recommendation section
 
-One larger card. Candidate name, one sentence on why, anchor link to its card. That's it.
+One larger card. Candidate name, one sentence on why, anchor link to its card. That is all.
 
 ## Tone
 
@@ -111,4 +111,4 @@ Plain English, concise, in the vocabulary SKILL.md sets: concision is no excuse 
 - "Deepen: one interface, one place to test."
 - "Two adapters justify the seam: HTTP in prod, in-memory in tests."
 
-State each point flat, without hedging or throat-clearing. If a sentence could be a bullet, make it a bullet. If a bullet could be cut, cut it. If a term isn't in the `codebase-design` glossary, reach for one that is before inventing a new one.
+State each point flat, without hedging or throat-clearing. If a sentence could be a bullet, make it a bullet. If a bullet could be cut, cut it. If a term is not in the `codebase-design` glossary, reach for one that is before inventing a new one.

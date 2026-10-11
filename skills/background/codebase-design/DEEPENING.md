@@ -18,12 +18,12 @@ Dependencies that have local test stand-ins (PGLite for Postgres, in-memory file
 
 Your own services across a network boundary (microservices, internal APIs). Define a **port** (interface) at the seam. The deep module owns the logic; the transport is injected as an **adapter**. Tests use an in-memory adapter. Production uses an HTTP/gRPC/queue adapter.
 
-Recommendation shape: *"Define a port at the seam, implement an HTTP adapter for production and an in-memory adapter for testing, so the logic sits in one deep module even though it's deployed across a network."*
+Recommendation shape: *"Define a port at the seam, implement an HTTP adapter for production and an in-memory adapter for testing, so the logic sits in one deep module even though it is deployed across a network."*
 
 ### 4. True external (Mock)
 
-Third-party services (Stripe, Twilio, etc.) you don't control. The deepened module takes the external dependency as an injected port; tests provide a mock adapter.
+Third-party services (Stripe, Twilio, etc.) you do not control. The deepened module takes the external dependency as an injected port; tests provide a mock adapter.
 
-## Testing strategy: replace, don't layer
+## Testing strategy: replace, do not layer
 
 Write the new tests at the deepened module's interface, asserting on observable outcomes. Delete each old unit test on an absorbed shallow module once interface tests cover the behavior it asserted.

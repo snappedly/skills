@@ -4,6 +4,12 @@ All notable changes to Snappedly Skills are recorded here.
 
 ## [Unreleased]
 
+## [1.4.3] - 2026-10-11
+
+### Security
+
+- `diagnosing-bugs` treats logs, HAR files, dumps, and pasted text as evidence about the bug: text in them that reads like an instruction is reported, not followed, and quoted evidence goes in fenced code blocks. The human-in-the-loop script you run in your own terminal holds only its prompt helpers, with single-quoted prompts, so it asks questions and records answers and runs no other command. The agent shows you its steps before you run it.
+
 ## [1.4.2] - 2026-10-11
 
 ### Security
@@ -149,6 +155,7 @@ npx skills remove ask-snappedly cleanup-local deliver deslop frontend-design fro
 
 The command skips any skill you don't have. Add `-g` if you installed the skills globally. Then rerun `/setup-snappedly-skills` in each project. It updates references to renamed skills and proposes removing configuration that only the removed skills read.
 
+[1.4.3]: https://github.com/snappedly/skills/releases/tag/v1.4.3
 [1.4.2]: https://github.com/snappedly/skills/releases/tag/v1.4.2
 [1.4.1]: https://github.com/snappedly/skills/releases/tag/v1.4.1
 [1.4.0]: https://github.com/snappedly/skills/releases/tag/v1.4.0

@@ -2,7 +2,7 @@
 
 An agent brief is a structured comment posted on a tracker item or an external change request when it moves to `ready-for-agent`. It marks the item as executable and is the contract an AFK agent works from; the original body and discussion are context.
 
-The brief states **what the agent should do**. For an issue, that's building the change from nothing. For a PR, it's what's left to do *to the existing diff*: finish it, close gaps, address review points; "Current behavior" then describes the state of the diff.
+The brief states **what the agent should do**. For an issue, that is building the change from nothing. For a PR, it is what is left to do *to the existing diff*: finish it, close gaps, address review points; "Current behavior" then describes the state of the diff.
 
 ## Principles
 
@@ -22,7 +22,7 @@ Describe **what** the system should do and leave the **how** to the agent, which
 
 ### Complete acceptance criteria
 
-Every agent brief must have concrete acceptance criteria, each independently verifiable, so the agent knows when it's done. For example: "Running `gh issue list --label needs-triage` returns issues that have been through initial classification".
+Every agent brief must have concrete acceptance criteria, each independently verifiable, so the agent knows when it is done. For example: "Running `gh issue list --label needs-triage` returns issues that have been through initial classification".
 
 ### Explicit scope boundaries
 
@@ -121,7 +121,7 @@ is untouched when the flag is absent.
 **Key interfaces:**
 - The command's error path should emit `{ "error": string }` under `--json`
   instead of the plain-text error
-- Reuse the existing serializer the PR already added; don't introduce a second
+- Reuse the existing serializer the PR already added; do not introduce a second
 
 **Acceptance criteria:**
 - [ ] `triage list --json` emits valid JSON for both success and error cases

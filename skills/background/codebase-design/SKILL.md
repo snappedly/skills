@@ -16,7 +16,7 @@ Use these terms exactly, in place of the words each entry lists under _Avoid_: c
 
 **Interface**: everything a caller must know to use the module correctly: the type signature, but also invariants, ordering constraints, error modes, required configuration, and performance characteristics. _Avoid_: API, signature, the TypeScript `interface` keyword, a class's public methods (all too narrow: they name only the type-level surface).
 
-**Implementation**: what's inside a module, its body of code. Distinct from **Adapter**: a thing can be a small adapter with a large implementation (a Postgres repo) or a large adapter with a small implementation (an in-memory fake). Reach for "adapter" when the seam is the topic; "implementation" otherwise.
+**Implementation**: what is inside a module, its body of code. Distinct from **Adapter**: a thing can be a small adapter with a large implementation (a Postgres repo) or a large adapter with a small implementation (an in-memory fake). Reach for "adapter" when the seam is the topic; "implementation" otherwise.
 
 **Depth**: leverage at the interface. The amount of behavior a caller (or test) can exercise per unit of interface they have to learn. A module is **deep** when a large amount of behavior sits behind a small interface, **shallow** when the interface is nearly as complex as the implementation. Ousterhout weighs the functionality a module provides against the complexity of its interface; measure that leverage, not a ratio of implementation lines to interface lines, which rewards padding the implementation.
 
@@ -38,7 +38,7 @@ Use these terms exactly, in place of the words each entry lists under _Avoid_: c
 
 **Seam** _(Michael Feathers)_: a place where you can alter behavior without editing in that place; the *location* at which a module's interface lives. Where to put the seam is its own design decision, distinct from what goes behind it. _Avoid_: boundary (overloaded with DDD's bounded context).
 
-**Adapter**: a concrete thing that satisfies an interface at a seam. Describes *role* (what slot it fills), not substance (what's inside).
+**Adapter**: a concrete thing that satisfies an interface at a seam. Describes *role* (what slot it fills), not substance (what is inside).
 
 **Leverage**: what callers get from depth. One implementation pays back across N call sites and M tests.
 
@@ -46,7 +46,7 @@ Use these terms exactly, in place of the words each entry lists under _Avoid_: c
 
 ## Principles
 
-- **Depth is a property of the interface, not the implementation.** A deep module can be internally composed of small, mockable, swappable parts; they just aren't part of the interface. A module can have **internal seams** (private to its implementation, used by its own tests) as well as the **external seam** at its interface.
+- **Depth is a property of the interface, not the implementation.** A deep module can be internally composed of small, mockable, swappable parts; they just are not part of the interface. A module can have **internal seams** (private to its implementation, used by its own tests) as well as the **external seam** at its interface.
 - **The deletion test.** Imagine deleting the module. If complexity vanishes, it was a pass-through. If complexity reappears across N callers, it was earning its keep.
 - **The interface is the test surface.** Callers and tests cross the same seam. If you want to test *past* the interface, the module is probably the wrong shape; a test that must change when only the implementation changes is testing past it.
 - **One adapter means a hypothetical seam. Two adapters means a real one.** Introduce a seam only when something actually varies across it, typically a production adapter and a test adapter; a single-adapter seam is just indirection.
@@ -59,5 +59,5 @@ Use these terms exactly, in place of the words each entry lists under _Avoid_: c
 
 ## Going deeper
 
-- When deepening a cluster of shallow modules, read [DEEPENING.md](DEEPENING.md) for dependency categories and replace-don't-layer testing.
+- When deepening a cluster of shallow modules, read [DEEPENING.md](DEEPENING.md) for dependency categories and replace-do-not-layer testing.
 - When exploring alternative interfaces for a deepening candidate, read [DESIGN-IT-TWICE.md](DESIGN-IT-TWICE.md) for the Design It Twice pattern.

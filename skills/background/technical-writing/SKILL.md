@@ -69,7 +69,7 @@ Source: developers.google.com/style, fetched 2026-07-18.
 - One instruction per sentence. One thought per sentence everywhere else.
 - Split instructions longer than about 20 words and other sentences longer than about 25.
 - Keep "the" and "a": "Remove backup file" reads two ways. "Remove the backup file" reads one.
-- Give each word one meaning and one job, then keep it. If "check" means inspect, don't also use it for restrain.
+- Give each word one meaning and one job, then keep it. If "check" means inspect, do not also use it for restrain.
 - Avoid "-ing" words where you can. They take too many grammatical jobs and breed misreadings.
 
 Source: asd-ste100.org (Issue 9, 2025), fetched 2026-07-18. The numbered rules and dictionary live in the spec PDF. The principles above are the transferable core.
@@ -103,7 +103,7 @@ Source: Kohl, The Global English Style Guide (SAS Press). Guideline text fetched
 
 Before:
 
-> Configuration of the proto import ratchet budget script parameters is performed via budget.json. Note that it's important to remember that running with --write, which updates the committed budget to reflect the current count, should only be done when lowering it. If exceeded, CI fails.
+> Configuration of the proto import ratchet budget script parameters is performed via budget.json. Note that it is important to remember that running with --write, which updates the committed budget to reflect the current count, should only be done when lowering it. If exceeded, CI fails.
 
 After:
 

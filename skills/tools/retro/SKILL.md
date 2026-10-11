@@ -26,7 +26,7 @@ Consider these remedies where the evidence supports them:
 - **Navigation:** add a pointer where the agent looked, when needed information was difficult to find.
 - **Checks:** repair existing enforcement first. For a mechanical failure with no adequate check, propose the cheapest reliable check through the repository's existing tools.
 - **Standards:** clarify judgment calls in existing standards or workflow docs. Keep applicable standards available to both implementation and review, including work handled by one agent.
-- **Instructions:** clarify or remove steering that caused confusion or added no useful direction. Load and apply `writing-for-agents` when editing agent documents; if it isn't installed, say so and hold them to its core standard: each meaning in one place, positive instructions, and a clear completion criterion for every step.
+- **Instructions:** clarify or remove steering that caused confusion or added no useful direction. Load and apply `writing-for-agents` when editing agent documents; if it is not installed, say so and hold them to its core standard: each meaning in one place, positive instructions, and a clear completion criterion for every step.
 - **Tooling and access:** reduce demonstrated tool cost or expose needed information through a scoped capability, such as readable development logs. A recommendation does not authorize credential changes or broader access.
 
 Weigh each remedy's maintenance cost, runtime overhead, and false positives; a noisy or redundant check may need narrowing or removal. Extend an existing standards file when one fits.

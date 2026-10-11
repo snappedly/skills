@@ -49,7 +49,7 @@ Product UI strings follow the product's copy guidelines, or else the Interface g
 ### Style
 
 - **13. Em dashes.** Use periods or commas to separate thoughts. Treat the em dash character as disallowed in final prose, including examples and quoted rewrites, and check for it before returning the result.
-- **14. Colon overuse.** Use a colon only before a list or example. Rewrite a mid-sentence colon connector so the point stands on its own: "If you're coming from traditional automation: instead of registering event handlers, you describe conditions" becomes "Instead of registering event handlers, you describe conditions."
+- **14. Colon overuse.** Use a colon only before a list or example. Rewrite a mid-sentence colon connector so the point stands on its own: "If you are coming from traditional automation: instead of registering event handlers, you describe conditions" becomes "Instead of registering event handlers, you describe conditions."
 - **15. Boldface overuse.** Bold only the few terms a reader must not miss, never every proper noun or acronym.
 - **16. Inline-header lists.** A bold label and colon that restates the line, such as "**Performance:** Performance improved...", is a tell. Convert it to prose. A bold lead-in that ends in a period, names the item, and is followed by genuinely new detail, such as "**Schema in TypeScript.** Tables live in one file.", is fine.
 - **17. Title case headings.** Use sentence case.
@@ -59,7 +59,7 @@ Product UI strings follow the product's copy guidelines, or else the Interface g
 ### Communication artifacts
 
 - **20. Chatbot phrases.** Remove "I hope this helps!", "Let me know if...", "Of course!", "Certainly!", and "Found the smoking gun!".
-- **22. Sycophantic tone.** Remove phrases such as "Great question! You're absolutely right!". Respond directly.
+- **22. Sycophantic tone.** Remove phrases such as "Great question! You are absolutely right!". Respond directly.
 
 ### Filler
 

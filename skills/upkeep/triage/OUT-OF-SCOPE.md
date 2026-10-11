@@ -22,7 +22,7 @@ The rendering pipeline assumes a single color palette defined in
 - Per-component theme-aware style resolution
 - A persistence layer for user theme preferences
 
-This is a significant architectural change that doesn't align with the
+This is a significant architectural change that does not align with the
 project's focus on content authoring. Theming is a concern for downstream
 consumers who embed or redistribute the output.
 
@@ -43,13 +43,13 @@ interface ThemeConfig {
 
 ### Writing the reason
 
-Give a substantive reason that explains why, rather than "we don't want this". Good reasons reference:
+Give a substantive reason that explains why, rather than "we do not want this". Good reasons reference:
 
 - Project scope or philosophy ("This project focuses on X; theming is a downstream concern")
 - Technical constraints ("Supporting this would require Y, which conflicts with our Z architecture")
 - Strategic decisions ("We chose to use A instead of B because...")
 
-The reason should be durable: a temporary circumstance ("we're too busy right now") marks a deferral, not a rejection.
+The reason should be durable: a temporary circumstance ("we are too busy right now") marks a deferral, not a rejection.
 
 ## When a request matches a prior rejection
 

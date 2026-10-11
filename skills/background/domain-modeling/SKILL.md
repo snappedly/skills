@@ -33,7 +33,7 @@ When the user uses a term that conflicts with the existing language in `GLOSSARY
 
 ### Sharpen fuzzy language
 
-When the user uses vague or overloaded terms, propose a precise canonical term. "You're saying 'account': do you mean the Customer or the User? Those are different things."
+When the user uses vague or overloaded terms, propose a precise canonical term. "You are saying 'account': do you mean the Customer or the User? Those are different things."
 
 ### Discuss concrete scenarios
 
