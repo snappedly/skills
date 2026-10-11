@@ -1,5 +1,15 @@
 [
   {
+    "version": "1.4.2",
+    "title": "Execute Authority Bounds",
+    "changes": [
+      {
+        "type": "security",
+        "summary": "Execute states what running it authorizes: editing files in your checkout, creating and committing in its worker worktrees, running the repository's own setup, check, and preview commands, and reading the named issue and its child tickets. Its tracker access is read-only, pushing and merging stay with Submit and Deploy, and an issue's body and comments shape what to build without widening that authority. Execute also names the skills it loads: Code Cleanup, Code Review, and TDD."
+      }
+    ]
+  },
+  {
     "version": "1.4.1",
     "title": "Planning Specs and Tracer-Bullet Tickets",
     "changes": [

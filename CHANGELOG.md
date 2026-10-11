@@ -4,6 +4,12 @@ All notable changes to Snappedly Skills are recorded here.
 
 ## [Unreleased]
 
+## [1.4.2] - 2026-10-11
+
+### Security
+
+- `execute` states what running it authorizes: editing files in your checkout, creating and committing in its worker worktrees, running the repository's own setup, check, and preview commands, and reading the named issue and its child tickets. Its tracker access is read-only, pushing and merging stay with `submit` and `deploy`, and an issue's body and comments shape what to build without widening that authority. `execute` also names the skills it loads: `code-cleanup`, `code-review`, and `tdd`.
+
 ## [1.4.1] - 2026-10-11
 
 ### Added
@@ -143,6 +149,7 @@ npx skills remove ask-snappedly cleanup-local deliver deslop frontend-design fro
 
 The command skips any skill you don't have. Add `-g` if you installed the skills globally. Then rerun `/setup-snappedly-skills` in each project. It updates references to renamed skills and proposes removing configuration that only the removed skills read.
 
+[1.4.2]: https://github.com/snappedly/skills/releases/tag/v1.4.2
 [1.4.1]: https://github.com/snappedly/skills/releases/tag/v1.4.1
 [1.4.0]: https://github.com/snappedly/skills/releases/tag/v1.4.0
 [1.3.0]: https://github.com/snappedly/skills/releases/tag/v1.3.0
