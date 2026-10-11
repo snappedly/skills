@@ -2,7 +2,7 @@
 
 ## Phase 1: Build a feedback loop
 
-**This is the skill.** Everything else is mechanical. If you have a **tight** pass/fail signal for the bug (one that goes red on _this_ bug), you will find the cause; bisection, hypothesis-testing, and instrumentation all just consume it. If you don't have one, no amount of staring at code will save you.
+**This is the skill.** Everything else is mechanical. If you have a **tight** pass/fail signal for the bug (one that goes red on _this_ bug), you will find the cause; bisection, hypothesis-testing, and instrumentation all just consume it. If you do not have one, no amount of staring at code will save you.
 
 Spend disproportionate effort here, and be **relentless**.
 
@@ -17,21 +17,21 @@ Spend disproportionate effort here, and be **relentless**.
 7. **Property / fuzz loop.** If the bug is "sometimes wrong output", run 1000 random inputs and look for the failure mode.
 8. **Bisection harness.** If the bug appeared between two known states (commit, dataset, version), automate "boot at state X, check, repeat" so you can `git bisect run` it.
 9. **Differential loop.** Run the same input through old-version vs new-version (or two configs) and diff outputs.
-10. **HITL bash script.** Last resort. If a human must click, drive _them_ with a copy of `scripts/hitl-loop.template.sh` so the loop is still structured: you write the steps, the user runs it in their own terminal (`bash <path>`), and they paste its Captured block back to you.
+10. **HITL bash script.** Last resort. If a human must click, drive _them_ with a copy of `scripts/hitl-loop.template.sh` so the loop is still structured. Write the steps only as `step`, `capture`, and `capture_paste` calls with single-quoted prompts between its edit markers, so the copy only prompts the user and records answers. Show the user that section; they run the copy in their own terminal (`bash <path>`) and paste its Captured block back to you.
 
 ### Tighten the loop
 
 Treat the loop as a product. Once you have _a_ loop, **tighten** it:
 
 - Can I make it faster? (Cache setup, skip unrelated init, narrow the test scope.)
-- Can I make the signal sharper? (Assert on the specific symptom, not "didn't crash".)
+- Can I make the signal sharper? (Assert on the specific symptom, not "did not crash".)
 - Can I make it more deterministic? (Pin time, seed RNG, isolate filesystem, freeze network.)
 
 A 30-second flaky loop is barely better than no loop; a 2-second deterministic one is tight, a debugging superpower.
 
 ### Non-deterministic bugs
 
-Aim for a **higher reproduction rate**: loop the trigger 100×, parallelize, add stress, narrow timing windows, inject sleeps. A 50%-flake bug is debuggable; 1% is not, so keep raising the rate until it's debuggable.
+Aim for a **higher reproduction rate**: loop the trigger 100×, parallelize, add stress, narrow timing windows, inject sleeps. A 50%-flake bug is debuggable; 1% is not, so keep raising the rate until it is debuggable.
 
 ### When you genuinely cannot build a loop
 
@@ -59,7 +59,7 @@ Confirm:
 
 ### Minimize
 
-Once it's red, shrink the repro to the **smallest scenario that still goes red**. Cut inputs, callers, config, data, and steps **one at a time**, re-running the loop after each cut, and keep only what's load-bearing for the failure.
+Once it is red, shrink the repro to the **smallest scenario that still goes red**. Cut inputs, callers, config, data, and steps **one at a time**, re-running the loop after each cut, and keep only what is load-bearing for the failure.
 
 Why bother: a minimal repro shrinks the hypothesis space in Phase 3 (fewer moving parts left to suspect) and becomes the clean regression test in Phase 5.
 
@@ -75,7 +75,7 @@ Each hypothesis must be **falsifiable**: state the prediction it makes.
 
 If you cannot state the prediction, the hypothesis is a vibe: discard or sharpen it.
 
-**Show the ranked list to the user before testing.** They often have domain knowledge that re-ranks instantly ("we just deployed a change to #3"), or know hypotheses they've already ruled out. If the user is AFK, proceed with your ranking.
+**Show the ranked list to the user before testing.** They often have domain knowledge that re-ranks instantly ("we just deployed a change to #3"), or know hypotheses they have already ruled out. If the user is AFK, proceed with your ranking.
 
 ## Phase 4: Instrument
 
@@ -96,7 +96,7 @@ Phase 4 is done when a probe confirms one hypothesis's prediction. If every hypo
 
 Write the regression test **before the fix**, but only if there is a **correct seam** for it.
 
-A correct seam is one where the test exercises the **real bug pattern** as it occurs at the call site. If the only available seam is too shallow (single-caller test when the bug needs multiple callers, unit test that can't replicate the chain that triggered the bug), a regression test there gives false confidence.
+A correct seam is one where the test exercises the **real bug pattern** as it occurs at the call site. If the only available seam is too shallow (single-caller test when the bug needs multiple callers, unit test that cannot replicate the chain that triggered the bug), a regression test there gives false confidence.
 
 **If no correct seam exists, that itself is the finding.** Record the missing seam and the resulting regression-test coverage gap in the diagnosis report (Phase 6).
 

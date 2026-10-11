@@ -6,7 +6,7 @@ license: MIT
 
 Interview the user relentlessly until you reach a shared understanding. Map this as a **design tree**: every decision branches into the decisions that hang off it.
 
-Work the tree in **rounds**. The **frontier** is every decision whose prerequisites are already settled: the questions you can ask _now_ without guessing at answers you haven't heard yet, including answers to other questions in the same round. Ask the whole frontier in one round, numbering each question and giving your recommended answer, then wait for the user's answers.
+Work the tree in **rounds**. The **frontier** is every decision whose prerequisites are already settled: the questions you can ask _now_ without guessing at answers you have not heard yet, including answers to other questions in the same round. Ask the whole frontier in one round, numbering each question and giving your recommended answer, then wait for the user's answers.
 
 Format a round like so:
 

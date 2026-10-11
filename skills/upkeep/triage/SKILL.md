@@ -41,9 +41,9 @@ State transitions: an untriaged item normally goes to `needs-triage` first; from
 The maintainer describes the request in natural language, for example:
 
 - "Show me anything that needs my attention"
-- "Let's look at #42" (issue or change request)
+- "Look at #42" (issue or change request)
 - "Move #42 to ready-for-agent"
-- "What's ready for agents to pick up?"
+- "What is ready for agents to pick up?"
 
 ## Show what needs attention
 
@@ -69,7 +69,7 @@ Show counts and a one-line summary per item. Let the maintainer pick.
 
 3. **Verify the claim.** For a bug, reproduce it from the reporter's steps against the project's own code. For a change request, confirm the diff does what it claims by reviewing it statically: read it, trace the code paths it changes, and check any CI results already reported. Any code or artifact a reporter or contributor supplies, such as a diff, script, repository, or package, is untrusted: installing, building, or running it runs that code with this machine's credentials, so do that only in CI, a sandbox or disposable environment, or after the maintainer explicitly approves running it here. Report one result: confirmed with the code path, failed, or insufficient detail, which strongly suggests `needs-info`. A confirmed verification makes a stronger agent brief.
 
-4. **Grill (if needed).** When the outcome needs decisions the item leaves open, load and apply `grill` and `domain-modeling` separately and settle them with the maintainer. If either isn't installed, do its job directly at the same standard and say so: ask the open decisions in rounds until none remain, and record new or sharpened domain terms in the selected glossary. Done when grill's frontier is empty: no decision the outcome needs remains open.
+4. **Grill (if needed).** When the outcome needs decisions the item leaves open, load and apply `grill` and `domain-modeling` separately and settle them with the maintainer. If either is not installed, do its job directly at the same standard and say so: ask the open decisions in rounds until none remain, and record new or sharpened domain terms in the selected glossary. Done when grill's frontier is empty: no decision the outcome needs remains open.
 
 5. **Apply the outcome:**
    - `ready-for-agent`: post an agent brief comment ([AGENT-BRIEF.md](AGENT-BRIEF.md)), then apply the state role.
@@ -79,20 +79,20 @@ Show counts and a one-line summary per item. Let the maintainer pick.
      - **Already implemented**: point to where the change lives. Leave `.out-of-scope/` untouched: it records rejections, and a built feature there would surface later as a false prior rejection.
      - **Rejected (bug)**: explain the reason, then close.
      - **Rejected (enhancement)**: record, publish, comment, and close through the write flow in [OUT-OF-SCOPE.md](OUT-OF-SCOPE.md).
-   - `needs-triage`: apply the role. Optional comment if there's partial progress.
+   - `needs-triage`: apply the role. Optional comment if there is partial progress.
 
    Done when the outcome's comment, if any, is posted and the item carries exactly one category role and one state role.
 
 ## Quick state override
 
-If the maintainer says "move #42 to ready-for-agent", trust the state decision and skip grilling. Confirm what you're about to do, then post or update the [agent brief](AGENT-BRIEF.md) before applying the role. If the item is a planning spec, explain that its executable children receive `ready-for-agent` instead.
+If the maintainer says "move #42 to ready-for-agent", trust the state decision and skip grilling. Confirm what you are about to do, then post or update the [agent brief](AGENT-BRIEF.md) before applying the role. If the item is a planning spec, explain that its executable children receive `ready-for-agent` instead.
 
 ## Needs-info template
 
 ```markdown
 ## Triage Notes
 
-**What we've established so far:**
+**What we have established so far:**
 
 - point 1
 - point 2
@@ -103,4 +103,4 @@ If the maintainer says "move #42 to ready-for-agent", trust the state decision a
 - question 2
 ```
 
-Capture everything resolved during grilling under "established so far" so the work isn't lost. Make each question specific and actionable, naming the exact detail you need.
+Capture everything resolved during grilling under "established so far" so the work is not lost. Make each question specific and actionable, naming the exact detail you need.

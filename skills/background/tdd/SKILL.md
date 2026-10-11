@@ -8,7 +8,7 @@ license: MIT
 
 TDD is the red → green loop; this skill makes that loop produce tests worth keeping. Choose coverage proportional to the changed contract.
 
-Read the File structure section of the installed `domain-modeling/SKILL.md` (without that skill, use the paths `docs/agents/domain.md` records, else the root `GLOSSARY-MAP.md` or `GLOSSARY.md`, or legacy `CONTEXT-MAP.md` or `CONTEXT.md`) and the selected glossary as read-only context. Use its terms in test names and interfaces. Read `docs/agents/workflow.md` when present for the repository's feedback-loop contract, and respect ADRs in the area you're touching.
+Read the File structure section of the installed `domain-modeling/SKILL.md` (without that skill, use the paths `docs/agents/domain.md` records, else the root `GLOSSARY-MAP.md` or `GLOSSARY.md`, or legacy `CONTEXT-MAP.md` or `CONTEXT.md`) and the selected glossary as read-only context. Use its terms in test names and interfaces. Read `docs/agents/workflow.md` when present for the repository's feedback-loop contract, and respect ADRs in the area you are touching.
 
 ## Choose verification first
 
@@ -36,7 +36,7 @@ When the shape of that interface is itself in question (how deep the module is, 
 
 ## Anti-patterns
 
-- **Implementation-coupled**: mocks internal collaborators, tests private methods, asserts on call counts or order, or verifies through a side channel (querying the database instead of using the interface). The tell: the test breaks when you refactor but behavior hasn't changed.
+- **Implementation-coupled**: mocks internal collaborators, tests private methods, asserts on call counts or order, or verifies through a side channel (querying the database instead of using the interface). The tell: the test breaks when you refactor but behavior has not changed.
 - **Tautological**: the assertion recomputes the expected value the way the code does (`expect(add(a, b)).toBe(a + b)`, a snapshot derived by hand the same way, a constant asserted equal to itself), so it passes by construction and can never disagree with the code. Expected values must come from an independent source of truth: a known-good literal, a worked example, the spec.
 - **Horizontal slicing**: writing all tests first, then all implementation. Bulk tests verify _imagined_ behavior: you test the _shape_ of things rather than user-facing behavior, the tests go insensitive to real changes, and you commit to test structure before understanding the implementation. Work in **vertical slices** instead, each test a **tracer bullet** that responds to what the last cycle taught you.
 

@@ -12,7 +12,7 @@ Treat these components as the vocabulary of any new surface. Compose what exists
 
 [Where color, type, spacing, radius, and motion values are defined: a Tailwind config, a theme file, CSS custom properties, or "none yet".]
 
-Reference tokens rather than literal values. A design that needs a value the tokens don't carry is proposing a change to the tokens, so raise it as one.
+Reference tokens rather than literal values. A design that needs a value the tokens do not carry is proposing a change to the tokens, so raise it as one.
 
 ## UI directories
 
