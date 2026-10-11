@@ -137,7 +137,7 @@ The skills carry no project-specific policy. `setup-snappedly-skills` writes you
 
 - `docs/agents/code-host.md`: your code host, the PR title convention with its approved scopes, and the base branch protection. Setup recommends a rule that blocks direct pushes to the base branch, so every change arrives through a merged PR, which agents can still merge.
 - `docs/agents/issue-tracker.md`: your work tracker. GitHub Issues is built in. For another tracker, setup records the operations your team uses.
-- `docs/agents/workflow.md`: the base branch and merge strategy, when change requests open and merge, who merges and who approves the merge, when tickets and specs close, who signs off and who verifies production, and the evidence each step needs.
+- `docs/agents/workflow.md`: the checks to run and which of them two worktrees cannot run at once, the base branch and merge strategy, when change requests open and merge, who merges and who approves the merge, when tickets and specs close, who signs off and who verifies production, and the evidence each step needs.
 - `docs/agents/triage-labels.md`, `docs/agents/domain.md`, and `docs/agents/frontend.md`: triage roles, the layout of your domain docs, and your frontend conventions.
 
 The `pr` skill titles pull requests as `type(scope): description` by default, with a scope from the approved list. If your repository has its own title convention, that convention wins.

@@ -42,6 +42,10 @@ The default sequence is format changed files, run the fastest reliable static ch
 
 Broader checks are required when repository policy, dependency/build/package changes, security or data-integrity risk, or delivery needs justify them. Adding tooling requires an explicit project decision; until then, document missing coverage and the trigger for adding it.
 
+### Concurrent runs
+
+[Each check that two worktrees on one machine cannot run at the same time, with the shared resource it holds or removes, such as a fixed port, a container or database name, a lock, build output, or a cleanup of every container carrying a label; or `All checks can run concurrently`.]
+
 ## Required checks
 
 [List configured commands, directories, and applicability for presentation edits, local logic changes, and cross-cutting or release work. Prefer affected-file/package checks and focused tests. Require full suites and production/deployment builds only where risk or delivery needs justify them. Record browser-test server ownership and any supported external-preview setting.]

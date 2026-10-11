@@ -4,6 +4,21 @@ All notable changes to Snappedly Skills are recorded here.
 
 ## [Unreleased]
 
+## [1.4.4] - 2026-10-11
+
+### Added
+
+- `setup-snappedly-skills` records which checks two worktrees on one machine cannot run at the same time, in a new Concurrent runs section of `docs/agents/workflow.md`. Each entry names the shared resource the check holds or removes, such as a fixed port, a container name, or a cleanup of every container carrying a label.
+
+### Changed
+
+- `code-cleanup` checks for another worktree's run before starting a check listed under Concurrent runs. When a check fails because a port or other resource is taken, or another run removed what the check created, it finds that run, leaves it running, and reruns once after it exits. A repeated collision is recorded as blocked, naming the other run and the resource, rather than as a failure of the change, and is reported as a gap the repository can close by making the check safe to run concurrently.
+- `execute` workers run only focused checks. Full suites, builds, and the checks listed under Concurrent runs run once on the combined result, since the workers share one machine.
+
+### Updating existing repositories
+
+Rerun `setup-snappedly-skills` to add the Concurrent runs section to `docs/agents/workflow.md`. Setup fills it from each check's configuration and moves any port or resource note already recorded for a check into it.
+
 ## [1.4.3] - 2026-10-11
 
 ### Security
@@ -155,6 +170,7 @@ npx skills remove ask-snappedly cleanup-local deliver deslop frontend-design fro
 
 The command skips any skill you don't have. Add `-g` if you installed the skills globally. Then rerun `/setup-snappedly-skills` in each project. It updates references to renamed skills and proposes removing configuration that only the removed skills read.
 
+[1.4.4]: https://github.com/snappedly/skills/releases/tag/v1.4.4
 [1.4.3]: https://github.com/snappedly/skills/releases/tag/v1.4.3
 [1.4.2]: https://github.com/snappedly/skills/releases/tag/v1.4.2
 [1.4.1]: https://github.com/snappedly/skills/releases/tag/v1.4.1
