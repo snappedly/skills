@@ -44,7 +44,7 @@ Broader checks are required when repository policy, dependency/build/package cha
 
 ### Concurrent runs
 
-[Each check that two worktrees on one machine cannot run at the same time, with the shared resource it holds or removes, such as a fixed port, a container or database name, a lock, build output, or a cleanup of every container carrying a label; or `All checks can run concurrently`.]
+[List checks that share resources across runs, naming each resource, supported isolation settings or lock commands, and any configured resource-acquisition timeout. A lock must cover every run using the resource through teardown. Record a limitation when neither isolation nor locking is available. Treat output and locks inside separate worktrees as isolated. Mark unknown resource scope as `unverified`. Write `All checks can run concurrently` when configuration establishes that for every check.]
 
 ## Required checks
 

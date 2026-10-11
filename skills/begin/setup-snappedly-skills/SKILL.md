@@ -35,7 +35,7 @@ Older configuration needs these migrations as part of the run, without a separat
 - When `code-host.md` has no base branch protection line, propose the protection as [branch-protection.md](branch-protection.md) directs.
 - Migrate legacy domain `CONTEXT.md` and `CONTEXT-MAP.md` files as Section D directs.
 - Propose retiring each repository `CLAUDE.md`, including a bridge an earlier run kept, as [instruction-files.md](instruction-files.md) directs. Skip only a `CLAUDE.md` whose recorded reason for remaining still holds.
-- Add the template's Concurrent runs section to `docs/agents/workflow.md` when it is missing, filled from each check's configuration. Move a port or resource note the configuration already records for a check into it.
+- Refresh [Concurrent runs](workflow.md#concurrent-runs) in `docs/agents/workflow.md`, adding the section when missing. Move existing notes about check resources into it and correct entries that classify worktree-local output as shared.
 - For blanket test-first, full-build, and independent-review clauses in workflow or root instructions: when they came from older setup defaults, propose scoped replacements and confirm the team's intent; when their origin is unclear, ask. Preserve documented team overrides, and update every affected file to the agreed scope together.
 
 ## Process
@@ -56,7 +56,7 @@ Inventory the repository, file by file:
 - Installed `triage` skill: it decides whether Section C's role map applies.
 - Frontend signals: a component library or design system dependency, a Tailwind, theme, or design-token configuration, a global stylesheet, a `components/`, `app/`, or `pages/` tree, a Storybook setup. These decide whether Section E applies.
 - Monorepo signals: `pnpm-workspace.yaml`, a `workspaces` field in `package.json`, or a populated `packages/*` tree with its own `src/`.
-- Feedback-loop signals: the package manager and lockfile, package scripts, TypeScript configuration, test runner, formatter/linter configuration, Git hooks, CI workflows, and any configured development or preview server. For each check, note the shared resources it holds or removes, such as fixed ports, container or database names, locks, build output, and machine-wide cleanups, which decide whether two worktrees can run it at once.
+- Feedback-loop signals: the package manager and lockfile, package scripts, TypeScript configuration, test runner, formatter/linter configuration, Git hooks, CI workflows, and any configured development or preview server. For each check, collect the concurrency information specified under [Concurrent runs](workflow.md#concurrent-runs).
 
 Completion criterion: you have a file-by-file inventory, know what the root instruction file contains, know whether the triage, frontend, multi-context, and instruction-file branches apply, have mapped the existing feedback-loop surfaces, have identified the code host and tracker operations, and can name each migration, missing item, or conflict. If an existing setup satisfies the current requirements and the user requested no changes, report that no changes are needed and stop.
 
@@ -80,7 +80,7 @@ Fill `docs/agents/workflow.md` from [workflow.md](workflow.md): its fixed text i
 
 When no team workflow is recorded, ask whether the default Snappedly flow fits. For most work, the main flow: `grill (optional) -> execute -> clean-up -> submit`, with a person reviewing and merging the change request, or `deploy` in place of `submit` to skip that review and have the agent merge. A small, clear request done directly uses `edit -> focused verification -> local review`, then `clean-up` and `submit` or `deploy` when the user wants it finished.
 
-For the feedback-loop contract, record the commands and adapters the repository already has, using its package manager and scripts. Under Concurrent runs, name each check that another worktree's run of it would collide with, and the resource it holds or removes. For an absent surface, record `not configured` or `not applicable` and the trigger for adding it. Adding a test runner, formatter, linter, hook, or CI workflow requires an explicit opt-in, even in a TypeScript repository that has none.
+For the feedback-loop contract, record the commands and adapters the repository already has, using its package manager and scripts. For an absent surface, record `not configured` or `not applicable` and the trigger for adding it. Adding a test runner, formatter, linter, hook, or CI workflow requires an explicit opt-in, even in a TypeScript repository that has none.
 
 For a new setup, ask how the user wants delivery and closure handled. On a repeat run, when a required transition is missing or ambiguous, present related existing policy as a proposed answer and confirm only the unresolved choice:
 
