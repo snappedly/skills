@@ -21,7 +21,7 @@ Each skill does one job, such as stress-testing a plan, reviewing a diff, or dia
    npx skills add snappedly/skills --skill '*'
    ```
 
-   The main workflow skills use the practice skills in the [Background](#background-practices) group, such as `code-cleanup`, `code-review`, and `pr`, and `resolving-merge-conflicts` from Upkeep. If you install only some skills, include those too.
+   The main workflow skills use the practice skills in the [Background](#background-practices) group, such as `code-cleanup`, `code-review`, and `pr`. If you install only some skills, include those too.
 
 2. In the repository you work on, type `/setup-snappedly-skills` in your coding agent. Setup asks about your code host, work tracker, and team workflow, and saves your answers in the repository.
 
@@ -110,7 +110,6 @@ Each skill lives at `skills/<group>/<name>/SKILL.md`, and the groups below follo
 | `codebase-cleanup` | Sweeps a codebase for dead code, useless tests, unnecessary wrappers, and redundant abstractions. |
 | `diagnosing-bugs` | Diagnoses uncertain, persistent, or intermittent bugs and performance regressions. |
 | `improve-codebase-architecture` | Finds deepening opportunities across a codebase or around a change, and presents them as a visual HTML report. |
-| `resolving-merge-conflicts` | Finishes an in-progress merge or rebase and keeps the intent of both sides. |
 | `triage` | Moves issues and external PRs through triage, verifies claims, and writes agent-ready briefs. |
 
 ---

@@ -6,7 +6,7 @@ Snappedly Skills includes material adapted from the projects below. Each project
 
 - Source: <https://github.com/mattpocock/skills>
 - Copyright (c) 2026 Matt Pocock
-- Adapted in 17 skills: `code-review`, `codebase-design`, `diagnosing-bugs`, `domain-modeling`, `grill`, `help-snappedly`, `improve-codebase-architecture`, `pr`, `prototype`, `research`, `resolving-merge-conflicts`, `retro`, `setup-snappedly-skills`, `tdd`, `triage`, `wait-what`, and `writing-for-agents`.
+- Adapted in 16 skills: `code-review`, `codebase-design`, `diagnosing-bugs`, `domain-modeling`, `grill`, `help-snappedly`, `improve-codebase-architecture`, `pr`, `prototype`, `research`, `retro`, `setup-snappedly-skills`, `tdd`, `triage`, `wait-what`, and `writing-for-agents`.
 
 ## Cursor plugins: pstack
 
