@@ -48,7 +48,7 @@ flowchart LR
 
 | Skill | What it does |
 | --- | --- |
-| `grill` | Interviews you about a plan until every open decision is settled. Skip it when the change is clear: describe what you want, let the agent propose a change, and run `execute` on that proposal. |
+| `grill` | Interviews you about a plan until every open decision is settled. When the plan is too big for one PR, it proposes a spec with tracer-bullet tickets for `execute` to take one at a time. Skip it when the change is clear: describe what you want, let the agent propose a change, and run `execute` on that proposal. |
 | `execute` | Carries out the settled plan, or a tracker issue you name, such as `/execute #42`. Substantial independent pieces run in parallel agents. Then it cleans up, reviews the result, and opens a preview. |
 | `clean-up` | The final check. For an independent look, run it in a fresh session, ideally on a different model or provider. It repeats cleanup and review over everything changed on the branch, fixes clear findings, and shows what it changed. Edits stay uncommitted. |
 | `submit` | Commits pending changes, pushes, opens or updates the PR, marks it ready for review, and waits for its checks. A person then reviews and merges it: `submit` never merges. After review feedback, run it again to push fixes and re-request review. |
@@ -84,7 +84,7 @@ Each skill lives at `skills/<group>/<name>/SKILL.md`, and the groups below follo
 
 | Skill | What it does |
 | --- | --- |
-| `grill` | Interviews you about a plan until every open decision is settled. |
+| `grill` | Interviews you about a plan until every open decision is settled, and splits a plan too big for one PR into a spec with tracer-bullet tickets. |
 | `execute` | Carries out the settled plan or a named issue, with parallel agents where the work splits, then cleans up, reviews, and opens a preview. |
 | `clean-up` | Cleans up, reviews, fixes, and shows what changed, leaving edits uncommitted. |
 | `submit` | Opens or updates a PR ready for review, waits for its checks, and leaves the merge to a person. |

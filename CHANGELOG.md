@@ -4,6 +4,14 @@ All notable changes to Snappedly Skills are recorded here.
 
 ## [Unreleased]
 
+### Added
+
+- `grill` checks whether a settled code change fits one `execute` run and one reviewable PR. When it does not, `grill` recommends a planning spec with executable child tickets, and proposes the tickets as tracer bullets. The first ticket is the thinnest slice that works end to end through every layer, and each later ticket adds one behavior to that working path. After you confirm, `grill` publishes the spec and tickets to your tracker, links each ticket to the spec, and recommends running `execute` on the first ticket in a fresh session.
+
+### Changed
+
+- `help-snappedly` routes a large effort through `grill`'s spec and tickets, then `execute` on one ticket at a time.
+
 ## [1.4.0] - 2026-10-11
 
 ### Removed

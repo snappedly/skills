@@ -28,7 +28,7 @@ Recommend the shortest workflow that satisfies the request and name its entry po
 | A design question needs a runnable experiment | `/prototype`, scoped to that question. |
 | User wants to stress-test an idea | `/grill`, then `/execute` when the confirmed plan is a code change. |
 | Enumerate user journeys or process outcomes and expose missing cases | `/workflow-mapping`. |
-| Large effort spanning several sessions | `/grill` to settle the plan, `/research` or `/prototype` for its open questions, then `/execute` one slice at a time. |
+| Large effort spanning several sessions | `/grill` to settle the plan and split it into a spec with tracer-bullet tickets, `/research` or `/prototype` for its open questions, then `/execute` on one ticket at a time, each in a fresh session. |
 
 The user's request is sufficient requirements for a clear small change unless repository policy requires a tracker issue. Use interviews, specs, tickets, and handoffs when they solve a real coordination or decision problem.
 
