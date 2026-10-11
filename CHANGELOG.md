@@ -4,11 +4,13 @@ All notable changes to Snappedly Skills are recorded here.
 
 ## [Unreleased]
 
+## [1.4.5] - 2026-10-11
+
 ### Fixed
 
 - `execute` workers can run focused checks and prerequisite builds in parallel when their resources are isolated. Required full suites and final builds run on the combined change, unless repository policy requires them earlier.
-- `code-cleanup` prefers supported resource isolation or shared locks. Resource acquisition defaults to a five-minute timeout. Deferred checks retain their check record and resume when the resource condition changes. Test execution keeps its own timeout.
-- `code-review` reports deferred checks as unverified with their resume condition. `execute`, `clean-up`, `submit`, and `deploy` preserve those records and can resume within the existing scope and limits. Required deferred checks prevent delivery until verified.
+- `code-cleanup` prefers supported resource isolation or shared locks. Resource acquisition defaults to a five-minute timeout. Deferred checks retain their check record and resume once their resume condition is met. Test execution keeps its own timeout.
+- `code-review` reports deferred checks as unverified with their resume condition. `execute`, `clean-up`, `submit`, and `deploy` preserve those records and resume the checks once the resume condition is met. `submit` and `deploy` stop before delivery and continue from their preparation step when run again. Required deferred checks prevent delivery until verified.
 - `setup-snappedly-skills` records shared resources, isolation or locking commands, and configured resource-acquisition timeouts. Unknown resource scope stays unverified.
 
 ### Updating existing repositories

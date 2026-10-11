@@ -8,7 +8,7 @@ Review the caller's change read-only and return findings once. The calling workf
 
 Read `docs/agents/workflow.md` when present for finding disposition. Take validation evidence from the caller's cleanup check record and reuse it under code-cleanup's reuse rules rather than rerunning those checks. Without a check record, as in a direct request to review a PR, run the repository's configured read-only checks yourself or list them as not run; a check listed as not run is unverified coverage, not a gap that needs the user's decision. Report failed, blocked, or deferred checks, and required checks the record shows could have run but did not, as gaps; an unverified check never counts as passed. Neither a check the repository records as `not configured` or `not applicable` nor one that runs only after a push, such as CI, is a gap. A review with a missing review axis is incomplete.
 
-Lead the report with every gap and missing axis. For deferred checks, return the recorded resume condition so the caller can continue within its existing scope and limits. Other gaps and missing axes remain open findings that need the user's decision.
+Lead the report with every gap and missing axis. For deferred checks, return the recorded resume condition so the caller can resume them. Other gaps and missing axes remain open findings that need the user's decision.
 
 ## Choose review depth
 
