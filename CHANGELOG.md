@@ -4,6 +4,22 @@ All notable changes to Snappedly Skills are recorded here.
 
 ## [Unreleased]
 
+### Changed
+
+- `grill` gives the `ready-for-agent` state to every ticket it publishes, including blocked ones, unless you say otherwise. Without configured triage roles, it applies a `ready-for-agent` label and creates the label when the tracker lacks it. The state means a ticket is fully specified, not that its blockers have closed. `execute` on a spec still runs only the tickets whose blockers have closed.
+- `grill` records blockers through the native blocking operations configured in `issue-tracker.md`, such as GitHub issue dependencies. Without those operations, it writes a `## Blocked by` section. `execute` reads native links when configured and any existing `## Blocked by` sections, so older tickets keep their dependencies.
+- `grill` also gives the `ready-for-agent` state to a spec it creates. On a spec, the state means `/execute` on the spec can carry out its unblocked tickets, and the spec stays non-executable. `triage` applies the state to a spec without an agent brief, since a brief marks an item executable.
+- When `grill` starts from an existing tracker issue, that issue becomes the parent. Each ticket becomes its child, and `grill` posts the spec as a comment on it instead of creating a separate spec. `grill` never edits or closes that issue.
+
+### Added
+
+- `grill` looks for refactors that make a slice easier to build. Each refactor goes at the start of the first slice that needs it. The ticket requires behavior to stay unchanged and the relevant checks to pass before the slice adds new behavior. A refactor gets its own ticket ahead of the tracer bullet only when every approach needs it and it is too large to review inside the tracer bullet.
+- `grill` splits a wide refactor, such as renaming a column used across the codebase, into expand, migrate, and contract tickets: add the new form, move the callers over in batches that each pass the checks, then remove the old form.
+
+### Updating existing repositories
+
+Rerun `setup-snappedly-skills` to add the Blocking relationships section to `docs/agents/issue-tracker.md` and to let its planning spec mapping accept a spec comment and the `ready-for-agent` state. Until then, `grill` writes blockers as `## Blocked by` sections.
+
 ## [1.4.5] - 2026-10-11
 
 ### Fixed

@@ -22,7 +22,9 @@ Triage categories: [labels or fields for the `bug` and `enhancement` category ro
 ## Work item mapping
 
 - Executable ticket: GitHub issue with `**Work item type:** executable` in its body or its agent brief comment, plus the configured `ready-for-agent` state when triage roles are configured.
-- Planning spec: GitHub issue with `**Work item type:** planning spec, not executable` in its body; do not mark it `ready-for-agent`.
+- Planning spec: GitHub issue with `**Work item type:** planning spec, not executable` in its body or in a spec comment. It can carry the `ready-for-agent` state, which means `/execute` on the spec can carry out its unblocked tickets. The marker keeps it non-executable.
+
+A planning spec marker takes precedence over an older executable marker or agent brief.
 
 ## When a skill publishes work
 
@@ -39,3 +41,11 @@ Prefer GitHub's native sub-issues for parent and child work.
 - Parent and child: [the verified operations to read an issue's parent and its sub-issues, or `body convention` when sub-issues are unavailable].
 
 Body convention: record the parent under a `## Parent` heading in the child's body, referencing it by number or URL. Where sub-issues are unavailable, read a child's parent from that section, and find a parent's children by searching for issues whose `## Parent` section references it.
+
+## Blocking relationships
+
+Prefer GitHub's native issue dependencies for blocking links.
+
+- Blocking: [the verified operations to record that an issue is blocked by another and to read an issue's blockers, or `body convention` when issue dependencies are unavailable].
+
+Body convention: list each blocker under a `## Blocked by` heading in the blocked issue's body, referencing it by number or URL, or write `None`. When reading blockers, include any listed in that section, even after native issue dependencies are configured.
