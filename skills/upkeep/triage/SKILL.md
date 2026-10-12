@@ -28,7 +28,7 @@ Five **state** roles:
 
 - `needs-triage`: maintainer needs to evaluate
 - `needs-info`: waiting on reporter for more information
-- `ready-for-agent`: fully specified, ready for an AFK agent, which carries out an issue with `/execute`. On a change request, a brief is attached and an agent should take the next step on the diff. Only executable work items take this state; a planning spec's executable children take it instead.
+- `ready-for-agent`: fully specified, ready for an AFK agent, which carries out an issue with `/execute`. On a change request, a brief is attached and an agent should take the next step on the diff. Executable work items and planning specs take this state. On a planning spec, it means `/execute` on the spec can carry out its unblocked tickets; the spec stays non-executable.
 - `ready-for-human`: needs human implementation. On a change request, it is ready for a human to merge.
 - `wontfix`: will not be actioned
 
@@ -72,7 +72,7 @@ Show counts and a one-line summary per item. Let the maintainer pick.
 4. **Grill (if needed).** When the outcome needs decisions the item leaves open, load and apply `grill` and `domain-modeling` separately and settle them with the maintainer. If either is not installed, do its job directly at the same standard and say so: ask the open decisions in rounds until none remain, and record new or sharpened domain terms in the selected glossary. Done when grill's frontier is empty: no decision the outcome needs remains open.
 
 5. **Apply the outcome:**
-   - `ready-for-agent`: post an agent brief comment ([AGENT-BRIEF.md](AGENT-BRIEF.md)), then apply the state role.
+   - `ready-for-agent`: on a planning spec, apply the state role without a brief, because a brief marks an item executable. For other items, post an agent brief comment ([AGENT-BRIEF.md](AGENT-BRIEF.md)), then apply the state role.
    - `ready-for-human`: same structure as an agent brief, but note why the work needs a human (judgment calls, external access, design decisions, manual testing).
    - `needs-info`: post triage notes (template below).
    - For `wontfix`, close the item, with the comment depending on *why*:
@@ -85,7 +85,7 @@ Show counts and a one-line summary per item. Let the maintainer pick.
 
 ## Quick state override
 
-If the maintainer says "move #42 to ready-for-agent", trust the state decision and skip grilling. Confirm what you are about to do, then post or update the [agent brief](AGENT-BRIEF.md) before applying the role. If the item is a planning spec, explain that its executable children receive `ready-for-agent` instead.
+If the maintainer says "move #42 to ready-for-agent", trust the state decision and skip grilling. Confirm what you are about to do. For a planning spec, apply the role without a brief. For other items, post or update the [agent brief](AGENT-BRIEF.md) before applying the role.
 
 ## Needs-info template
 

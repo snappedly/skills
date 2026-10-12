@@ -1,6 +1,6 @@
 # Writing Agent Briefs
 
-An agent brief is a structured comment posted on a tracker item or an external change request when it moves to `ready-for-agent`. It marks the item as executable and is the contract an AFK agent works from; the original body and discussion are context.
+An agent brief is a structured comment posted on a tracker item or an external change request when it moves to `ready-for-agent`, except on a planning spec. It marks the item as executable and is the contract an AFK agent works from; the original body and discussion are context.
 
 The brief states **what the agent should do**. For an issue, that is building the change from nothing. For a PR, it is what is left to do *to the existing diff*: finish it, close gaps, address review points; "Current behavior" then describes the state of the diff.
 
