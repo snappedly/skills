@@ -4,6 +4,8 @@ All notable changes to Snappedly Skills are recorded here.
 
 ## [Unreleased]
 
+## [1.5.0] - 2026-10-12
+
 ### Changed
 
 - `grill` gives the `ready-for-agent` state to every ticket it publishes, including blocked ones, unless you say otherwise. Without configured triage roles, it applies a `ready-for-agent` label and creates the label when the tracker lacks it. The state means a ticket is fully specified, not that its blockers have closed. `execute` on a spec still runs only the tickets whose blockers have closed.
@@ -199,6 +201,7 @@ npx skills remove ask-snappedly cleanup-local deliver deslop frontend-design fro
 
 The command skips any skill you don't have. Add `-g` if you installed the skills globally. Then rerun `/setup-snappedly-skills` in each project. It updates references to renamed skills and proposes removing configuration that only the removed skills read.
 
+[1.5.0]: https://github.com/snappedly/skills/releases/tag/v1.5.0
 [1.4.4]: https://github.com/snappedly/skills/releases/tag/v1.4.4
 [1.4.3]: https://github.com/snappedly/skills/releases/tag/v1.4.3
 [1.4.2]: https://github.com/snappedly/skills/releases/tag/v1.4.2

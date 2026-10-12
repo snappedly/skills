@@ -1,5 +1,31 @@
 [
   {
+    "version": "1.5.0",
+    "title": "Specs and Tickets for Agents",
+    "changes": [
+      {
+        "type": "feature",
+        "summary": "Grill marks published tickets and new planning specs ready-for-agent by default, including blocked tickets. It creates the label when triage is not configured. Planning specs remain non-executable, and Triage applies the state without creating executable briefs."
+      },
+      {
+        "type": "improvement",
+        "summary": "Grill records native blocking links when configured and otherwise lists blockers in ticket bodies. Execute on a spec reads both formats so older tickets keep their dependencies and only unblocked children run."
+      },
+      {
+        "type": "improvement",
+        "summary": "When Grill starts from an existing issue, it keeps that issue as the parent, links its child tickets, and posts the spec as a comment while preserving the parent body and state."
+      },
+      {
+        "type": "feature",
+        "summary": "Grill schedules behavior-preserving prefactoring before new behavior within the first slice that needs it, with passing checks between the two. Wide refactors use expand, migrate, and contract tickets when vertical slices cannot pass checks independently."
+      },
+      {
+        "type": "improvement",
+        "summary": "Rerun Setup Snappedly Skills in existing repositories to configure blocking operations and update the planning spec mapping for spec comments and the ready-for-agent state."
+      }
+    ]
+  },
+  {
     "version": "1.4.5",
     "title": "Isolated Checks and Resumable Validation",
     "changes": [
