@@ -1,5 +1,15 @@
 [
   {
+    "version": "1.5.1",
+    "title": "Execute Dependency Provenance",
+    "changes": [
+      {
+        "type": "security",
+        "summary": "Execute states that its dependencies, Code Cleanup, Code Review, and TDD, come from the same Snappedly Skills package as Execute itself."
+      }
+    ]
+  },
+  {
     "version": "1.5.0",
     "title": "Specs and Tickets for Agents",
     "changes": [
