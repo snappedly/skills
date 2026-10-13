@@ -4,6 +4,12 @@ All notable changes to Snappedly Skills are recorded here.
 
 ## [Unreleased]
 
+## [1.5.1] - 2026-10-13
+
+### Security
+
+- `execute` states that its dependencies, `code-cleanup`, `code-review`, and `tdd`, come from the same `snappedly/skills` package as `execute` itself.
+
 ## [1.5.0] - 2026-10-12
 
 ### Changed
@@ -201,6 +207,7 @@ npx skills remove ask-snappedly cleanup-local deliver deslop frontend-design fro
 
 The command skips any skill you don't have. Add `-g` if you installed the skills globally. Then rerun `/setup-snappedly-skills` in each project. It updates references to renamed skills and proposes removing configuration that only the removed skills read.
 
+[1.5.1]: https://github.com/snappedly/skills/releases/tag/v1.5.1
 [1.5.0]: https://github.com/snappedly/skills/releases/tag/v1.5.0
 [1.4.4]: https://github.com/snappedly/skills/releases/tag/v1.4.4
 [1.4.3]: https://github.com/snappedly/skills/releases/tag/v1.4.3
