@@ -1,5 +1,15 @@
 [
   {
+    "version": "1.5.3",
+    "title": "Clear Status for Follow-Up Reports",
+    "changes": [
+      {
+        "type": "fix",
+        "summary": "When you ask the agent to act on the decisions and gaps from Clean Up or Codebase Cleanup, it reports each item as Done, Handed off, Accepted, or Still open, and starts each item with its outcome, so fixed items no longer appear under a Gaps heading. An item counts as done only once its decision is applied or what it named is verified. A gap left for someone else to verify is listed as handed off, with where it is tracked."
+      }
+    ]
+  },
+  {
     "version": "1.5.2",
     "title": "Decisions and Gaps Before You Deploy",
     "changes": [
