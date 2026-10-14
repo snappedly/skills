@@ -4,6 +4,12 @@ All notable changes to Snappedly Skills are recorded here.
 
 ## [Unreleased]
 
+## [1.5.3] - 2026-10-15
+
+### Fixed
+
+- After `clean-up` or `codebase-cleanup`, when you ask the agent to act on the **Decisions needed** and **Gaps to check** items, it reports each item under its current status: **Done**, **Handed off** (with where it is tracked), **Accepted**, or **Still open**. Each item starts with its outcome. Previously, the follow-up report could reuse "Decisions" and "Gaps" headings, so fixed items looked open. An item counts as done only once its decision is applied or what it named is verified. A gap left for someone else to verify is listed as handed off.
+
 ## [1.5.2] - 2026-10-14
 
 ### Changed
@@ -213,6 +219,7 @@ npx skills remove ask-snappedly cleanup-local deliver deslop frontend-design fro
 
 The command skips any skill you don't have. Add `-g` if you installed the skills globally. Then rerun `/setup-snappedly-skills` in each project. It updates references to renamed skills and proposes removing configuration that only the removed skills read.
 
+[1.5.3]: https://github.com/snappedly/skills/releases/tag/v1.5.3
 [1.5.2]: https://github.com/snappedly/skills/releases/tag/v1.5.2
 [1.5.1]: https://github.com/snappedly/skills/releases/tag/v1.5.1
 [1.5.0]: https://github.com/snappedly/skills/releases/tag/v1.5.0

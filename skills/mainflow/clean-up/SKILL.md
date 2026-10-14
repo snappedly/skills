@@ -29,6 +29,8 @@ Clean up and review the scoped changes, then show this run's edits. Leave cleanu
    - For a gap, say what was not verified and where, why, and the risk. When there is more than one way to close it, such as rerunning a check, verifying by hand, or accepting the risk, list the options under it.
 
    Write "None" under an empty list's heading.
+
+   When you later act on these items, report each one under its current status: **Done**, **Handed off** (with where it is tracked), **Accepted**, or **Still open**. Lead each item with its outcome. An item is done once its decision is applied or what it named is verified; a gap that someone else will verify is handed off.
    <!-- /shared: open-items -->
 
    Done when the report ends with both lists, and every open finding and gap appears in one of them.
