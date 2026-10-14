@@ -4,6 +4,12 @@ All notable changes to Snappedly Skills are recorded here.
 
 ## [Unreleased]
 
+## [1.5.2] - 2026-10-14
+
+### Changed
+
+- `clean-up` and `codebase-cleanup` end their report with a horizontal rule and a **Check before you submit or deploy** section, so open items are not lost in the longer report. It has two numbered lists in plain language. **Decisions needed** gives each choice left to you, with its options and a recommendation. **Gaps to check** gives each thing left unverified, such as a failing or skipped check or an uninspected area, with its risk, the ways to close it when there is more than one, and a recommendation. An empty list says "None". Open findings appear only in that section, rather than also in the body of the report.
+
 ## [1.5.1] - 2026-10-13
 
 ### Security
@@ -207,6 +213,7 @@ npx skills remove ask-snappedly cleanup-local deliver deslop frontend-design fro
 
 The command skips any skill you don't have. Add `-g` if you installed the skills globally. Then rerun `/setup-snappedly-skills` in each project. It updates references to renamed skills and proposes removing configuration that only the removed skills read.
 
+[1.5.2]: https://github.com/snappedly/skills/releases/tag/v1.5.2
 [1.5.1]: https://github.com/snappedly/skills/releases/tag/v1.5.1
 [1.5.0]: https://github.com/snappedly/skills/releases/tag/v1.5.0
 [1.4.4]: https://github.com/snappedly/skills/releases/tag/v1.4.4

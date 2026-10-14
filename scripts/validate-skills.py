@@ -46,6 +46,7 @@ URI_SCHEME = re.compile(r"[a-z][a-z0-9+.-]*:", re.IGNORECASE)
 SHARED_BLOCKS = {
     "delivery-base": ("skills/mainflow/deploy/SKILL.md", "skills/mainflow/submit/SKILL.md"),
     "prepare-delivery": ("skills/mainflow/deploy/SKILL.md", "skills/mainflow/submit/SKILL.md"),
+    "open-items": ("skills/mainflow/clean-up/SKILL.md", "skills/upkeep/codebase-cleanup/SKILL.md"),
 }
 SHARED_BLOCK = re.compile(
     r"^[ \t]*<!-- shared: ([a-z0-9-]+) -->\n(.*?)^[ \t]*<!-- /shared: \1 -->$", re.DOTALL | re.MULTILINE
