@@ -181,3 +181,5 @@ Skills in this collection are adapted from [Matt Pocock's skills](https://github
 ## License
 
 Snappedly Skills is released under the [MIT License](LICENSE), which contains the full warranty disclaimer and limitation of liability. You may use, copy, modify, and distribute it, including for commercial purposes, if you include the copyright notice and license text in all copies or substantial portions.
+
+[![Snappedly Skills on AI Agents Listing](https://aiagentslisting.com/snappedly-skills/badge.svg?claim=aa573abad41276c58bb797588fbf8bc7)](https://aiagentslisting.com/mcp/snappedly-skills)
