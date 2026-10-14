@@ -31,4 +31,20 @@ Run the relevant existing tests and configured static checks for changed areas, 
 
 After making cleanup changes and completing verification, load and apply `code-review` through the available skill invocation mechanism or its installed `SKILL.md`; if it is not installed, review the diff yourself for correctness, behavior preservation, and maintainability at the same standard, and say so. Scope the review to the cleanup changes, including uncommitted and untracked task files. Supply the cleanup request, behavior-preservation requirements, and verification evidence. Resolve actionable review findings, rerun affected checks, and review only the fix delta after corrections.
 
-Finish when every area in the inventory is accounted for, every candidate has a disposition, and applicable checks and any required code review are complete. Report the cleanups, scan coverage, unresolved findings, verification results, and review outcome. Describe blocked or uninspected areas explicitly so a partial scan cannot be mistaken for a completed hunt.
+Finish when every area in the inventory is accounted for, every candidate has a disposition, and applicable checks and any required code review are complete.
+
+## Report
+
+1. **Summarize the hunt.** Report the cleanups, scan coverage, verification results, and review outcome.
+2. **List open items.** Decisions are the changes kept as findings because they need a product decision or a public contract change. Gaps are everything left unverified: each unresolved finding with its missing fact, each check that failed or did not run, each missing review axis, and each blocked or uninspected area, so a partial scan cannot be mistaken for a completed hunt.
+
+   <!-- shared: open-items -->
+   End the report with a horizontal rule and a **Check before you submit or deploy** heading, followed by two numbered lists: **Decisions needed** and **Gaps to check**. Write each item in plain language that someone who has not read the rest of the report can act on, and end it with your recommendation and the reason for it.
+
+   - For a decision, say what is at stake and where, and list the options under it.
+   - For a gap, say what was not verified and where, why, and the risk. When there is more than one way to close it, such as rerunning a check, verifying by hand, or accepting the risk, list the options under it.
+
+   Write "None" under an empty list's heading.
+   <!-- /shared: open-items -->
+
+   Done when the report ends with both lists, and every decision and gap appears in one of them.

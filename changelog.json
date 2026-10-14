@@ -1,5 +1,15 @@
 [
   {
+    "version": "1.5.2",
+    "title": "Decisions and Gaps Before You Deploy",
+    "changes": [
+      {
+        "type": "improvement",
+        "summary": "Clean Up and Codebase Cleanup end their report with a Check before you submit or deploy section below a horizontal rule. It lists the decisions you need to make separately from the gaps left unverified, in plain language, and gives each item its options when there are several and a recommendation. Open findings appear only in that section."
+      }
+    ]
+  },
+  {
     "version": "1.5.1",
     "title": "Execute Dependency Provenance",
     "changes": [
