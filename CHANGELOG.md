@@ -4,6 +4,12 @@ All notable changes to Snappedly Skills are recorded here.
 
 ## [Unreleased]
 
+## [1.5.4] - 2026-10-18
+
+### Changed
+
+- `execute` triages a named issue in the `needs-triage` state before carrying it out. It applies the `triage` process for a specific issue. When the issue is ready for an agent, `triage` posts its brief and updates its category and state roles on the tracker before `execute` builds the plan. Planning specs receive the roles without an executable brief. When triage recommends another state, such as `needs-info` or `wontfix`, `execute` stops with the recommendation, applies only the outcome you choose, and continues only when the issue reaches `ready-for-agent`. On a planning spec, `execute` also triages every open ticket in the `needs-triage` state, including blocked ones. A ticket that reaches `ready-for-agent` joins the plan once its blockers have closed; any other ticket stays out, and the report gives triage's recommendation for it. Without `triage` installed, `execute` stops and reports which issues need triage. `triage` now supports model invocation in Claude Code and Codex so `execute` can load it as a dependency from the `snappedly/skills` package.
+
 ## [1.5.3] - 2026-10-15
 
 ### Fixed

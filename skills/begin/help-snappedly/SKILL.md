@@ -16,8 +16,8 @@ Recommend the shortest workflow that satisfies the request and name its entry po
 | Clear small fix, copy, styling, or layout edit | Implement directly. Inspect the affected result and review the diff locally. |
 | Changed logic or a behavioral regression | Focused `/tdd` coverage at an existing seam, then applicable checks and local review. |
 | Carry out the plan the conversation settled on | `/execute` (implementation, cleanup, review, and preview), then `/clean-up` as the final check and change report. |
-| Carry out a tracker issue or its agent brief | `/execute` with the issue, such as `/execute #42`, then `/clean-up`. |
-| Carry out a planning spec's tickets | `/execute` with the spec: its tickets whose blockers have closed become one combined change, built in parallel where they share no files. Then `/clean-up`. |
+| Carry out a tracker issue or its agent brief | `/execute` with the issue, such as `/execute #42`, then `/clean-up`. An issue in the `needs-triage` state is triaged first. |
+| Carry out a planning spec's tickets | `/execute` with the spec: its tickets whose blockers have closed become one combined change, built in parallel where they share no files. Every open ticket of the spec in the `needs-triage` state is triaged first. Then `/clean-up`. |
 | Finish a batch of your own changes | `/clean-up`: cleanup, review, clear fixes, and a report showing what changed. Edits stay uncommitted. |
 | Happy with the branch | `/submit`: commit pending changes, push, open or update the PR, mark it ready for review, and wait for its checks, leaving the review and merge to a person. |
 | Happy with the branch and want the agent to merge it without a person's review | `/deploy`: commit pending changes, push, open or update the PR, merge it once its checks pass, then close out tickets and verify production as the workflow assigns. It stops at mergeable when the workflow assigns the merge to a human or a merge would deploy to production without a recorded deployment approval gate or invocation approval. |
@@ -47,7 +47,7 @@ Run skills in the current agent; loading one never needs its own agent. Delegate
 
 ## Other entry points
 
-- `/triage`: evaluate incoming issues and external PRs. Already executable tickets skip triage.
+- `/triage`: evaluate incoming issues and external PRs.
 - `/research`: investigate a substantive question and capture cited findings. Answer a quick factual lookup directly.
 - `/codebase-cleanup`: hunt for slop across a codebase or subsystem, such as dead code, useless tests, and unnecessary wrappers.
 - `/wait-what`: explain the last message more clearly.

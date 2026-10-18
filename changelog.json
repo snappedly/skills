@@ -1,5 +1,15 @@
 [
   {
+    "version": "1.5.4",
+    "title": "Triage Before Execute",
+    "changes": [
+      {
+        "type": "improvement",
+        "summary": "Execute triages a named issue in the needs-triage state before carrying it out. When the issue is ready for an agent, Triage posts its brief and updates its category and state on the tracker before Execute builds the plan. Planning specs receive the category and state without an executable brief. When Triage recommends another state, such as needs-info or wontfix, Execute stops with the recommendation and applies only the outcome you choose. On a planning spec, Execute also triages every open needs-triage ticket, including blocked ones, carries out the ready-for-agent tickets whose blockers have closed, and reports the recommendation for the tickets triage did not mark ready. Triage now supports automatic invocation so Execute can load it as a dependency."
+      }
+    ]
+  },
+  {
     "version": "1.5.3",
     "title": "Clear Status for Follow-Up Reports",
     "changes": [
