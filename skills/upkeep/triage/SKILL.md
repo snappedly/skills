@@ -1,7 +1,6 @@
 ---
 name: triage
-description: Triage issues and external pull requests, verify claims, clarify requirements, and write agent-ready briefs.
-disable-model-invocation: true
+description: "Triage work items. Use to find items needing attention, evaluate a specific issue or external pull request, change its triage state, or prepare needs-triage issues for execute."
 license: MIT
 ---
 
