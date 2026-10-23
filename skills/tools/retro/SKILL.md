@@ -7,7 +7,7 @@ license: MIT
 
 # Retro
 
-A retrospective produces prioritized recommendations. Implement them only when the user's request includes that work; that request is the approval. Otherwise, report them as recommendations.
+A retrospective proposes prioritized remedies. Implement only the remedies the user approves, either in the request that started the retro or by replying to **Recommended changes**.
 
 ## Inspect the session
 
@@ -33,6 +33,8 @@ Weigh each remedy's maintenance cost, runtime overhead, and false positives; a n
 
 ## Return findings
 
-Order candidates by observed consequence and likely recurrence. For each, report the event and evidence pointer, whether its cause is observed or inferred, the proposed change and destination, and how to verify improvement. No quota applies: report no actionable findings when the evidence supports none.
+Order findings by observed consequence and likely recurrence. For each, report the event and evidence pointer, whether its cause is observed or inferred, the proposed remedy and its destination, and how to verify improvement. No quota applies: report no actionable findings when the evidence supports none.
 
-When implementation is authorized, apply the selected remedies within scope and run the affected checks; carry unresolved candidates forward explicitly.
+Unless the request already approved implementation, end the report with a horizontal rule and a **Recommended changes** heading. Under it, number the remedies in the same order as the findings, one line per remedy. Each line names the change and its destination in plain language that someone who has not read the rest of the report can approve.
+
+When the user approves remedies, apply them within scope and run the affected checks. Done when every remedy is applied with its checks run, or listed as unapplied with the reason.

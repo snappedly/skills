@@ -1,5 +1,15 @@
 [
   {
+    "version": "1.5.5",
+    "title": "Quick Approval for Retro Recommendations",
+    "changes": [
+      {
+        "type": "improvement",
+        "summary": "Retro ends its report with a Recommended changes section below a horizontal rule. It numbers the proposed changes in the same order as the findings, with one plain-language line per change that says what to change and where. Reply \"fix all\" or name the numbers to apply, and Retro makes those changes."
+      }
+    ]
+  },
+  {
     "version": "1.5.4",
     "title": "Triage Before Execute",
     "changes": [
