@@ -4,6 +4,12 @@ All notable changes to Snappedly Skills are recorded here.
 
 ## [Unreleased]
 
+## [1.5.5] - 2026-10-23
+
+### Changed
+
+- `retro` ends its report with a horizontal rule and a **Recommended changes** section. It numbers the proposed changes in the same order as the findings, with one plain-language line per change that says what to change and where. You can reply "fix all" or name the numbers to apply, and `retro` makes those changes. When your original request already asked `retro` to make the changes, it applies them without the list.
+
 ## [1.5.4] - 2026-10-18
 
 ### Changed
