@@ -16,7 +16,7 @@ Show this to the user, then immediately proceed to Step 2. The user reads and th
 
 ### 2. Produce the designs
 
-For a small interface decision, sketch two distinct designs locally. For substantial decisions benefiting from independent judgment, spawn two bounded design agents in parallel. Add another only for a materially different constraint the first two do not cover. Each design must offer a distinct interface for the module.
+For a small interface decision, sketch two distinct designs locally. For substantial decisions benefiting from independent judgment, spawn two bounded design agents in parallel, each with a fresh context window. Add another only for a materially different constraint the first two do not cover. Each design must offer a distinct interface for the module.
 
 Give each design a different one of these constraints. By default, the two designs take the first two constraints; swap in a later one when it fits the candidate better, such as ports and adapters when a dependency is remote or external.
 

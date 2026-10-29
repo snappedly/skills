@@ -103,7 +103,7 @@ A correct seam is one where the test exercises the **real bug pattern** as it oc
 If a correct seam exists:
 
 1. Turn the minimized repro into a failing test at that seam.
-2. Watch it fail.
+2. Watch it fail. If forcing the failure requires mutating code or a fixture, first save a copy of its current contents. Diff against that copy to verify the intended mutation before trusting the failing test.
 3. Apply the fix.
 4. Watch it pass.
 5. Re-run the Phase 1 feedback loop against the original (un-minimized) scenario.

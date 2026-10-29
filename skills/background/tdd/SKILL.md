@@ -30,7 +30,7 @@ See [tests.md](tests.md) for examples and [mocking.md](mocking.md) for mocking g
 
 Tests live at a **seam**: the public interface where you observe behavior without reaching inside.
 
-Reuse the seam and conventions of nearby tests. Choose the seam autonomously when the request and existing interface establish the contract. Ask only when the expected behavior or interface decision is unresolved, or repository policy explicitly requires confirmation.
+Reuse the seam and conventions of nearby tests. Choose the seam autonomously when the request and existing interface establish the contract. Ask only when the expected behavior or interface decision is unresolved, or repository policy explicitly requires confirmation. When you ask, give each proposed seam a one-line note on what a test there catches and what it misses.
 
 When the shape of that interface is itself in question (how deep the module is, where the seam belongs, what the interface should expose), load and apply `codebase-design` for the vocabulary: a reference to consult, not a session to run. Without that skill, reason about depth and seams directly and note that it is missing.
 
@@ -44,5 +44,5 @@ When the shape of that interface is itself in question (how deep the module is, 
 
 - **Red before green.** Write the failing test first, then only enough code to pass it, leaving future tests and features to their own cycles.
 - **One slice at a time.** One seam, one test, one minimal implementation per cycle.
-- **Red-capable.** Observe a new regression test fail for the intended reason before the fix. If implementation already exists, use a safe isolated comparison when proving sensitivity adds value; never disturb unrelated work. Existing passing tests remain useful evidence without deliberately breaking production code.
+- **Red-capable.** Observe a new regression test fail for the intended reason before the fix. If implementation already exists, use a safe isolated comparison when proving sensitivity adds value; never disturb unrelated work. Before mutating code or a fixture for the comparison, save a copy of its current contents. Diff against that copy to verify the intended mutation before trusting the failing test. Existing passing tests remain useful evidence without deliberately breaking production code.
 - **Refactor locally while green.** Keep it within the changed behavior; a small cleanup does not require a separate review workflow.

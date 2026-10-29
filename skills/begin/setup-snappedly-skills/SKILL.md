@@ -19,6 +19,7 @@ Older configuration needs these migrations as part of the run, without a separat
 - Add the handoff paragraph, beginning "`/clean-up` leaves its edits", from [workflow.md](workflow.md#ready-to-implement) to `docs/agents/workflow.md` when it is missing, and give the earlier template sentence "Complete cleanup and applicable verification before commit" the current Required checks wording. In `docs/agents/workflow.md`, `AGENTS.md`, and the other agent instruction files Explore found, rewrite rules that conflict with the handoff: cleanup that stages, branches, or commits; a separate commit or clean working tree before delivery; or `/clean-up`, `code-review`, or their check record sequenced before a commit rather than before delivery. Keep rules that name a check or command to run at or before a commit, which the commit in `/submit` and `/deploy` observes, and rules that commit already satisfies, such as committing before a change request opens. For `CONTRIBUTING.md` and other human process docs, propose only conflicting rules, apply them when confirmed, and record a declined change under Ready to implement in `docs/agents/workflow.md` so a repeat run does not propose it again. Done when every agent instruction agrees with the handoff and each declined change is recorded.
 - When an older `issue-tracker.md` holds change-request operations, move them and their request-surface policy into `code-host.md` and their closure policy into the delivery and closure section of `workflow.md`, carrying each over unchanged.
 - Replace GitHub issue-list operations that stop at the CLI's default limit with the paginated operation in [issue-tracker-github.md](issue-tracker-github.md). Preserve the configured tracker repository and triage filters, and retain any existing operation that already exhausts all pages.
+- Replace a GitHub issue read that relies on `--comments` and a close that passes `--comment` with the operations in [issue-tracker-github.md](issue-tracker-github.md). Preserve the configured tracker repository and any configured close reason. When `code-host.md` reads a change request with `--comments` too, such as `gh pr view --comments`, add a read that returns its title and body.
 - Give the base branch and merge strategy their own lines in `workflow.md`, taking each from wherever the configuration already records it, `code-host.md` included. Move a merge actor recorded in `code-host.md` into the workflow's merge transition, asking when it conflicts with the actor recorded there. Then remove the base branch, strategy, and actor from `code-host.md` so its merge line names only the operation. When nothing records a base branch or strategy, propose the default branch or the host's default merge method and confirm it.
 - Propose invocation approval for a hosted change request in any of these cases:
   - The merge belongs to a human, and an agent transition after the merge has nothing recorded that starts the agent.
@@ -104,6 +105,8 @@ When `triage` is not installed, skip this section and record triage roles and ca
 
 When `triage` is installed, fill `docs/agents/triage-labels.md` from [triage-labels.md](triage-labels.md), keeping that filename even when the roles are not labels, and point to it from `issue-tracker.md` rather than copying the mapping there. Keep an existing mapping unless the tracker or the user's choice has changed, and ask only about missing or conflicting roles. For a new mapping, propose the tracker's simplest workable representation, often labels, and ask one focused question about it. Record the `bug` and `enhancement` category mapping in `issue-tracker.md`: each triaged item carries exactly one category role, `bug` or `enhancement`.
 
+On first and repeat runs alike, list each label the state and category mappings name that the tracker lacks, and propose creating it; applying a missing label fails.
+
 #### Section D: Domain docs
 
 For a new setup, propose the single-context layout from [domain.md](domain.md). Offer the multi-context layout only when exploration found monorepo signals. Fill `docs/agents/domain.md` from that template with the resulting paths. On a repeat run, preserve the recorded layout; when the repository no longer supports it, explain the conflict and ask how to update it.
@@ -139,6 +142,7 @@ For a new setup, show the user the exact draft before writing:
 - `docs/agents/code-host.md`, `issue-tracker.md`, `workflow.md`, and `domain.md`, plus `triage-labels.md` when `triage` is installed and `frontend.md` when Section E ran.
 - The canonical `## Agent skills` block for `AGENTS.md`, and the optional reporting section.
 - The base branch protection rule, and whether setup applies it through the host's API or the user applies it.
+- Any missing triage or category labels to create on the tracker.
 - The domain-document migration, including content destinations, reference updates, and legacy file removals.
 - Any instruction-file changes: the destination of each `CLAUDE.md` instruction, each proposed removal or bridge, and other preserved rules.
 
@@ -148,7 +152,7 @@ Completion criterion: the user has confirmed every proposed change, and every re
 
 ### 4. Write
 
-Write only the confirmed changes. In `AGENTS.md`, preserve surrounding content and update existing matching sections in place. Write each applicable `docs/agents/` file from the template step 2 names; on a repeat run, edit only confirmed sections and create only missing required files. Apply the domain migration as [domain-migration.md](domain-migration.md) directs, instruction-file changes as [instruction-files.md](instruction-files.md) directs, and confirmed base branch protection as [branch-protection.md](branch-protection.md) directs.
+Write only the confirmed changes. In `AGENTS.md`, preserve surrounding content and update existing matching sections in place. Write each applicable `docs/agents/` file from the template step 2 names; on a repeat run, edit only confirmed sections and create only missing required files. Apply the domain migration as [domain-migration.md](domain-migration.md) directs, instruction-file changes as [instruction-files.md](instruction-files.md) directs, and confirmed base branch protection as [branch-protection.md](branch-protection.md) directs. Create each confirmed label on the tracker, then list the tracker's labels to verify them.
 
 For a new `## Agent skills` block, use this shape, filling each line with the confirmed configuration. On a repeat run, edit only affected entries. Include the `### Triage roles` subsection only when `triage` is installed, and the `### Frontend` subsection only when Section E ran:
 
@@ -180,7 +184,7 @@ For a new `## Agent skills` block, use this shape, filling each line with the co
 [one-line summary of the design system in use and the directories holding user-facing interface]. See `docs/agents/frontend.md`.
 ```
 
-Completion criterion: `AGENTS.md` and every applicable `docs/agents/` file contain the confirmed configuration, unchanged content remains intact, each migration is applied or reported incomplete, and no duplicate managed sections or unfinished template placeholders remain.
+Completion criterion: `AGENTS.md` and every applicable `docs/agents/` file contain the confirmed configuration, every confirmed label exists on the tracker, unchanged content remains intact, each migration is applied or reported incomplete, and no duplicate managed sections or unfinished template placeholders remain.
 
 ### 5. Finish
 

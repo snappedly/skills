@@ -7,7 +7,7 @@ Repository: [remote URL or local path]. The code host and work tracker are indep
 - Connection: [available CLI, API, app, or manual owner; where authentication is configured, without secrets].
 - Acting account: [operation that names the code host account the agent acts under, such as `gh api user --jq .login`; `deploy` checks it under invocation approval].
 - Branches: [inspect, push, and fetch operations].
-- Change requests: [create, read with comments and diff, update, and list operations; or the team's review equivalent].
+- Change requests: [create, read with title, body, comments, and diff, update, and list operations; or the team's review equivalent].
 - Review capability: [hosted change requests, local branch review, or another review equivalent; selected delivery policy lives in `docs/agents/workflow.md`].
 - Checks and review: [how to inspect their current state].
 - Merge or delivery: [operation only; the base branch, merge strategy, and who may merge or deliver live in `docs/agents/workflow.md`].

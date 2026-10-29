@@ -18,9 +18,9 @@ Interface applies to files under the UI directories in `docs/agents/frontend.md`
 
 ## Dispatch once
 
-Set a completion deadline (default five minutes per axis), then launch one read-only reviewer per applicable axis in parallel. Brief each with the fixed target and comparison, task paths, the cleanup check record, requirement pointers, and its axis instructions below; reviewers read referenced files from their paths rather than receiving the whole conversation. Every reviewer takes the check record as validation evidence rather than rerunning those checks, reports only issues the change introduces or materially worsens, and returns its exact target, scope, findings, and coverage gaps.
+Set a completion deadline (default five minutes per axis), then launch one read-only reviewer per applicable axis in parallel. Brief each with the fixed target and comparison, task paths, the cleanup check record, requirement pointers, and its axis instructions below. Each reviewer starts with a fresh context window and reads referenced files from their paths. Every reviewer takes the check record as validation evidence rather than rerunning those checks, reports only issues the change introduces or materially worsens, and returns its exact target, scope, findings, and coverage gaps.
 
-- **Standards** reads [STANDARDS.md](STANDARDS.md) and the repository's coding-standards documents. Its brief is ready when it names every applicable standards source.
+- **Standards** reads [STANDARDS.md](STANDARDS.md) and the repository's coding-standards documents. Its brief is ready when it names every standards source found as [SKILL.md](SKILL.md) directs.
 - **Spec** checks every supplied requirement for missing, partial, incorrect, or unrequested behavior and cites the requirement for each finding.
 - **Interface** reads the pinned [GUIDELINES.md](GUIDELINES.md) and audits the UI scope against every applicable rule, treating the accessibility baseline's rules as findings rather than judgment calls. It reads enough surrounding code to tell a real violation from a rule satisfied elsewhere, such as a label rendered by a wrapper or a focus ring set by a shared class. It returns its `file:line` report, clean-file passes, and guidelines pin date.
 

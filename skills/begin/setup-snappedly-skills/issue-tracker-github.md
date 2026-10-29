@@ -7,11 +7,11 @@ Before completion-based closure or adding automatic closing references, read the
 ## Conventions
 
 - Create an issue with `gh issue create --repo <owner/repo> --title "..." --body "..."`.
-- Read an issue with `gh issue view <number> --repo <owner/repo> --comments`, including labels when the workflow needs them.
+- Read an issue with `gh issue view <number> --repo <owner/repo> --json number,title,state,body,labels,comments`. Outside a terminal, `--comments` prints only the comments, without the title, body, or labels.
 - List all open issues, oldest first, with `gh api --paginate 'repos/<owner/repo>/issues?state=open&sort=created&direction=asc&per_page=100' --jq '.[] | select(.pull_request == null)'`. Collect every page before filtering by labels or counting queues. The API also returns pull requests, which this filter excludes. Its `comments` field is a count; use the read command above to inspect comment contents and dates when checking reporter activity. If a page fails, report discovery as incomplete.
 - Comment with `gh issue comment <number> --repo <owner/repo> --body "..."`.
 - Apply or remove labels with `gh issue edit <number> --repo <owner/repo> --add-label "..."` or `--remove-label "..."`.
-- Close with `gh issue close <number> --repo <owner/repo> --comment "..."`.
+- Close by commenting with the command above, then running `gh issue close <number> --repo <owner/repo>`. On an issue that is already closed, `gh issue close --comment` drops the comment and still succeeds.
 
 Use the same explicit repository for parent and triage operations. Qualify an issue reference with its provider or URL when it could be confused with a change request.
 
@@ -38,7 +38,7 @@ Run the scoped `gh issue view` command above for an issue reference. Fetch chang
 
 Prefer GitHub's native sub-issues for parent and child work.
 
-- Parent and child: [the verified operations to read an issue's parent and its sub-issues, or `body convention` when sub-issues are unavailable].
+- Parent and child: [the verified operations to add a sub-issue and to read an issue's parent and its sub-issues, which `gh issue create`, `edit`, and `view` support from `gh` 2.94; or `body convention` when sub-issues are unavailable].
 
 Body convention: record the parent under a `## Parent` heading in the child's body, referencing it by number or URL. Where sub-issues are unavailable, read a child's parent from that section, and find a parent's children by searching for issues whose `## Parent` section references it.
 
@@ -46,6 +46,6 @@ Body convention: record the parent under a `## Parent` heading in the child's bo
 
 Prefer GitHub's native issue dependencies for blocking links.
 
-- Blocking: [the verified operations to record that an issue is blocked by another and to read an issue's blockers, or `body convention` when issue dependencies are unavailable].
+- Blocking: [the verified operations to record that an issue is blocked by another and to read an issue's blockers, which `gh issue create`, `edit`, and `view` support from `gh` 2.94. Its `blockedBy` field also lists closed blockers, so check each blocker's state. Or `body convention` when issue dependencies are unavailable].
 
 Body convention: list each blocker under a `## Blocked by` heading in the blocked issue's body, referencing it by number or URL, or write `None`. When reading blockers, include any listed in that section, even after native issue dependencies are configured.
