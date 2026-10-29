@@ -10,9 +10,11 @@ Read `docs/agents/workflow.md` when present for finding disposition. Take valida
 
 Lead the report with every gap and missing axis. For deferred checks, return the recorded resume condition so the caller can resume them. Other gaps and missing axes remain open findings that need the user's decision.
 
+Find the **standards sources** with a search of the whole repository for every document that says how code should be written. A `CODING_STANDARDS.md` or `CONTRIBUTING.md` that exists is always a source.
+
 ## Choose review depth
 
-For a small, low-risk change, review in the current agent: inspect the full diff, including untracked files, and its affected context, compare it with the supplied requirements or the user's request, and check it against applicable repository standards and, for a UI change, its accessibility and interaction concerns. Return one brief report of concrete findings and gaps. After a correction, recheck only the fix delta.
+For a small, low-risk change, review in the current agent: inspect the full diff, including untracked files, and its affected context, compare it with the supplied requirements or the user's request, and check it against every standards source and, for a UI change, its accessibility and interaction concerns. Return one brief report of concrete findings and gaps. After a correction, recheck only the fix delta.
 
 Read [INDEPENDENT-REVIEW.md](INDEPENDENT-REVIEW.md) and use its independent-axis process when the user or repository explicitly requires it, or for substantial cross-module changes or security or data-integrity risks. A small diff stays on the local path even when it touches a UI file, adds a test, or arrives as an explicit review request.
 

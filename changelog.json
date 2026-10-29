@@ -1,5 +1,35 @@
 [
   {
+    "version": "1.5.6",
+    "title": "Reliable Tracker Reads and Fresh Subagents",
+    "changes": [
+      {
+        "type": "fix",
+        "summary": "The GitHub tracker setup reads each issue with its title, state, body, labels, and comments. Agents previously saw only an issue's comments when reading it outside a terminal. Closing an issue now posts the closing comment first, so the comment is kept even when the issue is already closed."
+      },
+      {
+        "type": "fix",
+        "summary": "Setup Snappedly Skills creates the triage and category labels your tracker lacks, so applying a triage state no longer fails on a missing label. Rerun setup in existing repositories to update the issue read and close operations and create any missing labels."
+      },
+      {
+        "type": "fix",
+        "summary": "When Diagnosing Bugs or TDD forces a failing test by changing code or a fixture, it compares the file with an unchanged copy to prove the change happened before it trusts the failure."
+      },
+      {
+        "type": "improvement",
+        "summary": "Execute, Code Review, Codebase Design, Improve Codebase Architecture, Research, and Grill start each subagent with a fresh context window instead of a copy of the conversation, so each subagent works only from its brief."
+      },
+      {
+        "type": "improvement",
+        "summary": "Code Review searches the repository for coding standards documents instead of relying on the ones it has already read, and always includes a coding standards or contributing guide when one exists."
+      },
+      {
+        "type": "improvement",
+        "summary": "Grill words each question so that answering yes accepts its recommendation. When TDD asks which seams to test, it notes what a test at each seam catches and misses. Execute states the title of a named issue before it starts and asks when the reference is unclear. Help Snappedly reads a skill before it describes the skill or recommends skipping a step."
+      }
+    ]
+  },
+  {
     "version": "1.5.5",
     "title": "Quick Approval for Retro Recommendations",
     "changes": [

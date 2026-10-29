@@ -22,9 +22,11 @@ Format a round like so:
 ➡️ <your recommended answer>
 ```
 
+Word each question so that "yes" accepts your recommended answer.
+
 Each round of answers settles decisions and pushes the frontier outward: recompute it and ask the next round.
 
-Finding _facts_ is your job; the _decisions_ are the user's. When a frontier question needs a fact from the environment (filesystem, tools, etc.), look it up directly; delegate only when the lookup is substantial and independent of useful work you can continue, and keep asking independent questions while it is pending.
+Finding _facts_ is your job; the _decisions_ are the user's. When a frontier question needs a fact from the environment (filesystem, tools, etc.), look it up directly; delegate it to a subagent with a fresh context window only when the lookup is substantial and independent of useful work you can continue, and keep asking independent questions while it is pending.
 
 When the plan is a code change and no calling skill owns the next step, its size is a branch of the tree, settled once the rest of the plan is. The plan fits when one `/execute` run can land it as one reviewable PR. It is too big when it bundles several behaviors that could each ship and be demonstrated alone, when later parts depend on what earlier parts reveal, or when the work will span several sessions. Then recommend splitting it into a planning spec and **tracer-bullet** tickets, as [SPEC-AND-TICKETS.md](SPEC-AND-TICKETS.md) directs.
 

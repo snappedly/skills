@@ -21,6 +21,10 @@ Write dependencies as explicit instructions to load and apply the named model-in
 
 Loading guidance does not launch an agent or authorize work beyond the caller's scope. Recommend user-invoked entry points to the user rather than calling them as dependencies. When configuration is missing, continue independent drafting or inspection and recommend setup only for the repository decisions it needs.
 
+## Subagent context
+
+When a step launches a subagent, specify a fresh context window. Some harnesses inherit the current conversation by default, so the step must explicitly establish the context boundary.
+
 ## Splitting by invocation
 
 The invocation cut of splitting (the sequence cut lives in `SKILL.md`): split off a model-invoked skill when you have a distinct leading word that should trigger it on its own (a trigger word you actually use in your prompts), or another skill must reach it. You pay context load for the new always-loaded description, so that independent reach has to be worth it.

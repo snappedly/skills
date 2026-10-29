@@ -4,7 +4,7 @@ description: Investigate a substantive question against primary sources and capt
 license: MIT
 ---
 
-Delegate one bounded research question to a subagent only when the user asks for background work or you have independent work to continue. An agent assigned research does the reading itself.
+Delegate one bounded research question to a subagent with a fresh context window only when the user asks for background work or you have independent work to continue. An agent assigned research does the reading itself.
 
 1. Investigate the question against **primary sources** (official docs, source code, specs, first-party APIs). Follow every claim back to the source that owns it, and keep to the question asked.
 2. Write the findings as Markdown, citing each claim's source.

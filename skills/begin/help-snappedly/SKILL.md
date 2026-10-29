@@ -9,6 +9,8 @@ license: MIT
 
 Recommend the shortest workflow that satisfies the request and name its entry point; that entry point loads the rest of its route.
 
+The routes below are for orientation. Before you state what a skill does or recommend skipping one of its steps, read that skill's installed `SKILL.md`.
+
 ## Start from the request
 
 | Situation | Route |
@@ -43,7 +45,7 @@ Routine UI corrections inspect the affected accessibility and interaction concer
 
 Continue in the current session while its context is useful, and compact the context with the harness when context pressure warrants it. When another session, directory, harness, or person must continue, summarize the state with unresolved questions and links to existing artifacts.
 
-Run skills in the current agent; loading one never needs its own agent. Delegate a bounded independent task only when parallel work or an independent judgment adds value; small lookups, mechanical changes, cleanup, and local review stay in the current agent. Delegated work returns results to the caller rather than spawning another coordinator.
+Run skills in the current agent; loading one never needs its own agent. Delegate a bounded independent task only when parallel work or an independent judgment adds value; small lookups, mechanical changes, cleanup, and local review stay in the current agent. A delegated agent starts with a fresh context window and a brief, and returns results to the caller rather than spawning another coordinator.
 
 ## Other entry points
 

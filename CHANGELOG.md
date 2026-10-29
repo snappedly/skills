@@ -4,6 +4,28 @@ All notable changes to Snappedly Skills are recorded here.
 
 ## [Unreleased]
 
+## [1.5.6] - 2026-10-29
+
+### Fixed
+
+- The GitHub tracker template that `setup-snappedly-skills` writes reads an issue as JSON with its title, state, body, labels, and comments. Outside a terminal, `gh issue view --comments` prints only the comments, so agents missed the issue's title, body, and labels. To close an issue, the template posts the comment first and then closes it, because `gh issue close --comment` drops the comment on an issue that is already closed.
+- `setup-snappedly-skills` creates the triage and category labels its mappings name when the tracker lacks them, so applying a triage state no longer fails on a missing label. The code host template asks for a change-request read that returns the title and body as well as the comments.
+- When `diagnosing-bugs` or `tdd` forces a failing test by mutating code or a fixture, it diffs the file against a pristine copy to prove the mutation landed before it trusts the failure. A mutation command can exit successfully and change nothing.
+
+### Changed
+
+- `execute`, `code-review`, `codebase-design`, `improve-codebase-architecture`, `research`, and `grill` start each subagent they launch with a fresh context window, not a fork of the conversation. Some harnesses fork by default, which gives a subagent the context it exists to avoid. `help-snappedly` applies the same rule to delegated work, and `writing-for-agents` tells skill authors to state it.
+- `code-review` searches the repository for its standards sources instead of relying on documents already read. An existing `CODING_STANDARDS.md` or `CONTRIBUTING.md` is always a source.
+- `grill` words each question so that "yes" accepts its recommended answer.
+- When `tdd` asks which seams to test, it notes for each proposed seam what a test there catches and what it misses.
+- `execute` states the title of a named issue before it continues, and asks when the reference matches no item or more than one.
+- `help-snappedly` reads a skill's `SKILL.md` before it states what the skill does or recommends skipping one of its steps.
+- The GitHub tracker template notes that `gh` 2.94 and later handles sub-issues and blocking relationships natively, and that reading an issue's blockers also lists closed ones.
+
+### Updating existing repositories
+
+Rerun `setup-snappedly-skills` to replace the issue read and close operations in `docs/agents/issue-tracker.md` and to create any missing triage and category labels. Setup also replaces a change-request read in `docs/agents/code-host.md` that relies on `--comments`.
+
 ## [1.5.5] - 2026-10-23
 
 ### Changed
@@ -231,6 +253,9 @@ npx skills remove ask-snappedly cleanup-local deliver deslop frontend-design fro
 
 The command skips any skill you don't have. Add `-g` if you installed the skills globally. Then rerun `/setup-snappedly-skills` in each project. It updates references to renamed skills and proposes removing configuration that only the removed skills read.
 
+[1.5.6]: https://github.com/snappedly/skills/releases/tag/v1.5.6
+[1.5.5]: https://github.com/snappedly/skills/releases/tag/v1.5.5
+[1.5.4]: https://github.com/snappedly/skills/releases/tag/v1.5.4
 [1.5.3]: https://github.com/snappedly/skills/releases/tag/v1.5.3
 [1.5.2]: https://github.com/snappedly/skills/releases/tag/v1.5.2
 [1.5.1]: https://github.com/snappedly/skills/releases/tag/v1.5.1
