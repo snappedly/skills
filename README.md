@@ -10,7 +10,8 @@ Snappedly Skills is a collection of [Agent Skills](https://agentskills.io): Mark
 
 Each skill does one job, such as stress-testing a plan, reviewing a diff, or diagnosing an intermittent bug. The skills hand work to each other. They read your team's conventions from files in your repository, so one set of skills fits teams with different hosts, trackers, and review rules.
 
-For details, such as guides, concepts, and a reference for every skill, see the [Snappedly Skills docs](https://docs.snappedly.com/skills/).
+> [!TIP]
+> For details, such as guides, concepts, and a reference for every skill, see the [Snappedly Skills docs](https://docs.snappedly.com/skills/).
 
 > [!IMPORTANT]
 > These skills direct an AI agent that can edit files, run commands, push code, and merge pull requests. Read the [disclaimer](#disclaimer) before you install them.
