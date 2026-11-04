@@ -16,6 +16,8 @@ except ImportError:
 ROOT = Path(__file__).resolve().parents[1]
 SKILLS = ROOT / "skills"
 README = ROOT / "README.md"
+README_TABLE_NAME = re.compile(r"^\|[ \t]*`([^`]+)`[ \t]*\|", re.MULTILINE)
+NON_BREAKING_HYPHEN = "\u2011"
 FRONTMATTER_KEYS = {
     "allowed-tools",
     "argument-hint",
@@ -323,6 +325,13 @@ def main() -> int:
             errors.append(f"{agent_relative}: default_prompt must mention ${name}")
 
     readme = README.read_text(encoding="utf-8")
+    for name in README_TABLE_NAME.findall(readme):
+        if "-" in name:
+            errors.append(
+                f"{README.name}: write the hyphens in table skill name `{name}` as "
+                "non-breaking hyphens (U+2011), so GitHub keeps the name on one line"
+            )
+    readme = readme.replace(NON_BREAKING_HYPHEN, "-")
     for name in sorted(seen):
         if f"`{name}`" not in readme:
             errors.append(f"{README.name}: missing skill `{name}`")
