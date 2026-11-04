@@ -11,7 +11,7 @@ Ask questions and discuss ideas in [Discussions](https://github.com/snappedly/sk
 ## Before opening a pull request
 
 1. Keep each skill at `skills/<group>/<name>/SKILL.md`.
-2. Keep the `name` frontmatter value aligned with the skill directory, and list each skill in the README.
+2. Keep the `name` frontmatter value aligned with the skill directory, and list each skill in the README. In a README table, write each hyphen in a skill name as a non-breaking hyphen (U+2011), so GitHub keeps the name on one line.
 3. Follow the [Agent Skills specification](https://agentskills.io/specification) for frontmatter. This repository also allows two Claude Code extensions that the specification does not define: `disable-model-invocation` and `argument-hint`.
 4. Add or update `agents/openai.yaml` when the skill's invocation metadata changes.
 5. Keep supporting Markdown files local to the skill package.
@@ -30,7 +30,7 @@ Ask questions and discuss ideas in [Discussions](https://github.com/snappedly/sk
 - Each skill has an `agents/openai.yaml` file with a `display_name` and a `short_description` of 25 to 64 characters, the length Codex expects. Its `allow_implicit_invocation` value is the opposite of `disable-model-invocation`. Every `agents/openai.yaml` file belongs to a skill package with a `SKILL.md` file.
 - Each skill has `license: MIT` frontmatter and a `LICENSE.txt` file with the Snappedly copyright notice.
 - Local links, images, reference definitions, and `href` or `src` attributes resolve to files inside the skill package.
-- The README names every skill.
+- The README names every skill, and each skill name in a README table uses non-breaking hyphens.
 - Each shared block listed in `SHARED_BLOCKS` in `scripts/validate-skills.py` appears exactly once in each file listed for it, between `<!-- shared: name -->` and `<!-- /shared: name -->` lines, and every copy is identical. Skills install as separate folders, so text that two skills share, such as the `prepare-delivery` steps in `deploy` and `submit`, is copied into each skill. Validation fails on a missing, duplicated, or differing copy, a malformed or unmatched marker, and a block `SHARED_BLOCKS` does not list. Edit one copy, then paste it over the others. To share new text, wrap each copy in markers and add the block to `SHARED_BLOCKS`.
 - `changelog.json` lists releases newest first, and each entry follows the rules in [Releases](#releases).
 

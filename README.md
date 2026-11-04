@@ -53,7 +53,7 @@ flowchart LR
 | --- | --- |
 | `grill` | Interviews you about a plan until every open decision is settled. When the plan is too big for one PR, it proposes a spec with tracer-bullet tickets for `execute` to carry out as their blockers close. Skip it when the change is clear: describe what you want, let the agent propose a change, and run `execute` on that proposal. |
 | `execute` | Carries out the settled plan, or a tracker issue you name, such as `/execute #42`. An issue in the `needs-triage` state is triaged first: `execute` moves it to `ready-for-agent` and continues, or stops with the triage recommendation. Name a planning spec to carry out its tickets whose blockers have closed; every open ticket of the spec in the `needs-triage` state is triaged first too. Substantial independent pieces, such as separate tickets, run in parallel agents. Then it cleans up, reviews the result, and opens a preview. |
-| `clean-up` | The final check. For an independent look, run it in a fresh session, ideally on a different model or provider. It repeats cleanup and review over everything changed on the branch, fixes clear findings, and shows what it changed. Edits stay uncommitted. |
+| `clean‑up` | The final check. For an independent look, run it in a fresh session, ideally on a different model or provider. It repeats cleanup and review over everything changed on the branch, fixes clear findings, and shows what it changed. Edits stay uncommitted. |
 | `submit` | Commits pending changes, pushes, opens or updates the PR, marks it ready for review, and waits for its checks. A person then reviews and merges it: `submit` never merges. After review feedback, run it again to push fixes and re-request review. |
 | `deploy` | Does what `submit` does, then merges the PR itself when your workflow allows, closes tickets, and verifies production if your workflow asks. It asks you first if commits from elsewhere or resolved conflicts entered the PR, and stops when the merge needs a person. PRs it plans to merge without review get the `agent-merge` label, so reviewers can filter them out. |
 
@@ -65,8 +65,8 @@ Each skill lives at `skills/<group>/<name>/SKILL.md`, and the groups below follo
 
 | Skill | What it does |
 | --- | --- |
-| `help-snappedly` | Picks the skill or workflow that fits your current situation. |
-| `setup-snappedly-skills` | Records your repository's code host, work tracker, team workflow, domain docs, and frontend conventions for the other skills. |
+| `help‑snappedly` | Picks the skill or workflow that fits your current situation. |
+| `setup‑snappedly‑skills` | Records your repository's code host, work tracker, team workflow, domain docs, and frontend conventions for the other skills. |
 
 ---
 
@@ -87,7 +87,7 @@ Each skill lives at `skills/<group>/<name>/SKILL.md`, and the groups below follo
 | --- | --- |
 | `grill` | Interviews you about a plan until every open decision is settled, and splits a plan too big for one PR into a spec with tracer-bullet tickets. |
 | `execute` | Carries out the settled plan, a named issue, or a planning spec's ready tickets, with parallel agents where the work splits, then cleans up, reviews, and opens a preview. |
-| `clean-up` | Cleans up, reviews, fixes, and shows what changed, leaving edits uncommitted. |
+| `clean‑up` | Cleans up, reviews, fixes, and shows what changed, leaving edits uncommitted. |
 | `submit` | Opens or updates a PR ready for review, waits for its checks, and leaves the merge to a person. |
 | `deploy` | Merges checked changes without human review when your workflow allows, then closes tickets and verifies production. |
 
@@ -98,8 +98,8 @@ Each skill lives at `skills/<group>/<name>/SKILL.md`, and the groups below follo
 | Skill | What it does |
 | --- | --- |
 | `retro` | Reviews a coding session and recommends evidence-backed improvements to the agent's environment. |
-| `wait-what` | Explains the last message again, more clearly, when it did not land. |
-| `workflow-mapping` | Maps user journeys and process scenarios, with their outcomes, logic mismatches, and missing cases. |
+| `wait‑what` | Explains the last message again, more clearly, when it did not land. |
+| `workflow‑mapping` | Maps user journeys and process scenarios, with their outcomes, logic mismatches, and missing cases. |
 
 ---
 
@@ -107,9 +107,9 @@ Each skill lives at `skills/<group>/<name>/SKILL.md`, and the groups below follo
 
 | Skill | What it does |
 | --- | --- |
-| `codebase-cleanup` | Sweeps a codebase for dead code, useless tests, unnecessary wrappers, and redundant abstractions. |
-| `diagnosing-bugs` | Diagnoses uncertain, persistent, or intermittent bugs and performance regressions. |
-| `improve-codebase-architecture` | Finds deepening opportunities across a codebase or around a change, and presents them as a visual HTML report. |
+| `codebase‑cleanup` | Sweeps a codebase for dead code, useless tests, unnecessary wrappers, and redundant abstractions. |
+| `diagnosing‑bugs` | Diagnoses uncertain, persistent, or intermittent bugs and performance regressions. |
+| `improve‑codebase‑architecture` | Finds deepening opportunities across a codebase or around a change, and presents them as a visual HTML report. |
 | `triage` | Moves issues and external PRs through triage, verifies claims, and writes agent-ready briefs. Agents can load it when needed, including during `execute`. |
 
 ---
@@ -120,15 +120,15 @@ The practice skills hold the standards that the other skills apply. Your agent a
 
 | Skill | What it does |
 | --- | --- |
-| `code-cleanup` | Cleans and validates completed changes before a commit. |
-| `code-review` | Reviews a branch, PR, or working change for correctness, requirements, maintainability, and UI, with depth that matches the risk. |
-| `codebase-design` | Supplies a shared vocabulary for designing deep modules and choosing where seams go. |
-| `domain-modeling` | Maintains a project's domain glossary and its architecture decision records. |
+| `code‑cleanup` | Cleans and validates completed changes before a commit. |
+| `code‑review` | Reviews a branch, PR, or working change for correctness, requirements, maintainability, and UI, with depth that matches the risk. |
+| `codebase‑design` | Supplies a shared vocabulary for designing deep modules and choosing where seams go. |
+| `domain‑modeling` | Maintains a project's domain glossary and its architecture decision records. |
 | `pr` | Prepares a pull request for review, from its title and description to its commit history. |
-| `remove-slop` | Removes AI-generated slop from code and prose without changing behavior or meaning. |
+| `remove‑slop` | Removes AI-generated slop from code and prose without changing behavior or meaning. |
 | `tdd` | Applies test-driven development to changed logic. It also serves as the reference for test quality and test seams. |
-| `technical-writing` | Applies a layered writing standard to docs, PR descriptions, commit messages, and tickets. |
-| `writing-for-agents` | Guides the writing and editing of skills and `AGENTS.md` files. |
+| `technical‑writing` | Applies a layered writing standard to docs, PR descriptions, commit messages, and tickets. |
+| `writing‑for‑agents` | Guides the writing and editing of skills and `AGENTS.md` files. |
 
 
 ## How the skills learn your conventions
