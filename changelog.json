@@ -1,5 +1,15 @@
 [
   {
+    "version": "1.6.0",
+    "title": "Build Local Removed",
+    "changes": [
+      {
+        "type": "deprecation",
+        "summary": "Build Local is removed. Ask your coding agent for a browser preview of your current changes, and it starts the development server and checks the page without a skill. Execute still opens a preview of viewable changes when it finishes."
+      }
+    ]
+  },
+  {
     "version": "1.5.6",
     "title": "Reliable Tracker Reads and Fresh Subagents",
     "changes": [

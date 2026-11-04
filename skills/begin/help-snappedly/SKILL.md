@@ -24,7 +24,6 @@ The routes below are for orientation. Before you state what a skill does or reco
 | Happy with the branch | `/submit`: commit pending changes, push, open or update the PR, mark it ready for review, and wait for its checks, leaving the review and merge to a person. |
 | Happy with the branch and want the agent to merge it without a person's review | `/deploy`: commit pending changes, push, open or update the PR, merge it once its checks pass, then close out tickets and verify production as the workflow assigns. It stops at mergeable when the workflow assigns the merge to a human or a merge would deploy to production without a recorded deployment approval gate or invocation approval. |
 | Merged a PR on the host yourself | `/deploy` on its branch, or naming the PR, such as `/deploy #42`: verify the merge, then close out and verify production as the workflow assigns. |
-| Inspect current changes in a browser | `/build-local`. |
 | Uncertain or persistent bug | `/diagnosing-bugs`; a clear local defect can be fixed and checked directly. |
 | User asks what would have prevented a bug, or how a session's difficulties should change the agent's environment | `/retro` in the same session, or with that session's log. |
 | User asks to survey architectural friction across the codebase or around a PR, commit, or branch, or to investigate a missing regression-test seam | `/improve-codebase-architecture`, scoped to what the user names. |

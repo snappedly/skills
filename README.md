@@ -57,8 +57,6 @@ flowchart LR
 | `submit` | Commits pending changes, pushes, opens or updates the PR, marks it ready for review, and waits for its checks. A person then reviews and merges it: `submit` never merges. After review feedback, run it again to push fixes and re-request review. |
 | `deploy` | Does what `submit` does, then merges the PR itself when your workflow allows, closes tickets, and verifies production if your workflow asks. It asks you first if commits from elsewhere or resolved conflicts entered the PR, and stops when the merge needs a person. PRs it plans to merge without review get the `agent-merge` label, so reviewers can filter them out. |
 
-Use `build-local` when you want a browser preview of the current changes.
-
 ## All skills
 
 Each skill lives at `skills/<group>/<name>/SKILL.md`, and the groups below follow the directories under `skills/`.
@@ -99,7 +97,6 @@ Each skill lives at `skills/<group>/<name>/SKILL.md`, and the groups below follo
 
 | Skill | What it does |
 | --- | --- |
-| `build-local` | Serves the current working tree at a verified local URL. |
 | `retro` | Reviews a coding session and recommends evidence-backed improvements to the agent's environment. |
 | `wait-what` | Explains the last message again, more clearly, when it did not land. |
 | `workflow-mapping` | Maps user journeys and process scenarios, with their outcomes, logic mismatches, and missing cases. |
