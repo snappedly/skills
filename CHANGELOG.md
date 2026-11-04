@@ -4,6 +4,22 @@ All notable changes to Snappedly Skills are recorded here.
 
 ## [Unreleased]
 
+## [1.6.0] - 2026-11-04
+
+### Removed
+
+- `build-local`. Ask your coding agent for a browser preview of the current changes, and it starts the project's development server and checks the page without a skill. `execute` still opens a preview of viewable changes when it finishes.
+
+### Updating existing repositories
+
+`npx skills update` leaves the removed skill installed and reports it as failed. To remove it, run:
+
+```bash
+npx skills remove build-local
+```
+
+Add `-g` if you installed the skills globally.
+
 ## [1.5.6] - 2026-10-29
 
 ### Fixed
@@ -253,6 +269,7 @@ npx skills remove ask-snappedly cleanup-local deliver deslop frontend-design fro
 
 The command skips any skill you don't have. Add `-g` if you installed the skills globally. Then rerun `/setup-snappedly-skills` in each project. It updates references to renamed skills and proposes removing configuration that only the removed skills read.
 
+[1.6.0]: https://github.com/snappedly/skills/releases/tag/v1.6.0
 [1.5.6]: https://github.com/snappedly/skills/releases/tag/v1.5.6
 [1.5.5]: https://github.com/snappedly/skills/releases/tag/v1.5.5
 [1.5.4]: https://github.com/snappedly/skills/releases/tag/v1.5.4
